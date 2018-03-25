@@ -3,10 +3,15 @@ package Controlleur;
 import Modele.Trajet;
 import Controlleur.Algorithm.*;
 import Modele.Intersection;
+import Modele.ReseauRoutier;
 
 public class GenerateurTrajet {
 	public Trajet genererTrajet(Intersection a, Intersection b){
 		Trajet trajet = new Trajet();
+		
+		ReseauRoutier reseau = MoteurTraitement.obtenirReseauRoutier();
+		
+		
 		//Utiliser MoteurTraitement.obtenirReseauRoutier(); pour acceder carte 
 		
 		Node nodeA = new Node("A");

@@ -2,6 +2,6 @@ package Modele;
 
 public class Trajet {
 
-	private Arthere[] t;
+	private Arthere[] artheres;
 	
 }

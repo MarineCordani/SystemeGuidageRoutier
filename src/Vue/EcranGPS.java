@@ -3,18 +3,18 @@ package Vue;
 import javax.swing.JFrame;
 
 public class EcranGPS extends JFrame {
-	private EntreeUtilisateur eu;
-	private JournalEvenement je;
-	private Carte c;
+	private EntreeUtilisateur entreeUtilisateur;
+	private JournalEvenement journalEvenement;
+	private Carte carte;
 	
 	
 	public EcranGPS(){
-		eu = new EntreeUtilisateur();
-		je = new JournalEvenement();
-		c = new Carte();
+		this.entreeUtilisateur = new EntreeUtilisateur();
+		this.journalEvenement = new JournalEvenement();
+		this.carte = new Carte();
 		
-		this.add(eu);
-		this.add(je);
-		this.add(c);
+		this.add(entreeUtilisateur);
+		this.add(journalEvenement);
+		this.add(carte);
 	}
 }

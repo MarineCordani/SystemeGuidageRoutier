@@ -10,7 +10,7 @@ public class Arthere {
 	
 	private Intersection a;
 	private Intersection b;
-	private Vehicule[] v; //Changer pour une structure elastique (Vector)
+	private Vehicule[] vehicules; //Changer pour une structure elastique (Vector)
 	
 	public Arthere(int v){
 		this.presenceAccident = false;

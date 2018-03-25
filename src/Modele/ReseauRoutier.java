@@ -2,8 +2,8 @@ package Modele;
 
 public class ReseauRoutier {
 
-	Intersection[] i;
-	Arthere[] a;
+	private Intersection[] i;
+	private Arthere[] a;
 
 	
 	public ReseauRoutier(){

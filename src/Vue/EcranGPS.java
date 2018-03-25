@@ -3,11 +3,9 @@ package Vue;
 import javax.swing.JFrame;
 
 public class EcranGPS extends JFrame {
-
-	
-	EntreeUtilisateur eu;
-	JournalEvenement je;
-	Carte c;
+	private EntreeUtilisateur eu;
+	private JournalEvenement je;
+	private Carte c;
 	
 	
 	public EcranGPS(){
@@ -19,6 +17,4 @@ public class EcranGPS extends JFrame {
 		this.add(je);
 		this.add(c);
 	}
-	
-	
 }

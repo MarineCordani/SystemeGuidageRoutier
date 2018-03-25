@@ -7,5 +7,4 @@ public class JournalEvenement extends JPanel {
 	public JournalEvenement(){
 		
 	}
-	
 }

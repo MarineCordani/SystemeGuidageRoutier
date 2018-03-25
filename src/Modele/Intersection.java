@@ -1,10 +1,7 @@
 package Modele;
 
 public class Intersection {
-
-	
-	
-	String i;
-	Vehicule[] v;
+	private String id;
+	private Vehicule[] v;
 	
 }

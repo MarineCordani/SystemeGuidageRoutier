@@ -5,6 +5,13 @@ import java.util.LinkedList;
 import java.util.Map.Entry;
 import java.util.Set;
 
+/**
+ * Classe qui contient l'algorithme de Dijkstra
+ * http://www.baeldung.com/java-dijkstra
+ * 
+ * @author Baeldung
+ *
+ */
 public class Dijkstra {
 	public static Graph calculateShortestPathFromSource(Graph graph, Node source) {
 		source.setDistance(0);

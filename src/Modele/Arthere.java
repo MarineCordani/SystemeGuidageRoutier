@@ -19,6 +19,30 @@ public class Arthere {
 		this.longueur = 100;
 	}
 	
+	/**
+	 * Cette méthode permet de connaître l'intersection a de l'arthère
+	 * 
+	 * @return l'intersection a de l'arthère
+	 */
+	public Intersection getA() {
+		return this.a;
+	}
+	
+	/**
+	 * Cette méthode permet de connaître l'intersection b de l'arthère
+	 * 
+	 * @return l'intersection b de l'arthère
+	 */
+	public Intersection getB() {
+		return this.b;
+	}
+	
+	
+	/**
+	 * Cette méthode permet de connaître la durée pour parcourir l'arthère
+	 * 
+	 * @return la durée pour parcourir l'arthère
+	 */
 	public int dureeTraverse(){
 		return longueur/vitesseActuel;
 	}

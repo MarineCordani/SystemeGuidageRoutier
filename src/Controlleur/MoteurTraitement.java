@@ -9,12 +9,15 @@ public class MoteurTraitement {
 	static EcranGPS ecran = new EcranGPS();
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		System.out.println("Fake test");//pour tester si tout compile bien
 	}
 
-	
-	public static ReseauRoutier obtenirReseauRoutier(){
+	/**
+	 * Cette méthode nous permet d'obtenir le réseau routier
+	 * 
+	 * @return le réseau routier
+	 */
+	public static ReseauRoutier getReseauRoutier(){
 		return reseau;
 	}
 	

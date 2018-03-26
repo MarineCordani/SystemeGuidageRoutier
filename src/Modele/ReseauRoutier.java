@@ -11,6 +11,15 @@ public class ReseauRoutier {
 		
 	}
 	
+	public Intersection[] getIntersections() {
+		return this.intersections;
+	}
+	
+	public Arthere[] getArtheres() {
+		return this.artheres;
+	}
+	
+	
 	public void ajouterVehicule(Vehicule v, Intersection i){
 		
 	}
@@ -19,5 +28,6 @@ public class ReseauRoutier {
 	public void ajouterAccident(Intersection i){
 		
 	}
+	
 	
 }

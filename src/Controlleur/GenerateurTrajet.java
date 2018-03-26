@@ -9,7 +9,16 @@ public class GenerateurTrajet {
 	public Trajet genererTrajet(Intersection a, Intersection b){
 		Trajet trajet = new Trajet();
 		
-		ReseauRoutier reseau = MoteurTraitement.obtenirReseauRoutier();
+		ReseauRoutier reseau = MoteurTraitement.getReseauRoutier();
+		
+		Intersection[] intersections = reseau.getIntersections();
+		Node nodes[] = new Node[intersections.length];
+		
+		for(int i = 0;i < intersections.length;i++){
+			Intersection intersection = intersections[i];
+			nodes[i] = new Node(intersection.getId());
+			
+		}
 		
 		
 		//Utiliser MoteurTraitement.obtenirReseauRoutier(); pour acceder carte 

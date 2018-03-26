@@ -2,6 +2,7 @@ package Controlleur;
 
 import Modele.Trajet;
 import Controlleur.Algorithm.*;
+import Modele.Arthere;
 import Modele.Intersection;
 import Modele.ReseauRoutier;
 
@@ -10,50 +11,74 @@ public class GenerateurTrajet {
 		Trajet trajet = new Trajet();
 		
 		ReseauRoutier reseau = MoteurTraitement.getReseauRoutier();
-		
 		Intersection[] intersections = reseau.getIntersections();
-		Node nodes[] = new Node[intersections.length];
+		Arthere[] artheres = reseau.getArtheres();
 		
-		for(int i = 0;i < intersections.length;i++){
-			Intersection intersection = intersections[i];
-			nodes[i] = new Node(intersection.getId());
+		int adjacencyMatrix[][] = new int[intersections.length + 1][intersections.length + 1];
+        int source = 0;
+        int destination = 0;
+		
+        for (int i = 1; i <= intersections.length; i++)  {
+    		Intersection intersection = intersections[i - 1];
 			
+			if(a == intersection) {
+				source = i - 1;
+			}
+			
+			if(b == intersection) {
+				destination = i - 1;
+			}		
+			
+            for (int j = 1; j <= intersections.length; j++) {
+            	int poids = Integer.MAX_VALUE;       	
+
+            	Arthere arthere = this.getArthere(artheres, intersections[i], intersections[j]);
+            	
+            	if(arthere != null) {
+            		poids = arthere.dureeTraverse();
+            	}
+            	else {
+            		poids = Integer.MAX_VALUE;
+            	}
+            	
+            	adjacencyMatrix[i][j] = poids;
+            	
+                if (i == j)
+                {
+                    adjacencyMatrix[i][j] = 0;
+                    continue;
+                }
+                
+                if (adjacencyMatrix[i][j] == 0)
+                {
+                    adjacencyMatrix[i][j] = Integer.MAX_VALUE;
+                }
+            }
+        }
+				
+		
+ 
+		Dijkstra algorithme = new Dijkstra();
+		algorithme.calculateShortestPath(adjacencyMatrix, source);
+/*
+		System.out.println("The Shorted Path from " + source + " to " + destination + " is: ");
+		for (int i = 1; i <= algorithme.distances.length - 1; i++) {
+			if (i == destination)
+				System.out.println(source + " to " + i + " is " + algorithme.distances[i]);
+		}
+*/
+		return trajet; // Retourner le trajet creer
+	}
+
+	private Arthere getArthere(Arthere[] artheres, Intersection a, Intersection b) {
+		for(int i = 0;i < artheres.length; i++) {
+			Arthere arthere = artheres[i];
+			
+			if((a == arthere.getA() && b == arthere.getB()) || (b == arthere.getA() && a == arthere.getB())) {
+				return arthere;
+			}			
 		}
 		
-		
-		//Utiliser MoteurTraitement.obtenirReseauRoutier(); pour acceder carte 
-		
-		Node nodeA = new Node("A");
-		Node nodeB = new Node("B");
-		Node nodeC = new Node("C");
-		Node nodeD = new Node("D"); 
-		Node nodeE = new Node("E");
-		Node nodeF = new Node("F");
-		 
-		nodeA.addDestination(nodeB, 10);
-		nodeA.addDestination(nodeC, 15);
-		 
-		nodeB.addDestination(nodeD, 12);
-		nodeB.addDestination(nodeF, 15);
-		 
-		nodeC.addDestination(nodeE, 10);
-		 
-		nodeD.addDestination(nodeE, 2);
-		nodeD.addDestination(nodeF, 1);
-		 
-		nodeF.addDestination(nodeE, 5);
-		 
-		Graph graph = new Graph();
-		 
-		graph.addNode(nodeA);
-		graph.addNode(nodeB);
-		graph.addNode(nodeC);
-		graph.addNode(nodeD);
-		graph.addNode(nodeE);
-		graph.addNode(nodeF);
-		 
-		graph = Dijkstra.calculateShortestPathFromSource(graph, nodeA);
-		
-		return trajet; //Retourner le trajet creer
+		return null;
 	}
 }

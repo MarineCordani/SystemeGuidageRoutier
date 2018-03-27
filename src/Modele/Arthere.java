@@ -1,22 +1,31 @@
 package Modele;
 
+import java.util.Vector;
+
 public class Arthere {
 
-	private boolean presenceAccident;
-	private int vitesseLimite; //Toujours etre divisible par 4
-	private int vitesseActuel; //Vitesse est egal a vitesse limite, diviser par 2 si accident, diviser par 2 si congestion
-	private int longueur; //Pareille pour tous
+	boolean presenceAccident;
+	int vitesseLimite; //Toujours etre divisible par 4
+	int vitesseActuel; //Vitesse est egal a vitesse limite, diviser par 2 si accident, diviser par 2 si congestion
+	int longueur; //Pareille pour tous
+	String identifiant;
 	
 	
-	private Intersection a;
-	private Intersection b;
-	private Vehicule[] vehicules; //Changer pour une structure elastique (Vector)
+	Intersection intersectionA;
+	Intersection intersectionB;
+	Vector<Vehicule> vehicules = new Vector<Vehicule>(); //Changer pour une structure elastique (Vector)
 	
-	public Arthere(int v){
+	public Arthere(int v, Intersection a, Intersection b){
 		this.presenceAccident = false;
 		this.vitesseLimite = v;
 		this.vitesseActuel = this.vitesseLimite;
 		this.longueur = 100;
+		this.identifiant = a.identifiant + "-" + b.identifiant;
+		
+		this.intersectionA = a;
+		a.connecterArthere(this);
+		this.intersectionB = b;
+		b.connecterArthere(this);
 	}
 	
 	/**
@@ -25,7 +34,7 @@ public class Arthere {
 	 * @return l'intersection a de l'arthère
 	 */
 	public Intersection getA() {
-		return this.a;
+		return this.intersectionA;
 	}
 	
 	/**
@@ -34,7 +43,7 @@ public class Arthere {
 	 * @return l'intersection b de l'arthère
 	 */
 	public Intersection getB() {
-		return this.b;
+		return this.intersectionB;
 	}
 	
 	
@@ -47,5 +56,12 @@ public class Arthere {
 		return longueur/vitesseActuel;
 	}
 	
-	
+	public void creerAccident(){
+		presenceAccident = true;
+		
+		//Accidenter deux voitures au hasard
+		int aleatoire = (int)((Math.random() * vehicules.size()));
+		vehicules.get(aleatoire).accidente = true;
+		vehicules.get(aleatoire -1).accidente = true;
+	}
 }

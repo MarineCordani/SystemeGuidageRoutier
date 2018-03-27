@@ -1,6 +1,9 @@
 package Controlleur;
 
 import Modele.Trajet;
+
+import java.util.Vector;
+
 import Controlleur.Algorithm.*;
 import Modele.Arthere;
 import Modele.Intersection;
@@ -11,15 +14,15 @@ public class GenerateurTrajet {
 		Trajet trajet = new Trajet();
 		
 		ReseauRoutier reseau = MoteurTraitement.getReseauRoutier();
-		Intersection[] intersections = reseau.getIntersections();
-		Arthere[] artheres = reseau.getArtheres();
+		Vector<Intersection> intersections = reseau.getIntersections();
+		Vector<Arthere> artheres = reseau.getArtheres();
 		
-		int adjacencyMatrix[][] = new int[intersections.length + 1][intersections.length + 1];
+		int adjacencyMatrix[][] = new int[intersections.size() + 1][intersections.size() + 1];
         int source = 0;
         int destination = 0;
 		
-        for (int i = 1; i <= intersections.length; i++)  {
-    		Intersection intersection = intersections[i - 1];
+        for (int i = 1; i <= intersections.size(); i++)  {
+    		Intersection intersection = intersections.get(i - 1);
 			
 			if(a == intersection) {
 				source = i - 1;
@@ -29,10 +32,10 @@ public class GenerateurTrajet {
 				destination = i - 1;
 			}		
 			
-            for (int j = 1; j <= intersections.length; j++) {
+            for (int j = 1; j <= intersections.size(); j++) {
             	int poids = Integer.MAX_VALUE;       	
 
-            	Arthere arthere = this.getArthere(artheres, intersections[i], intersections[j]);
+            	Arthere arthere = this.getArthere(artheres, intersections.get(i), intersections.get(j));
             	
             	if(arthere != null) {
             		poids = arthere.dureeTraverse();
@@ -70,9 +73,9 @@ public class GenerateurTrajet {
 		return trajet; // Retourner le trajet creer
 	}
 
-	private Arthere getArthere(Arthere[] artheres, Intersection a, Intersection b) {
-		for(int i = 0;i < artheres.length; i++) {
-			Arthere arthere = artheres[i];
+	private Arthere getArthere(Vector<Arthere> artheres, Intersection a, Intersection b) {
+		for(int i = 0;i < artheres.size(); i++) {
+			Arthere arthere = artheres.get(i);
 			
 			if((a == arthere.getA() && b == arthere.getB()) || (b == arthere.getA() && a == arthere.getB())) {
 				return arthere;

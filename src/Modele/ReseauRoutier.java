@@ -18,21 +18,21 @@ public class ReseauRoutier {
 		
 		//Ajout des intersections
 		intersections.add(new Intersection("A1", 10, 10));
-		intersections.add(new Intersection("A2", 10, 10));
-		intersections.add(new Intersection("A3", 10, 10));
-		intersections.add(new Intersection("A4", 10, 10));
-		intersections.add(new Intersection("B1", 10, 10));
-		intersections.add(new Intersection("B2", 10, 10));
-		intersections.add(new Intersection("B3", 10, 10));
-		intersections.add(new Intersection("B4", 10, 10));
-		intersections.add(new Intersection("C1", 10, 10));
-		intersections.add(new Intersection("C2", 10, 10));
-		intersections.add(new Intersection("C3", 10, 10));
-		intersections.add(new Intersection("C4", 10, 10));
-		intersections.add(new Intersection("D1", 10, 10));
-		intersections.add(new Intersection("D2", 10, 10));
-		intersections.add(new Intersection("D3", 10, 10));
-		intersections.add(new Intersection("D4", 10, 10));
+		intersections.add(new Intersection("A2", 20, 10));
+		intersections.add(new Intersection("A3", 30, 10));
+		intersections.add(new Intersection("A4", 40, 10));
+		intersections.add(new Intersection("B1", 10, 20));
+		intersections.add(new Intersection("B2", 20, 20));
+		intersections.add(new Intersection("B3", 30, 20));
+		intersections.add(new Intersection("B4", 40, 20));
+		intersections.add(new Intersection("C1", 10, 30));
+		intersections.add(new Intersection("C2", 20, 30));
+		intersections.add(new Intersection("C3", 30, 30));
+		intersections.add(new Intersection("C4", 40, 30));
+		intersections.add(new Intersection("D1", 10, 40));
+		intersections.add(new Intersection("D2", 20, 40));
+		intersections.add(new Intersection("D3", 30, 40));
+		intersections.add(new Intersection("D4", 40, 40));
 
 		//Ajout arthere horizontal
 		artheres.add(new Arthere(10, getIntersection("A1"),getIntersection("A2"))); //Ajouter une arthere qui lie A1 et A2

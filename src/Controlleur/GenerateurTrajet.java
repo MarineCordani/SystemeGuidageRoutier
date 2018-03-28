@@ -10,7 +10,7 @@ import Modele.Intersection;
 import Modele.ReseauRoutier;
 
 public class GenerateurTrajet {
-	public Trajet genererTrajet(Intersection a, Intersection b){
+	public static Trajet genererTrajet(Intersection a, Intersection b){
 		Trajet trajet = new Trajet();
 		
 		ReseauRoutier reseau = MoteurTraitement.getReseauRoutier();
@@ -21,21 +21,21 @@ public class GenerateurTrajet {
         int source = 0;
         int destination = 0;
 		
-        for (int i = 1; i <= intersections.size(); i++)  {
-    		Intersection intersection = intersections.get(i - 1);
+        for (int i = 0; i < intersections.size(); i++)  {
+    		Intersection intersection = intersections.get(i);
 			
 			if(a == intersection) {
-				source = i - 1;
+				source = i;
 			}
 			
 			if(b == intersection) {
-				destination = i - 1;
+				destination = i;
 			}		
 			
-            for (int j = 1; j <= intersections.size(); j++) {
+            for (int j = 0; j < intersections.size(); j++) {
             	int poids = Integer.MAX_VALUE;       	
 
-            	Arthere arthere = this.getArthere(artheres, intersections.get(i), intersections.get(j));
+            	Arthere arthere = GenerateurTrajet.getArthere(artheres, intersections.get(i), intersections.get(j));
             	
             	if(arthere != null) {
             		poids = arthere.dureeTraverse();
@@ -58,22 +58,35 @@ public class GenerateurTrajet {
                 }
             }
         }
-				
-		
- 
+			
 		Dijkstra algorithme = new Dijkstra();
 		algorithme.calculateShortestPath(adjacencyMatrix, source);
-/*
-		System.out.println("The Shorted Path from " + source + " to " + destination + " is: ");
-		for (int i = 1; i <= algorithme.distances.length - 1; i++) {
-			if (i == destination)
-				System.out.println(source + " to " + i + " is " + algorithme.distances[i]);
-		}
-*/
+		        
+        System.out.println("Distance = " + algorithme.shortestDistances[destination]);
+        
+        GenerateurTrajet.genererTrajet(destination, algorithme.parents, trajet, intersections, artheres);
+        
 		return trajet; // Retourner le trajet creer
 	}
-
-	private Arthere getArthere(Vector<Arthere> artheres, Intersection a, Intersection b) {
+	
+	private static void genererTrajet(int destination, int[] parents, Trajet trajet, Vector<Intersection> intersections, Vector<Arthere> artheres) {
+		
+		if (destination == Dijkstra.NO_PARENT) {
+			return;
+		}
+		
+		int source = parents[destination];
+		GenerateurTrajet.genererTrajet(source, parents, trajet, intersections, artheres);
+		Intersection a = intersections.get(source);
+		Intersection b = intersections.get(destination);
+		Arthere r = GenerateurTrajet.getArthere(artheres, a, b);
+		if(r != null) {
+			trajet.ajouterProchainArthere(r);
+		}
+	}
+	
+	
+	private static  Arthere getArthere(Vector<Arthere> artheres, Intersection a, Intersection b) {
 		for(int i = 0;i < artheres.size(); i++) {
 			Arthere arthere = artheres.get(i);
 			

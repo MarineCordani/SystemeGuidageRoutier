@@ -13,7 +13,7 @@ package Controlleur.Algorithm;
  */
 public class Dijkstra {
 
-	private static final int NO_PARENT = -1;
+	public static final int NO_PARENT = -1;
 	public int[] shortestDistances;
 	public int[] parents;
 
@@ -88,7 +88,7 @@ public class Dijkstra {
 			}
 		}
 
-		printSolution(startVertex, shortestDistances, parents);
+		//printSolution(startVertex, shortestDistances, parents);
 	}
 
 	// A utility function to print

@@ -1,6 +1,8 @@
 package Controlleur;
 
+import Modele.Intersection;
 import Modele.ReseauRoutier;
+import Modele.Trajet;
 import Vue.EcranGPS;
 
 public class MoteurTraitement {
@@ -9,7 +11,12 @@ public class MoteurTraitement {
 	static EcranGPS ecran = new EcranGPS();
 	
 	public static void main(String[] args) {
-		System.out.println("Fake test");//pour tester si tout compile bien
+		
+		Intersection a = reseau.getIntersection("A1");
+		Intersection b = reseau.getIntersection("C1");
+		
+		Trajet trajet = GenerateurTrajet.genererTrajet(a, b);
+		
 	}
 
 	/**

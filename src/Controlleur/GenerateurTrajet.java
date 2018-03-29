@@ -41,28 +41,18 @@ public class GenerateurTrajet {
             		poids = arthere.dureeTraverse();
             	}
             	else {
-            		poids = Integer.MAX_VALUE;
+            		poids = 0;
             	}
             	
             	adjacencyMatrix[i][j] = poids;
-            	
-                if (i == j)
-                {
-                    adjacencyMatrix[i][j] = 0;
-                    continue;
-                }
-                
-                if (adjacencyMatrix[i][j] == 0)
-                {
-                    adjacencyMatrix[i][j] = Integer.MAX_VALUE;
-                }
             }
         }
-			
+		
+        
 		Dijkstra algorithme = new Dijkstra();
 		algorithme.calculateShortestPath(adjacencyMatrix, source);
 		        
-        System.out.println("Distance = " + algorithme.shortestDistances[destination]);
+        //System.out.println("Distance = " + algorithme.shortestDistances[destination]);
         
         GenerateurTrajet.genererTrajet(destination, algorithme.parents, trajet, intersections, artheres);
         
@@ -76,12 +66,15 @@ public class GenerateurTrajet {
 		}
 		
 		int source = parents[destination];
-		GenerateurTrajet.genererTrajet(source, parents, trajet, intersections, artheres);
-		Intersection a = intersections.get(source);
-		Intersection b = intersections.get(destination);
-		Arthere r = GenerateurTrajet.getArthere(artheres, a, b);
-		if(r != null) {
-			trajet.ajouterProchainArthere(r);
+		
+		if(source > Dijkstra.NO_PARENT) {
+			GenerateurTrajet.genererTrajet(source, parents, trajet, intersections, artheres);
+			Intersection a = intersections.get(source);
+			Intersection b = intersections.get(destination);
+			Arthere r = GenerateurTrajet.getArthere(artheres, a, b);
+			if(r != null) {
+				trajet.ajouterProchainArthere(r);
+			}
 		}
 	}
 	

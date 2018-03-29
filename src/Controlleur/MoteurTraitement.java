@@ -13,10 +13,10 @@ public class MoteurTraitement {
 	public static void main(String[] args) {
 		
 		Intersection a = reseau.getIntersection("A1");
-		Intersection b = reseau.getIntersection("C1");
+		Intersection b = reseau.getIntersection("C4");
 		
-		Trajet trajet = GenerateurTrajet.genererTrajet(a, b);
-		
+		Trajet trajet = GenerateurTrajet.genererTrajet(a, b);	
+		trajet.imprimerTrajet();
 	}
 
 	/**

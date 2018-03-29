@@ -17,7 +17,8 @@ public class GenerateurTrajet {
 		Vector<Intersection> intersections = reseau.getIntersections();
 		Vector<Arthere> artheres = reseau.getArtheres();
 		
-		int adjacencyMatrix[][] = new int[intersections.size() + 1][intersections.size() + 1];
+		//peupler la matrice d'adjacence
+		int adjacencyMatrix[][] = new int[intersections.size()][intersections.size()];
         int source = 0;
         int destination = 0;
 		
@@ -48,7 +49,7 @@ public class GenerateurTrajet {
             }
         }
 		
-        
+        //Appliquer l'algorithme
 		Dijkstra algorithme = new Dijkstra();
 		algorithme.calculateShortestPath(adjacencyMatrix, source);
 		        

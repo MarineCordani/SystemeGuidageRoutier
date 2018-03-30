@@ -4,23 +4,22 @@ import java.util.Vector;
 
 public class Arthere {
 
-	boolean presenceAccident;
-	int vitesseLimite; //Toujours etre divisible par 4
-	int vitesseActuel; //Vitesse est egal a vitesse limite, diviser par 2 si accident, diviser par 2 si congestion
-	int longueur; //Pareille pour tous
-	String identifiant;
-	
-	
-	Intersection intersectionA;
-	Intersection intersectionB;
-	Vector<Vehicule> vehicules = new Vector<Vehicule>(); //Changer pour une structure elastique (Vector)
+	private boolean presenceAccident;
+	private int vitesseLimite; //Toujours etre divisible par 4
+	private int vitesseActuel; //Vitesse est egal a vitesse limite, diviser par 2 si accident, diviser par 2 si congestion
+	private int longueur; //Pareille pour tous
+	private String identifiant;
+		
+	private Intersection intersectionA;
+	private Intersection intersectionB;
+	private Vector<Vehicule> vehicules = new Vector<Vehicule>(); //Changer pour une structure elastique (Vector)
 	
 	public Arthere(int v, Intersection a, Intersection b){
 		this.presenceAccident = false;
 		this.vitesseLimite = v;
 		this.vitesseActuel = this.vitesseLimite;
 		this.longueur = 100;
-		this.identifiant = a.identifiant + "-" + b.identifiant;
+		this.identifiant = a.getIdentifiant() + "-" + b.getIdentifiant();
 		
 		this.intersectionA = a;
 		a.connecterArthere(this);
@@ -61,7 +60,11 @@ public class Arthere {
 		
 		//Accidenter deux voitures au hasard
 		int aleatoire = (int)((Math.random() * vehicules.size()));
-		vehicules.get(aleatoire).accidente = true;
-		vehicules.get(aleatoire -1).accidente = true;
+		vehicules.get(aleatoire).SetAccidente(true);
+		vehicules.get(aleatoire -1).SetAccidente(true);
+	}
+
+	public String getIdentifiant() {
+		return this.identifiant;
 	}
 }

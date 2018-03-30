@@ -3,11 +3,10 @@ package Modele;
 import java.util.Vector;
 
 public class ReseauRoutier {
-
-	Vector<Intersection> intersections = new Vector<Intersection>();
-	Vector<Arthere> artheres = new Vector<Arthere>();
-	
 	public static final int VITESSE_MAX = 10;
+	
+	private Vector<Intersection> intersections = new Vector<Intersection>();
+	private Vector<Arthere> artheres = new Vector<Arthere>();
 
 	
 	public ReseauRoutier(){

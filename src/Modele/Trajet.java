@@ -4,7 +4,7 @@ import java.util.Vector;
 
 public class Trajet {
 
-	Vector<Arthere> artheres = new Vector<Arthere>();
+	private Vector<Arthere> artheres = new Vector<Arthere>();
 	
 	
 	public Arthere retirerProchainArthere(){ //Retire le prochain arthere du trajet et l'envoi a la méthode appelante
@@ -24,7 +24,7 @@ public class Trajet {
 	//Pour déboggage seulement
 	public void imprimerTrajet(){
 		for (Arthere a: artheres){
-			System.out.println(a.identifiant);
+			System.out.println(a.getIdentifiant());
 		}
 	}
 	

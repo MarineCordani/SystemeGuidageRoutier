@@ -4,11 +4,11 @@ import java.util.Vector;
 
 public class Intersection {
 
-	int positionX; //Position X de l'intersection
-	int positionY; //Position Y de l'intersection
-	Vector<Arthere> connection = new Vector<Arthere>();
-	String identifiant; //Identifiant
-	Vector<Vehicule> vehicule = new Vector<Vehicule>(); //Vehicule sur l'arthere
+	private int positionX; //Position X de l'intersection
+	private int positionY; //Position Y de l'intersection
+	private Vector<Arthere> connection = new Vector<Arthere>();
+	private String identifiant; //Identifiant
+	private Vector<Vehicule> vehicule = new Vector<Vehicule>(); //Vehicule sur l'arthere
 	
 	
 	public void ajouterVehicule(Vehicule v){

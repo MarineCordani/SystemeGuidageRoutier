@@ -2,10 +2,10 @@ package Modele;
 
 public class Vehicule {
 
-	Trajet trajet;
-	boolean accidente; //Indique si le vehicule a ete impliqué dans un accident
-	int positionX;
-	int positionY;
+	private Trajet trajet;
+	private boolean accidente; //Indique si le vehicule a ete impliqué dans un accident
+	private int positionX;
+	private int positionY;
 	
 	
 	public Vehicule(Trajet t){
@@ -20,8 +20,12 @@ public class Vehicule {
 	}	
 	
 	public void definirPositionInitial(Intersection i){
-		this.positionX = i.positionX;
-		this.positionY = i.positionY;
+		this.positionX = i.getPositionX();
+		this.positionY = i.getPositionY();
+	}
+
+	public void SetAccidente(boolean etat) {
+		this.accidente = etat;		
 	}
 	
 }

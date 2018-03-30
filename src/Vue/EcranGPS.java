@@ -1,5 +1,6 @@
 package Vue;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class EcranGPS extends JFrame {
@@ -8,7 +9,12 @@ public class EcranGPS extends JFrame {
 	private Carte carte;
 	
 	
-	public EcranGPS(){
+	public EcranGPS(String titre){
+		super(titre);
+		
+		ImageIcon icon = new ImageIcon("res/icon.png");
+		this.setIconImage(icon.getImage());
+		
 		this.entreeUtilisateur = new EntreeUtilisateur();
 		this.journalEvenement = new JournalEvenement();
 		this.carte = new Carte();

@@ -38,8 +38,8 @@ public class MoteurTraitement {
 	private static void creerEtAfficherInterface() {
 		ecran = new EcranGPS("Système de guidage dans un réseau routier");
 		ecran.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ecran.setLocation(30, 30);
-		ecran.setSize(640, 480);
+		ecran.setLocation(0, 0);
+		ecran.setSize(1024, 600);
 		ecran.setVisible(true);
 	}
 

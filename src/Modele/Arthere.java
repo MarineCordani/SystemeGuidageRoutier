@@ -55,13 +55,18 @@ public class Arthere {
 		return longueur/vitesseActuel;
 	}
 	
-	public void creerAccident(){
-		presenceAccident = true;
+	public boolean creerAccident(){
+		//Si pas au moins deux vehicule, annuler l'accident
+		if (vehicules.size() < 2){
+			return false;
+		}
 		
+		presenceAccident = true;
 		//Accidenter deux voitures au hasard
-		int aleatoire = (int)((Math.random() * vehicules.size()));
+		int aleatoire = (int)((Math.random() * (vehicules.size()-1))+1); //Choisis un vehicule autre que le premier
 		vehicules.get(aleatoire).SetAccidente(true);
 		vehicules.get(aleatoire -1).SetAccidente(true);
+		return true;
 	}
 
 	public String getIdentifiant() {

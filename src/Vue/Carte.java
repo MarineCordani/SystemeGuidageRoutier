@@ -17,11 +17,14 @@ import Modele.ReseauRoutier;
 
 public class Carte extends JPanel {
 	
-	private final int TAILLE_MARGE = 50;
+	private final Color COULEUR_CARTE = new Color(227, 224,217);
+	private final int TAILLE_MARGE = 0;
 	private final int EPAISSEUR_TRAIT = 5;
 	
+	
+	
 	public Carte(){
-		
+		this.setBackground(COULEUR_CARTE);
 	}	
 	
 	@Override
@@ -34,7 +37,7 @@ public class Carte extends JPanel {
         int[] coins = reseau.getCoinsCarte();
         Rectangle carteSize = new Rectangle(coins[0], coins[1], coins[2] - coins[0], coins[3] - coins[1]);
         
-        g.setColor(new Color(227, 224,217));
+        g.setColor(COULEUR_CARTE);
         
         double ratio = 0.0;
         if(carteSize.width > carteSize.height) {
@@ -74,7 +77,7 @@ public class Carte extends JPanel {
         	g.drawLine((int)x1, (int)y1, (int)x2, (int)y2);
         }
         
-        g.setColor(new Color(255, 255,255));
+        g.setColor(Color.WHITE);
         g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(EPAISSEUR_TRAIT));
                 
@@ -90,7 +93,13 @@ public class Carte extends JPanel {
         }
         
         
-       // g.drawString("BLAH", 20, 20);
-        //g.drawRect(200, 200, 200, 200);
+        g.setColor(Color.BLACK);    
+        Vector<Intersection> intersections = reseau.getIntersections();
+        for (Intersection intersection: intersections){
+        	        	
+        	x1 = x + ((double)intersection.getPositionX() / ratio) - 20.0;
+        	y1 = y + ((double)intersection.getPositionY() / ratio) - 5.0;
+        	g.drawString(intersection.toString(),(int)x1, (int)y1);
+        }
     }
 }

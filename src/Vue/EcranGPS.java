@@ -1,6 +1,8 @@
 package Vue;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -16,13 +18,25 @@ import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.Rectangle;
 import javax.swing.border.LineBorder;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+import javax.swing.SpringLayout;
+import net.miginfocom.swing.MigLayout;
 
 public class EcranGPS extends JFrame {
+	private final int DIVIDER_SIZE = 1;
+	
 	private EntreeUtilisateur entreeUtilisateur;
 	private JournalEvenement journalEvenement;
 	private Carte carte;
 	private JSplitPane horizontalSplitPane;
 	private JSplitPane verticalSplitPane;
+	private JLabel lblOriginLabel;
+	private JComboBox cboOriginComboBox;
+	private JLabel lblDestinationLabel;
+	private JComboBox cboDestinationComboBox;
+	private JButton btnDemarrerButton;
+	private JTextArea txtJournalEvenementTextArea;
 	
 	
 	public EcranGPS(String titre){
@@ -35,26 +49,53 @@ public class EcranGPS extends JFrame {
 		horizontalSplitPane = new JSplitPane();
 		horizontalSplitPane.setResizeWeight(0.7);
 		horizontalSplitPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+		horizontalSplitPane.setDividerSize(DIVIDER_SIZE);
 		getContentPane().add(horizontalSplitPane);
 		this.carte = new Carte();
 		horizontalSplitPane.setLeftComponent(carte);
-		carte.setBackground(Color.RED);
+
 		carte.setLayout(new FlowLayout(FlowLayout.CENTER, 1, 1));
 		
 		verticalSplitPane = new JSplitPane();
 		verticalSplitPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-		verticalSplitPane.setResizeWeight(0.3);
+		verticalSplitPane.setResizeWeight(0.01);
+		verticalSplitPane.setDividerSize(DIVIDER_SIZE);
 		verticalSplitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		horizontalSplitPane.setRightComponent(verticalSplitPane);
 		
 		this.entreeUtilisateur = new EntreeUtilisateur();
 		verticalSplitPane.setLeftComponent(entreeUtilisateur);
-		entreeUtilisateur.setBackground(Color.PINK);
-		FlowLayout fl_entreeUtilisateur = new FlowLayout(FlowLayout.LEFT, 5, 5);
-		entreeUtilisateur.setLayout(fl_entreeUtilisateur);
+		entreeUtilisateur.setLayout(new MigLayout("fillx", "[][]", "[][][]"));
+		
+		lblOriginLabel = new JLabel("Origine");
+		entreeUtilisateur.add(lblOriginLabel, "cell 0 0,alignx leading");
+		
+		cboOriginComboBox = new JComboBox();
+		entreeUtilisateur.add(cboOriginComboBox, "cell 1 0,growx");
+		
+		lblDestinationLabel = new JLabel("Destination");
+		entreeUtilisateur.add(lblDestinationLabel, "flowx,cell 0 1,alignx leading");
+		
+		cboDestinationComboBox = new JComboBox();
+		entreeUtilisateur.add(cboDestinationComboBox, "cell 1 1,growx");
+		
+		btnDemarrerButton = new JButton("D\u00E9marrer");
+		entreeUtilisateur.add(btnDemarrerButton, "cell 0 2 2 1,growx");
+		
 		this.journalEvenement = new JournalEvenement();
 		verticalSplitPane.setRightComponent(journalEvenement);
-		journalEvenement.setBackground(Color.BLUE);
-		journalEvenement.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
+		journalEvenement.setLayout(new BorderLayout(0, 0));
+		
+		txtJournalEvenementTextArea = new JTextArea();
+		journalEvenement.add(txtJournalEvenementTextArea);
+	}
+	
+	public void RafraichirInterface() {
+		carte.revalidate();
+		carte.repaint();
+	}
+	
+	public void ajouterTexteAuJournal(String message) {
+		txtJournalEvenementTextArea.append(message + "\n");
 	}
 }

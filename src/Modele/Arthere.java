@@ -19,7 +19,7 @@ public class Arthere {
 		this.vitesseLimite = v;
 		this.vitesseActuel = this.vitesseLimite;
 		this.longueur = 100;
-		this.identifiant = a.getIdentifiant() + "-" + b.getIdentifiant();
+		this.identifiant = a.toString() + "-" + b.toString();
 		
 		this.intersectionA = a;
 		a.connecterArthere(this);
@@ -69,7 +69,7 @@ public class Arthere {
 		return true;
 	}
 
-	public String getIdentifiant() {
+	public String toString() {
 		return this.identifiant;
 	}
 }

@@ -17,12 +17,24 @@ import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.Rectangle;
+import java.util.Vector;
+
 import javax.swing.border.LineBorder;
+
+import Controlleur.MoteurTraitement;
+import Modele.Intersection;
+import Modele.ReseauRoutier;
+
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.SpringLayout;
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * 
+ * @author 
+ *
+ */
 public class EcranGPS extends JFrame {
 	private final int DIVIDER_SIZE = 1;
 	
@@ -32,9 +44,9 @@ public class EcranGPS extends JFrame {
 	private JSplitPane horizontalSplitPane;
 	private JSplitPane verticalSplitPane;
 	private JLabel lblOriginLabel;
-	private JComboBox cboOriginComboBox;
+	private JComboBox<String> cboOriginComboBox;
 	private JLabel lblDestinationLabel;
-	private JComboBox cboDestinationComboBox;
+	private JComboBox<String> cboDestinationComboBox;
 	private JButton btnDemarrerButton;
 	private JTextArea txtJournalEvenementTextArea;
 	
@@ -42,8 +54,11 @@ public class EcranGPS extends JFrame {
 	public EcranGPS(String titre){
 		super(titre);
 		
+		//ajout de l'icone sur la fenêtre principale
 		ImageIcon icon = new ImageIcon("res/icon.png");
 		this.setIconImage(icon.getImage());
+		
+		//ajout des controleurs de la fenêtre principale
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		horizontalSplitPane = new JSplitPane();
@@ -70,13 +85,13 @@ public class EcranGPS extends JFrame {
 		lblOriginLabel = new JLabel("Origine");
 		entreeUtilisateur.add(lblOriginLabel, "cell 0 0,alignx leading");
 		
-		cboOriginComboBox = new JComboBox();
+		cboOriginComboBox = new JComboBox<String>();
 		entreeUtilisateur.add(cboOriginComboBox, "cell 1 0,growx");
 		
 		lblDestinationLabel = new JLabel("Destination");
 		entreeUtilisateur.add(lblDestinationLabel, "flowx,cell 0 1,alignx leading");
 		
-		cboDestinationComboBox = new JComboBox();
+		cboDestinationComboBox = new JComboBox<String>();
 		entreeUtilisateur.add(cboDestinationComboBox, "cell 1 1,growx");
 		
 		btnDemarrerButton = new JButton("D\u00E9marrer");
@@ -88,6 +103,14 @@ public class EcranGPS extends JFrame {
 		
 		txtJournalEvenementTextArea = new JTextArea();
 		journalEvenement.add(txtJournalEvenementTextArea);
+		
+		
+		ReseauRoutier reseau = MoteurTraitement.getReseauRoutier();
+		Vector<Intersection> intersections = reseau.getIntersections();
+		for (Intersection s: intersections){
+			cboOriginComboBox.addItem(s.toString());
+			cboDestinationComboBox.addItem(s.toString());
+		}
 	}
 	
 	public void RafraichirInterface() {

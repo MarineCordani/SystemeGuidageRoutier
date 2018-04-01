@@ -72,7 +72,7 @@ public class ReseauRoutier {
 
 	public Intersection getIntersection(String n){
 		for (Intersection s: intersections){
-			if (s.getIdentifiant().equals(n)){
+			if (s.toString().equals(n)){
 				return s;
 			}
 		}

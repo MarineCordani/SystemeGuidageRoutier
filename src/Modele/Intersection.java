@@ -13,7 +13,6 @@ public class Intersection {
 	
 	public void ajouterVehicule(Vehicule v){
 		vehicule.add(v);
-		
 	}
 	
 	public Intersection(String i, int x, int y){
@@ -34,8 +33,8 @@ public class Intersection {
 	 * 
 	 * @return l'identifiant de l'intersection
 	 */
-	public String getIdentifiant() {
-		return identifiant;
+	public String toString() {
+		return this.identifiant;
 	}
 	
 	public void connecterArthere(Arthere a){

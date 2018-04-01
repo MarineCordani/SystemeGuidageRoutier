@@ -24,7 +24,7 @@ public class Trajet {
 	//Pour déboggage seulement
 	public void imprimerTrajet(){
 		for (Arthere a: artheres){
-			System.out.println(a.getIdentifiant());
+			System.out.println(a.toString());
 		}
 	}
 	

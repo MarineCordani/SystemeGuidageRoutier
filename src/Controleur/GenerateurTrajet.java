@@ -1,16 +1,16 @@
-package Controlleur;
+package Controleur;
 
 import Modele.Trajet;
 
 import java.util.Vector;
 
-import Controlleur.Algorithm.*;
+import Controleur.Algorithm.*;
 import Modele.Arthere;
 import Modele.Intersection;
 import Modele.ReseauRoutier;
 
 /**
- * Classe du controlleur pour générer le trajet
+ * Classe du controleur pour générer le trajet
  * 
  * @author Marine Cordani, Mouna Slimen, Vestine Mukeshimana
  *

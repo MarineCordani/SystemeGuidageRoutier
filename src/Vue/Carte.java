@@ -8,7 +8,7 @@ import java.util.Vector;
 
 import javax.swing.JPanel;
 
-import Controlleur.MoteurTraitement;
+import Controleur.MoteurTraitement;
 import Modele.Arthere;
 import Modele.Intersection;
 import Modele.ReseauRoutier;

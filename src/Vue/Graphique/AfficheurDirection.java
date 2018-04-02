@@ -20,34 +20,46 @@ public class AfficheurDirection {
 	private static final int EPAISSEUR_TRAIT = 8;
 	public static final int FLECHE_UNITE = 10;
 
-	public void dessiner(Graphics g, float x, float y, Arthere origin, Arthere destination, float rapportModeleCarte) {
+	/**
+	 * Méthode pour dessiner les directions sur la carte
+	 * 
+	 * @param g objet qui contient des méthodes pour dessiner sur le panneau
+	 * @param x début de la carte sur l'axe des x
+	 * @param y x début de la carte sur l'axe des y
+	 * @param origine arthère d'origine
+	 * @param destination arthère de destination
+	 * @param rapportModeleCarte rapport entre le modèle et la carte
+	 */
+	public void dessiner(Graphics g, float x, float y, Arthere origine, Arthere destination, float rapportModeleCarte) {
 		Graphics2D g2d = (Graphics2D) g;
 		
+		//aligner les intersections
 		Intersection a;
 		Intersection b;
 		Intersection c;
 		
-		if(origin.getA() == destination.getA()) {
-			a = origin.getB();
-			b = origin.getA();
+		if(origine.getA() == destination.getA()) {
+			a = origine.getB();
+			b = origine.getA();
 			c = destination.getB();
 		}
-		else if(origin.getA() == destination.getB()) {
-			a = origin.getB();
-			b = origin.getA();
+		else if(origine.getA() == destination.getB()) {
+			a = origine.getB();
+			b = origine.getA();
 			c = destination.getA();
 		}
-		else if(origin.getB() == destination.getB()) {
-			a = origin.getA();
-			b = origin.getB();
+		else if(origine.getB() == destination.getB()) {
+			a = origine.getA();
+			b = origine.getB();
 			c = destination.getA();
 		}
 		else {//if(origin.getB() == destination.getA()) {
-			a = origin.getA();
-			b = origin.getB();
+			a = origine.getA();
+			b = origine.getB();
 			c = destination.getB();
 		}
 		
+		//la flèche de direction commence et se termine au milieu de l'arthère
 		Intersection a1;
 		Intersection c1;
 		

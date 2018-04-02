@@ -1,4 +1,4 @@
-package Controlleur.Algorithm;
+package Controleur.Algorithm;
 
 /**
  * Classe pour chercher le plus cours chemin

@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 public class JournalEvenement extends JPanel {
 
 	/**
-	 * 
+	 * La clé de hachage SHA qui identifie de manière unique la Classe
 	 */
 	private static final long serialVersionUID = 1L;
 }

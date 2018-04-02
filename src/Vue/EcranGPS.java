@@ -8,10 +8,9 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;
-import java.io.IOException;
 import java.util.Vector;
 
-import Controlleur.MoteurTraitement;
+import Controleur.MoteurTraitement;
 import Modele.Intersection;
 import Modele.ReseauRoutier;
 
@@ -26,19 +25,53 @@ import net.miginfocom.swing.MigLayout;
  */
 public class EcranGPS extends JFrame {
 	/**
-	 * 
+	 * La clé de hachage SHA qui identifie de manière unique la Classe
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * La taille du diviseur de la fenêtre principale
+	 */
 	private final int DIVIDER_SIZE = 1;
 	
-	private EntreeUtilisateur entreeUtilisateur;
-	private JournalEvenement journalEvenement;
-	private Carte carte;
+	/**
+	 * Le diviseur de la fenêtre principale horizontal entre le panneau des controlleurs d'entrée et celui du journal des événements
+	 */
 	private JSplitPane horizontalSplitPane;
+	
+	/**
+	 * Le diviseur de la fenêtre principale vertica entre le panneau de la carte est d'autres panneaux
+	 */
 	private JSplitPane verticalSplitPane;
-	private JLabel lblOriginLabel;
-	private JComboBox<String> cboOriginComboBox;
+	
+	/**
+	 * Le panneau des controlleurs d'entrée 
+	 */
+	private EntreeUtilisateur entreeUtilisateur;
+	
+	/**
+	 * Le panneau du journal des événements
+	 */
+	private JournalEvenement journalEvenement;
+	
+	/**
+	 * Le panneau de la carte
+	 */
+	private Carte carte;
+	
+	/**
+	 * L'étiquette pour les intersections d'origine
+	 */
+	private JLabel lblOrigineLabel;
+	
+	/**
+	 * Le controleur 'étiquette pour les intersections d'origine
+	 */
+	private JComboBox<String> cboOrigineComboBox;
+	
+	/**
+	 * L'étiquette pour les intersections de destination
+	 */
 	private JLabel lblDestinationLabel;
 	private JComboBox<String> cboDestinationComboBox;
 	private JButton btnDemarrerButton;
@@ -54,8 +87,7 @@ public class EcranGPS extends JFrame {
 		
 		//ajout de l'icone sur la fenêtre principale
 		ImageIcon icon = new ImageIcon("res/icon.png");
-		this.setIconImage(icon.getImage());
-		
+		this.setIconImage(icon.getImage());		
 		
 		//ajout des controleurs de la fenêtre principale
 		getContentPane().setLayout(new BorderLayout(0, 0));
@@ -80,11 +112,11 @@ public class EcranGPS extends JFrame {
 		verticalSplitPane.setLeftComponent(entreeUtilisateur);
 		entreeUtilisateur.setLayout(new MigLayout("fillx", "[][]", "[][][]"));
 		
-		lblOriginLabel = new JLabel("Origine");
-		entreeUtilisateur.add(lblOriginLabel, "cell 0 0,alignx leading");
+		lblOrigineLabel = new JLabel("Origine");
+		entreeUtilisateur.add(lblOrigineLabel, "cell 0 0,alignx leading");
 		
-		cboOriginComboBox = new JComboBox<String>();
-		entreeUtilisateur.add(cboOriginComboBox, "cell 1 0,growx");
+		cboOrigineComboBox = new JComboBox<String>();
+		entreeUtilisateur.add(cboOrigineComboBox, "cell 1 0,growx");
 		
 		lblDestinationLabel = new JLabel("Destination");
 		entreeUtilisateur.add(lblDestinationLabel, "flowx,cell 0 1,alignx leading");
@@ -103,11 +135,11 @@ public class EcranGPS extends JFrame {
 		txtJournalEvenementTextArea = new JTextArea();
 		journalEvenement.add(txtJournalEvenementTextArea);
 		
-		
+		//ajouter les intersections dans les controleurs
 		ReseauRoutier reseau = MoteurTraitement.getReseauRoutier();
 		Vector<Intersection> intersections = reseau.getIntersections();
 		for (Intersection s: intersections){
-			cboOriginComboBox.addItem(s.toString());
+			cboOrigineComboBox.addItem(s.toString());
 			cboDestinationComboBox.addItem(s.toString());
 		}
 	}

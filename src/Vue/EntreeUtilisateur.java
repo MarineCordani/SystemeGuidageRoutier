@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 public class EntreeUtilisateur extends JPanel implements ActionListener{
 	
 	/**
-	 * 
+	 * La clé de hachage SHA qui identifie de manière unique la Classe
 	 */
 	private static final long serialVersionUID = 1L;
 

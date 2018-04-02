@@ -1,4 +1,4 @@
-package Controlleur;
+package Controleur;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;

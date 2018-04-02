@@ -20,6 +20,7 @@ public class AfficheurCarte {
 
 	/**
 	 * Méthode pour dessiner la carte
+	 * 
 	 * @param g objet qui contient des méthodes pour dessiner sur le panneau
 	 * @param x début de la carte sur l'axe des x
 	 * @param y debut de la carte sur l'axe des y

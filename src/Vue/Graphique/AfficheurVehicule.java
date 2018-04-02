@@ -8,7 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * Classe de la vue pour afficher les véhicules sur la carte
+ * Classe de la vue pour afficher le véhicule sur la carte
  * 
  * @author Marine Cordani, Mouna Slimen, Vestine Mukeshimana
  *
@@ -29,8 +29,18 @@ public class AfficheurVehicule {
 		}
 	}
 
-	public void dessiner(Graphics g, float x, float y, int posVehiculeX, int posVehiculeY, boolean horizontal,
-			float rapportModeleCarte) {
+	/**
+	 * Méthode pour dessiner le véhicule sur la carte
+	 * 
+	 * @param g objet qui contient des méthodes pour dessiner sur le panneau
+	 * @param x début de la carte sur l'axe des x
+	 * @param y début de la carte sur l'axe des y
+	 * @param posVehiculeX position du véhicule sur l'axe des x
+	 * @param posVehiculeY position du véhicule sur l'axe des y
+	 * @param horizontal drapeau pour savoir si le véhicule est verticale où horizontal sur la carte
+	 * @param rapportModeleCarte rapport entre le modèle et la carte
+	 */
+	public void dessiner(Graphics g, float x, float y, int posVehiculeX, int posVehiculeY, boolean horizontal, float rapportModeleCarte) {
 		Graphics2D g2d = (Graphics2D) g;
 
 		float x1 = x + ((float) posVehiculeX / rapportModeleCarte);

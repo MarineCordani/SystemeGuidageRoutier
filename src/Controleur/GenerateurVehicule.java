@@ -1,4 +1,4 @@
-package Controlleur;
+package Controleur;
 
 import Modele.Intersection;
 import Modele.Trajet;

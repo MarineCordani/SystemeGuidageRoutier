@@ -65,7 +65,7 @@ public class EcranGPS extends JFrame {
 	private JLabel lblOrigineLabel;
 	
 	/**
-	 * Le controleur 'étiquette pour les intersections d'origine
+	 * Le contrôleur pour les intersections d'origine
 	 */
 	private JComboBox<String> cboOrigineComboBox;
 	
@@ -73,8 +73,20 @@ public class EcranGPS extends JFrame {
 	 * L'étiquette pour les intersections de destination
 	 */
 	private JLabel lblDestinationLabel;
+	
+	/**
+	 * Le contrôleur pour les intersections de destination
+	 */
 	private JComboBox<String> cboDestinationComboBox;
-	private JButton btnDemarrerButton;
+	
+	/**
+	 * Le bouton de démarrer et arrêter
+	 */
+	private JButton btnDemarrerArreterButton;
+	
+	/**
+	 * Le control d'interfacer pour afficher le journal des événements
+	 */
 	private JTextArea txtJournalEvenementTextArea;
 	
 	/**
@@ -124,9 +136,9 @@ public class EcranGPS extends JFrame {
 		cboDestinationComboBox = new JComboBox<String>();
 		entreeUtilisateur.add(cboDestinationComboBox, "cell 1 1,growx");
 		
-		btnDemarrerButton = new JButton("D\u00E9marrer");
-		entreeUtilisateur.add(btnDemarrerButton, "cell 0 2 2 1,growx");
-		btnDemarrerButton.addActionListener(entreeUtilisateur);
+		btnDemarrerArreterButton = new JButton("D\u00E9marrer");
+		entreeUtilisateur.add(btnDemarrerArreterButton, "cell 0 2 2 1,growx");
+		btnDemarrerArreterButton.addActionListener(entreeUtilisateur);
 		
 		this.journalEvenement = new JournalEvenement();
 		verticalSplitPane.setRightComponent(journalEvenement);

@@ -34,9 +34,12 @@ public class Carte extends JPanel {
         ReseauRoutier reseau = MoteurTraitement.getReseauRoutier();
         
         Dimension panelSize = this.getSize();
-        int[] coins = reseau.getCoinsCarte();
-        Rectangle carteSize = new Rectangle(coins[0], coins[1], coins[2] - coins[0], coins[3] - coins[1]);
-        
+        Intersection[] coins = reseau.getIntersectionsCoins();
+        Rectangle carteSize = new Rectangle(coins[0].getPositionX() - ReseauRoutier.DISTANCE_MAX_ARTHERE, 
+        		coins[0].getPositionY() - ReseauRoutier.DISTANCE_MAX_ARTHERE, 
+        		coins[1].getPositionX() + ReseauRoutier.DISTANCE_MAX_ARTHERE,
+        		coins[1].getPositionY() + ReseauRoutier.DISTANCE_MAX_ARTHERE);
+                
         g.setColor(COULEUR_CARTE);
         
         double ratio = 0.0;
@@ -91,7 +94,6 @@ public class Carte extends JPanel {
         	y2 = y + ((double)b.getPositionY() / ratio);
         	g.drawLine((int)x1, (int)y1, (int)x2, (int)y2);
         }
-        
         
         g.setColor(Color.BLACK);    
         Vector<Intersection> intersections = reseau.getIntersections();

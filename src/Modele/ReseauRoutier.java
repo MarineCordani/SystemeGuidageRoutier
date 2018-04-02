@@ -91,32 +91,23 @@ public class ReseauRoutier {
 		return this.intersections;
 	}	
 	
-	public int[] getCoinsCarte()
+	public Intersection[] getIntersectionsCoins()
 	{
-		int xHaut = Integer.MAX_VALUE;
-		int yHaut = Integer.MAX_VALUE;
-		int xBas  = 0;
-		int yBas  = 0;
+		Intersection hautGauche = intersections.get(0);
+		Intersection basDroite  = intersections.get(0);
 		
-		for (Intersection s: intersections){
-			if (s.getPositionX() < xHaut){
-				xHaut = s.getPositionX();
+		for (int i = 1; i < intersections.size();i++){
+			Intersection s = intersections.get(i);
+			if (s.getPositionX() <= hautGauche.getPositionX() && s.getPositionY() < hautGauche.getPositionY()){
+				hautGauche = s;
 			}
 			
-			if (s.getPositionY() < yHaut){
-				yHaut = s.getPositionY();
-			}
-			
-			if (s.getPositionX() > xBas){
-				xBas = s.getPositionX();
-			}
-			
-			if (s.getPositionY() > yBas){
-				yBas = s.getPositionY();
+			if (s.getPositionX() >= basDroite.getPositionX() && s.getPositionY() >= basDroite.getPositionY()){
+				basDroite = s;
 			}
 		}
 		
-		int[] coins = new int[] {xHaut - DISTANCE_MAX_ARTHERE, yHaut -DISTANCE_MAX_ARTHERE, xBas + DISTANCE_MAX_ARTHERE, yBas + DISTANCE_MAX_ARTHERE};
+		Intersection[] coins = new Intersection[] {hautGauche, basDroite};
 		return coins;
 	}
 }

@@ -6,17 +6,18 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+/**
+ * Classe de la vue qui est un panneau où mettre les contrôles d'entrée
+ * 
+ * @author Marine Cordani, Mouna Slimen, Vestine Mukeshimana
+ *
+ */
 public class EntreeUtilisateur extends JPanel implements ActionListener{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	public EntreeUtilisateur(){		
-		
-		
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

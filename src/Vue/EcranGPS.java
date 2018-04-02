@@ -19,8 +19,9 @@ import javax.swing.JTextArea;
 import net.miginfocom.swing.MigLayout;
 
 /**
+ * Classe de la vue qui constitue la fenêtre principale
  * 
- * @author 
+ * @author Marine Cordani, Mouna Slimen, Vestine Mukeshimana
  *
  */
 public class EcranGPS extends JFrame {
@@ -43,7 +44,11 @@ public class EcranGPS extends JFrame {
 	private JButton btnDemarrerButton;
 	private JTextArea txtJournalEvenementTextArea;
 	
-	
+	/**
+	 * Le constructeur de la classe
+	 * 
+	 * @param titre le titre de la fenêtre
+	 */
 	public EcranGPS(String titre){
 		super(titre);
 		
@@ -107,11 +112,19 @@ public class EcranGPS extends JFrame {
 		}
 	}
 	
+	/**
+	 * Méthode pour rafraîchir l'interface
+	 */
 	public void RafraichirInterface() {
 		carte.revalidate();
 		carte.repaint();
 	}
 	
+	/**
+	 * Méthode pour afficher un texte dasn le journal
+	 * 
+	 * @param message texte à afficher dans le journal
+	 */
 	public void ajouterTexteAuJournal(String message) {
 		txtJournalEvenementTextArea.append(message + "\n");
 	}

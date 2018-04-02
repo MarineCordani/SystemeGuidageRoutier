@@ -1,7 +1,5 @@
 package Controlleur;
 
-import java.io.IOException;
-
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -59,7 +57,7 @@ public class MoteurTraitement {
 	}
 
 	/**
-	 * Cette méthode nous permet d'obtenir le réseau routier
+	 * Méthode nous permet d'obtenir le réseau routier
 	 * 
 	 * @return le réseau routier
 	 */
@@ -67,6 +65,9 @@ public class MoteurTraitement {
 		return reseau;
 	}
 
+	/**
+	 * Méthode pour créer et afficher la fenêtre principale
+	 */
 	private static void creerEtAfficherInterface() {
 		ecran = new EcranGPS("Système de guidage dans un réseau routier");
 		ecran.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

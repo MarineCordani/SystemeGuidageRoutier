@@ -7,10 +7,19 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+/**
+ * Classe de la vue pour afficher les véhicules sur la carte
+ * 
+ * @author Marine Cordani, Mouna Slimen, Vestine Mukeshimana
+ *
+ */
 public class AfficheurVehicule {
 	private BufferedImage imageHoriz;
 	private BufferedImage imageVert;
 
+	/**
+	 * Le constructeur de la classe
+	 */
 	public AfficheurVehicule() {
 		try {
 			imageHoriz = ImageIO.read(new File("res/vehicule_horiz.png"));

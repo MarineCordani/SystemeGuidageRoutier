@@ -9,6 +9,12 @@ import Modele.Arthere;
 import Modele.Intersection;
 import Modele.ReseauRoutier;
 
+/**
+ * Classe du controlleur pour générer le trajet
+ * 
+ * @author Marine Cordani, Mouna Slimen, Vestine Mukeshimana
+ *
+ */
 public class GenerateurTrajet {
 	public static Trajet genererTrajet(Intersection a, Intersection b){
 		Trajet trajet = new Trajet();

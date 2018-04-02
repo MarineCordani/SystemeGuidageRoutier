@@ -9,14 +9,16 @@ import java.util.Vector;
 import Modele.Arthere;
 import Modele.Intersection;
 
+/**
+ * Classe de la vue pour afficher les directions sur la carte
+ * 
+ * @author Marine Cordani, Mouna Slimen, Vestine Mukeshimana
+ *
+ */
 public class AfficheurDirection {
 
 	private static final int EPAISSEUR_TRAIT = 8;
 	public static final int FLECHE_UNITE = 10;
-
-	public AfficheurDirection() {
-
-	}
 
 	public void dessiner(Graphics g, float x, float y, Arthere origin, Arthere destination, float rapportModeleCarte) {
 		Graphics2D g2d = (Graphics2D) g;

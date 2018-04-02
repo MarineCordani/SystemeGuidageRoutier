@@ -17,15 +17,32 @@ import Vue.Graphique.AfficheurCarte;
 import Vue.Graphique.AfficheurDirection;
 import Vue.Graphique.AfficheurVehicule;
 
+/**
+ * Classe de la vue qui est un panneau où mettre la carte du réseau routier
+ * 
+ * @author Marine Cordani, Mouna Slimen, Vestine Mukeshimana
+ *
+ */
 public class Carte extends JPanel {
 
 	/**
-	 * 
+	 * La clé de hachage SHA qui identifie de manière unique la Classe
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * La couleur grise de la carte
+	 */
 	private final Color COULEUR_CARTE = new Color(227, 224, 217);
+	
+	/**
+	 * La taille de la marge entre la fenêtre principale et la carte
+	 */
 	private final int TAILLE_MARGE = 0;
 
+	/**
+	 * Le constructeur de la classe
+	 */
 	public Carte() {
 		this.setBackground(COULEUR_CARTE);
 	}
@@ -49,6 +66,7 @@ public class Carte extends JPanel {
 
 		g.setColor(COULEUR_CARTE);
 
+		//Calculer le rapport entre le modèle et la Carte
 		float rapportModeleCarte = 0.0f;
 		if (carteSize.width > carteSize.height) {
 			rapportModeleCarte = (float) carteSize.height / (panelSize.height - (2 * TAILLE_MARGE));
@@ -61,9 +79,11 @@ public class Carte extends JPanel {
 		float x = (panelSize.width - width) / 2;
 		float y = (panelSize.height - height) / 2;
 
+		//Afficher la carte
 		AfficheurCarte afficheurCarte = new AfficheurCarte();
 		afficheurCarte.dessiner(g, x, y, intersections, artheres, rapportModeleCarte);
 
+		//Afficher les véhicules
 		AfficheurVehicule afficheurVehicule = new AfficheurVehicule();
 
 		for (Arthere arthere : artheres) {

@@ -9,13 +9,24 @@ import java.util.Vector;
 import Modele.Arthere;
 import Modele.Intersection;
 
+/**
+ * Classe de la vue pour afficher la carte
+ * 
+ * @author Marine Cordani, Mouna Slimen, Vestine Mukeshimana
+ *
+ */
 public class AfficheurCarte {
 	private final int EPAISSEUR_TRAIT = 5;
 
-	public AfficheurCarte() {
-
-	}
-
+	/**
+	 * Méthode pour dessiner la carte
+	 * @param g objet qui contient des méthodes pour dessiner sur le panneau
+	 * @param x début de la carte sur l'axe des x
+	 * @param y debut de la carte sur l'axe des y
+	 * @param intersections vecteur des intersections
+	 * @param artheres vecteur des arthères
+	 * @param rapportModeleCarte rapport entre le modèle et la carte
+	 */
 	public void dessiner(Graphics g, float x, float y, Vector<Intersection> intersections, Vector<Arthere> artheres,
 			float rapportModeleCarte) {
 		Graphics2D g2d = (Graphics2D) g;
@@ -28,6 +39,7 @@ public class AfficheurCarte {
 		float x2 = 0.0f;
 		float y2 = 0.0f;
 
+		//afficher les arthères un peu large premièrement en gris
 		for (Arthere arthere : artheres) {
 			Intersection a = arthere.getA();
 			Intersection b = arthere.getB();
@@ -39,6 +51,7 @@ public class AfficheurCarte {
 			g.drawLine((int) x1, (int) y1, (int) x2, (int) y2);
 		}
 
+		//afficher les arthères plus petites en blanc
 		g.setColor(Color.WHITE);
 		g2d.setStroke(new BasicStroke(EPAISSEUR_TRAIT));
 
@@ -53,6 +66,7 @@ public class AfficheurCarte {
 			g.drawLine((int) x1, (int) y1, (int) x2, (int) y2);
 		}
 
+		//afficher les identifiants d'intersections en noir
 		g.setColor(Color.BLACK);
 
 		for (Intersection intersection : intersections) {

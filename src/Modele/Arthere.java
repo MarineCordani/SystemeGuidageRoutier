@@ -68,6 +68,14 @@ public class Arthere {
 		vehicules.get(aleatoire -1).SetAccidente(true);
 		return true;
 	}
+	
+	public Vector<Vehicule> getVehicules() {
+		return this.vehicules;
+	}
+	
+	public boolean getPresenceAccident() {
+		return this.presenceAccident;
+	}
 
 	public String toString() {
 		return this.identifiant;

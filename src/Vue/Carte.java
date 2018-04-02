@@ -14,6 +14,7 @@ import Controlleur.MoteurTraitement;
 import Modele.Arthere;
 import Modele.Intersection;
 import Modele.ReseauRoutier;
+import Vue.Graphique.Auto;
 
 public class Carte extends JPanel {
 	
@@ -42,18 +43,18 @@ public class Carte extends JPanel {
                 
         g.setColor(COULEUR_CARTE);
         
-        double ratio = 0.0;
+        float ratio = 0.0f;
         if(carteSize.width > carteSize.height) {
-        	ratio = (double)carteSize.height / (panelSize.height - (2 * TAILLE_MARGE));
+        	ratio = (float)carteSize.height / (panelSize.height - (2 * TAILLE_MARGE));
         }
         else {
-        	ratio = (double)carteSize.height / (panelSize.height - (2 * TAILLE_MARGE));
+        	ratio = (float)carteSize.height / (panelSize.height - (2 * TAILLE_MARGE));
         }
         
-        double width = carteSize.width /  ratio;
-        double height = carteSize.height / ratio;
-        double x = (panelSize.width - width) / 2;
-        double y = (panelSize.height - height) / 2;
+        float width = carteSize.width /  ratio;
+        float height = carteSize.height / ratio;
+        float x = (panelSize.width - width) / 2;
+        float y = (panelSize.height - height) / 2;
         
         
         g.fillRect((int)x, (int)y, (int)width, (int)height);      
@@ -64,19 +65,19 @@ public class Carte extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(EPAISSEUR_TRAIT + 2));
         
-        double x1 = 0.0;
-        double y1 = 0.0;
-        double x2 = 0.0;
-        double y2 = 0.0;
+        float x1 = 0.0f;
+        float y1 = 0.0f;
+        float x2 = 0.0f;
+        float y2 = 0.0f;
         
         for (Arthere arthere: artheres){
         	Intersection a = arthere.getA();
         	Intersection b = arthere.getB();
         	
-        	x1 = x + ((double)a.getPositionX() / ratio);
-        	y1 = y + ((double)a.getPositionY() / ratio);
-        	x2 = x + ((double)b.getPositionX() / ratio);
-        	y2 = y + ((double)b.getPositionY() / ratio);
+        	x1 = x + ((float)a.getPositionX() / ratio);
+        	y1 = y + ((float)a.getPositionY() / ratio);
+        	x2 = x + ((float)b.getPositionX() / ratio);
+        	y2 = y + ((float)b.getPositionY() / ratio);
         	g.drawLine((int)x1, (int)y1, (int)x2, (int)y2);
         }
         
@@ -88,10 +89,10 @@ public class Carte extends JPanel {
         	Intersection a = arthere.getA();
         	Intersection b = arthere.getB();
         	
-        	x1 = x + ((double)a.getPositionX() / ratio);
-        	y1 = y + ((double)a.getPositionY() / ratio);
-        	x2 = x + ((double)b.getPositionX() / ratio);
-        	y2 = y + ((double)b.getPositionY() / ratio);
+        	x1 = x + ((float)a.getPositionX() / ratio);
+        	y1 = y + ((float)a.getPositionY() / ratio);
+        	x2 = x + ((float)b.getPositionX() / ratio);
+        	y2 = y + ((float)b.getPositionY() / ratio);
         	g.drawLine((int)x1, (int)y1, (int)x2, (int)y2);
         }
         
@@ -99,9 +100,18 @@ public class Carte extends JPanel {
         Vector<Intersection> intersections = reseau.getIntersections();
         for (Intersection intersection: intersections){
         	        	
-        	x1 = x + ((double)intersection.getPositionX() / ratio) - 20.0;
-        	y1 = y + ((double)intersection.getPositionY() / ratio) - 5.0;
+        	x1 = x + ((float)intersection.getPositionX() / ratio) - 20.0f;
+        	y1 = y + ((float)intersection.getPositionY() / ratio) - 5.0f;
         	g.drawString(intersection.toString(),(int)x1, (int)y1);
         }
+        
+        Auto au = new Auto();
+        x1 = x + ((float)coins[0].getPositionX() / ratio);
+    	y1 = y + ((float)coins[0].getPositionY() / ratio);
+        au.dessiner(g, (int)x1, (int)y1, true);
+        
+        x1 = x + ((float)coins[1].getPositionX() / ratio);
+    	y1 = y + ((float)coins[1].getPositionY() / ratio);
+        au.dessiner(g, (int)x1, (int)y1, false);
     }
 }

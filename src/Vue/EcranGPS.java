@@ -68,8 +68,7 @@ public class EcranGPS extends JFrame {
 		getContentPane().add(horizontalSplitPane);
 		this.carte = new Carte();
 		horizontalSplitPane.setLeftComponent(carte);
-
-		carte.setLayout(new FlowLayout(FlowLayout.CENTER, 1, 1));
+		carte.setLayout(null);
 		
 		verticalSplitPane = new JSplitPane();
 		verticalSplitPane.setBorder(new EmptyBorder(0, 0, 0, 0));

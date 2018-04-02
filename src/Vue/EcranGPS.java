@@ -89,6 +89,7 @@ public class EcranGPS extends JFrame {
 		
 		btnDemarrerButton = new JButton("D\u00E9marrer");
 		entreeUtilisateur.add(btnDemarrerButton, "cell 0 2 2 1,growx");
+		btnDemarrerButton.addActionListener(entreeUtilisateur);
 		
 		this.journalEvenement = new JournalEvenement();
 		verticalSplitPane.setRightComponent(journalEvenement);

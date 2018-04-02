@@ -28,4 +28,11 @@ public class Vehicule {
 		this.accidente = etat;		
 	}
 	
+	public int getPositionX() {
+		return positionX;
+	}
+	
+	public int getPositionY() {
+		return positionY;
+	}
 }

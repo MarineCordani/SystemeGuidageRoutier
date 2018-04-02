@@ -2,14 +2,13 @@ package Vue;
 
 import javax.swing.JPanel;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-
 public class EntreeUtilisateur extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public EntreeUtilisateur(){		
 		
 		

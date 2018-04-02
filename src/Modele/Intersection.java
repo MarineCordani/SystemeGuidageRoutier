@@ -8,11 +8,11 @@ public class Intersection {
 	private int positionY; //Position Y de l'intersection
 	private Vector<Arthere> connection = new Vector<Arthere>();
 	private String identifiant; //Identifiant
-	private Vector<Vehicule> vehicule = new Vector<Vehicule>(); //Vehicule sur l'arthere
+	private Vector<Vehicule> vehicules = new Vector<Vehicule>(); //Vehicule sur l'arthere
 	
 	
 	public void ajouterVehicule(Vehicule v){
-		vehicule.add(v);
+		vehicules.add(v);
 	}
 	
 	public Intersection(String i, int x, int y){
@@ -24,6 +24,7 @@ public class Intersection {
 	public int getPositionX() {
 		return positionX;
 	}
+	
 	public int getPositionY() {
 		return positionY;
 	}
@@ -41,4 +42,12 @@ public class Intersection {
 		connection.add(a);
 	}
 	
+	public Vector<Vehicule> getVehicules() {
+		return this.vehicules;
+	}
+	
+	public boolean equals(Object object) {
+		Intersection a = (Intersection)object;
+	    return object instanceof Intersection && (this.positionX == a.positionX) && (this.positionY == a.positionY);
+	}
 }

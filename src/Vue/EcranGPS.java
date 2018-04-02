@@ -5,29 +5,17 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.Color;
-import javax.swing.BoxLayout;
-import java.awt.GridLayout;
 import javax.swing.JLabel;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;
-import java.awt.Rectangle;
+import java.io.IOException;
 import java.util.Vector;
-
-import javax.swing.border.LineBorder;
 
 import Controlleur.MoteurTraitement;
 import Modele.Intersection;
 import Modele.ReseauRoutier;
 
 import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
-import javax.swing.SpringLayout;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -36,6 +24,11 @@ import net.miginfocom.swing.MigLayout;
  *
  */
 public class EcranGPS extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private final int DIVIDER_SIZE = 1;
 	
 	private EntreeUtilisateur entreeUtilisateur;
@@ -57,6 +50,7 @@ public class EcranGPS extends JFrame {
 		//ajout de l'icone sur la fenêtre principale
 		ImageIcon icon = new ImageIcon("res/icon.png");
 		this.setIconImage(icon.getImage());
+		
 		
 		//ajout des controleurs de la fenêtre principale
 		getContentPane().setLayout(new BorderLayout(0, 0));

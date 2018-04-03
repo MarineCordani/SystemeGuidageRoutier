@@ -103,8 +103,16 @@ public class Carte extends JPanel {
 				afficheurVehicule.dessiner(g, x, y, vehicule.getPositionX(), vehicule.getPositionY(), true, rapportModeleCarte);
 			}
 		}
+		/*
+		AfficheurDirection afficheurDirection = new AfficheurDirection();
+		afficheurDirection.dessiner(g, x, y, artheres.get(12), artheres.get(0), rapportModeleCarte);
+		afficheurDirection.dessiner(g, x, y, artheres.get(2), artheres.get(21), rapportModeleCarte);
+		afficheurDirection.dessiner(g, x, y, artheres.get(9), artheres.get(14), rapportModeleCarte);
+		afficheurDirection.dessiner(g, x, y, artheres.get(23), artheres.get(11), rapportModeleCarte);
 		
-		//AfficheurDirection afficheurDirection = new AfficheurDirection();
-		//afficheurDirection.dessiner(g, x, y, artheres.get(12), artheres.get(0), rapportModeleCarte);
+		afficheurDirection.dessiner(g, x, y, artheres.get(0), artheres.get(12), rapportModeleCarte);
+		afficheurDirection.dessiner(g, x, y, artheres.get(21), artheres.get(2), rapportModeleCarte);
+		afficheurDirection.dessiner(g, x, y, artheres.get(14), artheres.get(9), rapportModeleCarte);
+		afficheurDirection.dessiner(g, x, y, artheres.get(11), artheres.get(23), rapportModeleCarte);*/
 	}
 }

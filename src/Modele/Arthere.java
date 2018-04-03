@@ -5,6 +5,8 @@ import java.util.Vector;
 public class Arthere {
 
 	private boolean presenceAccident;
+	private boolean presenceCongestion;
+	private boolean appartenanceTrajetPrincipal;
 	private int vitesseLimite; //Toujours etre divisible par 4
 	private int vitesseActuel; //Vitesse est egal a vitesse limite, diviser par 2 si accident, diviser par 2 si congestion
 	private int longueur; //Pareille pour tous
@@ -16,6 +18,8 @@ public class Arthere {
 	
 	public Arthere(int v, Intersection a, Intersection b){
 		this.presenceAccident = false;
+		this.presenceCongestion = false;
+		this.appartenanceTrajetPrincipal = false;
 		this.vitesseLimite = v;
 		this.vitesseActuel = this.vitesseLimite;
 		this.longueur = 100;
@@ -75,6 +79,18 @@ public class Arthere {
 	
 	public boolean getPresenceAccident() {
 		return this.presenceAccident;
+	}
+	
+	public boolean getPresenceCongestion() {
+		return this.presenceCongestion;
+	}
+	
+	public boolean getAppartenanceTrajetPrincipal() {
+		return this.appartenanceTrajetPrincipal;
+	}
+	
+	public void setAppartenanceTrajetPrincipal(boolean valeur) {
+		this.appartenanceTrajetPrincipal = valeur;
 	}
 
 	public String toString() {

@@ -21,7 +21,7 @@ public class AfficheurCarte {
 	/**
 	 * Méthode pour dessiner la carte
 	 * 
-	 * @param g objet qui contient des méthodes pour dessiner sur le panneau
+	 * @param g2d objet qui contient des méthodes pour dessiner sur le panneau
 	 * @param x début de la carte sur l'axe des x
 	 * @param y début de la carte sur l'axe des y
 	 * @param intersections vecteur des intersections
@@ -32,34 +32,27 @@ public class AfficheurCarte {
 			float rapportModeleCarte) {
 		Graphics2D g2d = (Graphics2D) g;
 
-		//afficher les arthères un peu large premièrement en gris
-		g.setColor(new Color(191, 188, 183));
-		g2d.setStroke(new BasicStroke(EPAISSEUR_TRAIT + 2));
-		
-		this.dessinerArtheres(g, x, y, artheres, rapportModeleCarte);
+		//afficher les arthères un peu large premièrement en gris		
+		this.dessinerArtheres(g2d, x, y, artheres, true, rapportModeleCarte);
 		
 		//afficher les arthères plus petites en blanc
-		g.setColor(Color.WHITE);
-		g2d.setStroke(new BasicStroke(EPAISSEUR_TRAIT));
-		
-		this.dessinerArtheres(g, x, y, artheres, rapportModeleCarte);
+		this.dessinerArtheres(g2d, x, y, artheres, false, rapportModeleCarte);
 
 		//afficher les identifiants d'intersections en noir
-		g.setColor(Color.BLACK);
-		
-		this.dessinerIntersectionsIds(g, x, y, intersections, rapportModeleCarte);
+		this.dessinerIntersectionsIds(g2d, x, y, intersections, rapportModeleCarte);
 
 	}
 	/**
 	 * Méthode pour dessiner les arthères sur la carte
 	 * 
-	 * @param g objet qui contient des méthodes pour dessiner sur le panneau
+	 * @param g2d objet qui contient des méthodes pour dessiner sur le panneau
 	 * @param x début de la carte sur l'axe des x
 	 * @param y début de la carte sur l'axe des y 
 	 * @param artheres vecteur des arthères
+	 * @param trait drapeau pour voir si on dessine le trait ou l'intérieur
 	 * @param rapportModeleCarte rapport entre le modèle et la carte
 	 */
-	private void dessinerArtheres(Graphics g, float x, float y, Vector<Arthere> artheres, float rapportModeleCarte) {
+	private void dessinerArtheres(Graphics2D g2d, float x, float y, Vector<Arthere> artheres, boolean trait, float rapportModeleCarte) {
 		float x1 = 0.0f;
 		float y1 = 0.0f;
 		float x2 = 0.0f;
@@ -74,27 +67,50 @@ public class AfficheurCarte {
 			y1 = y + ((float) a.getPositionY() / rapportModeleCarte);
 			x2 = x + ((float) b.getPositionX() / rapportModeleCarte);
 			y2 = y + ((float) b.getPositionY() / rapportModeleCarte);
-			g.drawLine((int) x1, (int) y1, (int) x2, (int) y2);
+			
+			if(trait) {
+				g2d.setPaint(new Color(191, 188, 183));//gris
+				g2d.setStroke(new BasicStroke(EPAISSEUR_TRAIT + 2));
+			}
+			else {				
+				if(arthere.getAppartenanceTrajetPrincipal()) {//magenta
+					g2d.setPaint(new Color(255, 0, 255));
+				}
+				else if(arthere.getPresenceAccident()) {//rouge
+					g2d.setPaint(new Color(237, 85, 100));
+				}
+				else if(arthere.getPresenceCongestion()) {//bleu
+					g2d.setPaint(new Color(153, 213, 221));
+				}
+				else {//sinon blanc
+					g2d.setPaint(Color.WHITE); 
+				}
+				g2d.setStroke(new BasicStroke(EPAISSEUR_TRAIT));				
+			}
+			g2d.drawLine((int) x1, (int) y1, (int) x2, (int) y2);
 		}
 	}
 	
 	/**
 	 * Méthodes pour dessiner les noms des intersections sur la carte
-	 * @param g objet qui contient des méthodes pour dessiner sur le panneau
+	 * @param g2d objet qui contient des méthodes pour dessiner sur le panneau
 	 * @param x début de la carte sur l'axe des x
 	 * @param y début de la carte sur l'axe des y
 	 * @param intersections vecteur des intersections
 	 * @param rapportModeleCarte rapport entre le modèle et la carte
 	 */
-	private void dessinerIntersectionsIds(Graphics g, float x, float y, Vector<Intersection> intersections, float rapportModeleCarte) {
+	private void dessinerIntersectionsIds(Graphics2D g2d, float x, float y, Vector<Intersection> intersections, float rapportModeleCarte) {
 		float x1 = 0.0f;
 		float y1 = 0.0f;
+		
+
+		g2d.setPaint(Color.BLACK);		
 
 		for (Intersection intersection : intersections) {
 
 			x1 = x + ((float) intersection.getPositionX() / rapportModeleCarte) - 20.0f;
 			y1 = y + ((float) intersection.getPositionY() / rapportModeleCarte) - 5.0f;
-			g.drawString(intersection.toString(), (int) x1, (int) y1);
+			g2d.drawString(intersection.toString(), (int) x1, (int) y1);
 		}
 	}
 }

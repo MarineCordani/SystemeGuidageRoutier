@@ -63,8 +63,6 @@ public class AfficheurDirection {
 		}
 		
 		//la flèche de direction commence et se termine au milieu de l'arthère
-		
-		
 		if(a1.getPositionX() == b.getPositionX()) {
 			a = new Intersection("",a1.getPositionX(), b.getPositionY() - ((b.getPositionY() - a1.getPositionY()) / 2));
 		}
@@ -80,16 +78,10 @@ public class AfficheurDirection {
 		}
 				
 		//dessiner les lignes un peu large premièrement en noir
-		g.setColor(Color.BLACK);
-		g2d.setStroke(new BasicStroke(EPAISSEUR_TRAIT + 2));
-		
-		this.dessinerLignes(g, x, y, a, b, c, rapportModeleCarte);
+		this.dessinerLignes(g2d, x, y, a, b, c, true, rapportModeleCarte);
 		
 		//dessiner les lignes plus petites en magenta
-		g.setColor(new Color(255, 0, 255));		
-		g2d.setStroke(new BasicStroke(EPAISSEUR_TRAIT));
-		
-		this.dessinerLignes(g, x, y, a, b, c, rapportModeleCarte);
+		this.dessinerLignes(g2d, x, y, a, b, c, false, rapportModeleCarte);
 		
 		//dessiner flèche
 		this.dessinerFleche(g2d, x, y, a, b, c, rapportModeleCarte);
@@ -98,30 +90,41 @@ public class AfficheurDirection {
 	/**
 	 * Méthode pour dessiner les lignes de la flèche de direction
 	 * 
-	 * @param g objet qui contient des méthodes pour dessiner sur le panneau
+	 * @param g2d objet qui contient des méthodes pour dessiner sur le panneau
 	 * @param x début de la carte sur l'axe des x
 	 * @param y début de la carte sur l'axe des y
-	 * @param origine arthère d'origine
-	 * @param destination arthère de destination
+	 * @param a première intersection
+	 * @param b deuxième intersection
+	 * @param c troisième intersection
+	 * @param trait drapeau pour voir si on dessine le trait ou l'intérieur
 	 * @param rapportModeleCarte rapport entre le modèle et la carte
 	 */
-	public void dessinerLignes(Graphics g, float x, float y, Intersection a, Intersection b, Intersection c, float rapportModeleCarte) {
+	public void dessinerLignes(Graphics2D g2d, float x, float y, Intersection a, Intersection b, Intersection c, boolean trait, float rapportModeleCarte) {
 		float x1 = 0.0f;
 		float y1 = 0.0f;
 		float x2 = 0.0f;
 		float y2 = 0.0f;
 		
+		if(trait) {
+			g2d.setPaint(Color.BLACK);
+			g2d.setStroke(new BasicStroke(EPAISSEUR_TRAIT + 2));			
+		}
+		else {
+			g2d.setPaint(new Color(161, 196, 104));		
+			g2d.setStroke(new BasicStroke(EPAISSEUR_TRAIT));			
+		}
+		
 		x1 = x + ((float) a.getPositionX() / rapportModeleCarte);
 		y1 = y + ((float) a.getPositionY() / rapportModeleCarte);
 		x2 = x + ((float) b.getPositionX() / rapportModeleCarte);
 		y2 = y + ((float) b.getPositionY() / rapportModeleCarte);
-		g.drawLine((int) x1, (int) y1, (int) x2, (int) y2);
+		g2d.drawLine((int) x1, (int) y1, (int) x2, (int) y2);
 		
 		x1 = x + ((float) b.getPositionX() / rapportModeleCarte);
 		y1 = y + ((float) b.getPositionY() / rapportModeleCarte);
 		x2 = x + ((float) c.getPositionX() / rapportModeleCarte);
 		y2 = y + ((float) c.getPositionY() / rapportModeleCarte);
-		g.drawLine((int) x1, (int) y1, (int) x2, (int) y2);
+		g2d.drawLine((int) x1, (int) y1, (int) x2, (int) y2);
 	}
 
 	/**
@@ -131,7 +134,10 @@ public class AfficheurDirection {
 	 * @param x début de la carte sur l'axe des x
 	 * @param y début de la carte sur l'axe des y
 	 * @param origine arthère d'origine
-	 * @param destination arthère de destination
+	 * @param a première intersection
+	 * @param b deuxième intersection
+	 * @param c troisième intersection
+	 * @param trait drapeau pour voir si on dessine le trait ou l'intérieur
 	 * @param rapportModeleCarte rapport entre le modèle et la carte
 	 */
 	public void dessinerFleche(Graphics2D g2d, float x, float y, Intersection a, Intersection b, Intersection c, float rapportModeleCarte) {
@@ -199,7 +205,7 @@ public class AfficheurDirection {
 		g2d.setStroke(new BasicStroke(1));
 		
 		Polygon poly = new Polygon(polyX, polyY, polyX.length);
-		g2d.setPaint(new Color(255,0,255));
+		g2d.setPaint(new Color(161, 196, 104));
 		g2d.fill(poly);
 				
 		g2d.setPaint(Color.BLACK);

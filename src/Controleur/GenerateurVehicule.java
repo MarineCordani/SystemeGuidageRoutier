@@ -18,10 +18,6 @@ public class GenerateurVehicule {
 
 	public Vehicule genererVehicule() {
 		if (Math.random() < probabilite) {
-			// Etablir point de depart d'arrivé
-			Intersection a = null;
-			Intersection b = null;
-
 			int aleatoireIntersectionA = (int) (Math.random() * 12);
 			String intersectionDepart = "";
 			switch (aleatoireIntersectionA) {
@@ -109,13 +105,13 @@ public class GenerateurVehicule {
 				break;
 			}
 
-			a = MoteurTraitement.getReseauRoutier().getIntersection(intersectionDepart);
-			b = MoteurTraitement.getReseauRoutier().getIntersection(intersectionArrive);
+			Intersection a = MoteurTraitement.getReseauRoutier().getIntersection(intersectionDepart);
+			Intersection b = MoteurTraitement.getReseauRoutier().getIntersection(intersectionArrive);
 
 			// Créer trajet
 			Trajet t = GenerateurTrajet.genererTrajet(a, b);
 			// Retourner vehicule
-			return new Vehicule(t);
+			return new Vehicule(t, a);
 		} else {
 			return null;
 		}

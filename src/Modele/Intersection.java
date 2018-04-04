@@ -10,11 +10,7 @@ public class Intersection {
 	private String identifiant; //Identifiant
 	private Vector<Vehicule> vehicules = new Vector<Vehicule>(); //Vehicule sur l'arthere
 	
-	
-	public void ajouterVehicule(Vehicule v){
-		vehicules.add(v);
-	}
-	
+
 	public Intersection(String i, int x, int y){
 		this.identifiant = i;
 		this.positionX = x;
@@ -50,4 +46,13 @@ public class Intersection {
 		Intersection a = (Intersection)object;
 	    return object instanceof Intersection && (this.positionX == a.positionX) && (this.positionY == a.positionY);
 	}
+	
+	public void ajouterVehicule(Vehicule v){
+		vehicules.add(v);
+	}
+	
+	public void retirerVehicule(Vehicule v){
+		vehicules.remove(v);
+	}
+	
 }

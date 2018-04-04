@@ -2,6 +2,9 @@ package Modele;
 
 import java.util.Vector;
 
+import Controleur.GenerateurTrajet;
+import Controleur.MoteurTraitement;
+
 public class ReseauRoutier {
 	public static final int VITESSE_MAX = 10;
 	public static final int DISTANCE_MAX_ARTHERE = 10;
@@ -64,12 +67,32 @@ public class ReseauRoutier {
 		artheres.add(new Arthere(VITESSE_MAX, getIntersection("A4"),getIntersection("B4")));
 		artheres.add(new Arthere(VITESSE_MAX, getIntersection("B4"),getIntersection("C4")));
 		artheres.add(new Arthere(VITESSE_MAX, getIntersection("C4"),getIntersection("D4")));
-		
-		//Ajouter voiture initial
-		//TODO:
-		
 	}
 
+	
+	public void creerVehiculeinitiaux(){
+		//Ajouter voiture initial
+		Intersection a = getIntersection("A1");
+		Intersection b = getIntersection("D4");
+		Trajet t1 = GenerateurTrajet.genererTrajet(a,b);
+		Vehicule v1 = new Vehicule(t1, a);
+		MoteurTraitement.getReseauRoutier().ajouterVehicule(v1);
+		
+		a = getIntersection("B1");
+		b = getIntersection("C4");
+		t1 = GenerateurTrajet.genererTrajet(a,b);
+		v1 = new Vehicule(t1, a);
+		MoteurTraitement.getReseauRoutier().ajouterVehicule(v1);
+		
+		a = getIntersection("D1");
+		b = getIntersection("B4");
+		t1 = GenerateurTrajet.genererTrajet(a,b);
+		v1 = new Vehicule(t1, a);
+		MoteurTraitement.getReseauRoutier().ajouterVehicule(v1);
+		
+		
+	}
+	
 	public Intersection getIntersection(String n){
 		for (Intersection s: intersections){
 			if (s.toString().equals(n)){
@@ -83,7 +106,8 @@ public class ReseauRoutier {
 		return this.artheres;
 	}
 	
-	public void ajouterVehicule(Vehicule v, Intersection i){
+	public void ajouterVehicule(Vehicule v){
+		Intersection i = v.getIntersectionInitial();
 		i.ajouterVehicule(v);
 	}
 
@@ -110,4 +134,35 @@ public class ReseauRoutier {
 		Intersection[] coins = new Intersection[] {hautGauche, basDroite};
 		return coins;
 	}
+	
+	public void avancerVehicule(){
+		//TODO: 
+		Arthere temporaire;
+		
+		for (Intersection i: intersections){
+			for (Vehicule v: i.getVehicules()){
+				if (v.avancer()){
+					//TODO: Signifie que le vehicule est a la fin de son arthere
+					i.retirerVehicule(v);
+					temporaire = v.getTrajet().retirerProchainArthere();
+					temporaire.ajouterVehicule(v);
+					v.setArthereEnCours(temporaire);
+				}
+			}
+		}
+		
+		for (Arthere a: artheres){
+			for (Vehicule v: a.getVehicules()){
+				if (v.avancer()){
+					//TODO: Signifie que le vehicule est a la fin de son arthere
+					a.retirerVehicule(v);
+					temporaire = v.getTrajet().retirerProchainArthere();
+					temporaire.ajouterVehicule(v);
+					v.changerSegment(temporaire);
+					v.setArthereEnCours(temporaire);
+				}
+			}
+		}
+	}
+	
 }

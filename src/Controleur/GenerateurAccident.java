@@ -17,7 +17,6 @@ public class GenerateurAccident {
 	}
 	
 	public boolean genererAccident(){
-		
 		//Retourne true si un accident a bien eu lieu
 		//TODO
 		Vector<Arthere> arthere = MoteurTraitement.getReseauRoutier().getArtheres();
@@ -27,6 +26,7 @@ public class GenerateurAccident {
 
 		do{
 			if (arthereAleatoire.creerAccident()){
+				MoteurTraitement.getEcran().ajouterTexteAuJournal("L'arthère " + arthereAleatoire.getIdentifiant() + " est accidentée");
 				return true;
 			}
 			else

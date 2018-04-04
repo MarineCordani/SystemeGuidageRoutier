@@ -7,25 +7,28 @@ import Modele.Intersection;
 import Modele.ReseauRoutier;
 import Modele.Vehicule;
 import Vue.EcranGPS;
+import Vue.EcranGPS;
 
 public class MoteurTraitement {
 
-	static ReseauRoutier reseau = new ReseauRoutier();
-	static EcranGPS ecran;
+	static private ReseauRoutier reseau;
+	static private EcranGPS ecran;
 
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() { 
-	         public void run() { 
+		reseau = new ReseauRoutier();
+		reseau.creerVehiculeinitiaux();
+		//SwingUtilities.invokeLater(new Runnable() { 
+	         //public void run() { 
 	        	 creerEtAfficherInterface(); 
-	         } 
-	      }); 
+	       //  } 
+	      //}); 
 		/*Intersection a = reseau.getIntersection("A1");
 		Intersection b = reseau.getIntersection("C4");
 
 		Trajet trajet = GenerateurTrajet.genererTrajet(a, b);
 		trajet.imprimerTrajet();*/
 		
-		
+	      
 		//Créer boucle d'execution
 		GenerateurVehicule gv = new GenerateurVehicule();
 		Vehicule vehiculeTemporaire = null;
@@ -36,14 +39,16 @@ public class MoteurTraitement {
 		do{
 			//Generer voiture
 			vehiculeTemporaire = gv.genererVehicule();
-			intersectionTemporaire = null;//TODO ERREUR, doit obtenir intersection de depart du vehiculeTemporaire
-			//getReseauRoutier().ajouterVehicule(vehiculeTemporaire, intersectionTemporaire);
+			if (vehiculeTemporaire != null){
+				reseau.ajouterVehicule(vehiculeTemporaire);
+			}
 			
 			//Generer accident
 			ga.genererAccident();
 			
 			//Faire avancer vehicule
 			//TODO: Faire deplacer les vehicules
+			reseau.avancerVehicule();
 			
 			//Attente de quelques milisecondes pour que l'animation soit visible
 			try {
@@ -51,7 +56,8 @@ public class MoteurTraitement {
 			} catch (InterruptedException e) {
 				
 			}
-
+			//Rafraichir carte
+			ecran.RafraichirInterface();
 		} while (true);
 		
 	}
@@ -65,6 +71,11 @@ public class MoteurTraitement {
 		return reseau;
 	}
 
+	public static EcranGPS getEcran() {
+		return ecran;
+	}
+
+	
 	/**
 	 * Méthode pour créer et afficher la fenêtre principale
 	 */

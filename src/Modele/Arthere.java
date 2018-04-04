@@ -73,6 +73,14 @@ public class Arthere {
 		return true;
 	}
 	
+	public void ajouterVehicule(Vehicule v){
+		vehicules.add(v);
+	}
+	
+	public void retirerVehicule(Vehicule v){
+		vehicules.remove(v);
+	}
+	
 	public Vector<Vehicule> getVehicules() {
 		return this.vehicules;
 	}
@@ -95,5 +103,9 @@ public class Arthere {
 
 	public String toString() {
 		return this.identifiant;
+	}
+
+	public String getIdentifiant() {
+		return identifiant;
 	}
 }

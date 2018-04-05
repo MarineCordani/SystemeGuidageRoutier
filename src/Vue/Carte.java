@@ -95,14 +95,14 @@ public class Carte extends JPanel {
 				afficheurVehicule.dessiner(g, x, y, vehicule.getPositionX(), vehicule.getPositionY(), a.getPositionY() == b.getPositionY(), rapportModeleCarte);
 			}
 		}
-		
+		/*
 		for (Intersection intersection : intersections) {
 			Vector<Vehicule> vehicules = intersection.getVehicules();
 
 			for (Vehicule vehicule : vehicules) {
 				afficheurVehicule.dessiner(g, x, y, vehicule.getPositionX(), vehicule.getPositionY(), true, rapportModeleCarte);
 			}
-		}
+		}*/
 		/*
 		AfficheurDirection afficheurDirection = new AfficheurDirection();
 		afficheurDirection.dessiner(g, x, y, artheres.get(12), artheres.get(0), rapportModeleCarte);

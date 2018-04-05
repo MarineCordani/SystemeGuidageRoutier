@@ -6,6 +6,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;
 import java.util.Vector;
@@ -90,6 +91,11 @@ public class EcranGPS extends JFrame {
 	private JTextArea txtJournalEvenementTextArea;
 	
 	/**
+	 * Le control pour les barres de déroulement
+	 */
+	private JScrollPane scrollPaneJournalEvenemen;
+	
+	/**
 	 * Le constructeur de la classe
 	 * 
 	 * @param titre le titre de la fenêtre
@@ -145,7 +151,8 @@ public class EcranGPS extends JFrame {
 		journalEvenement.setLayout(new BorderLayout(0, 0));
 		
 		txtJournalEvenementTextArea = new JTextArea();
-		journalEvenement.add(txtJournalEvenementTextArea);
+		scrollPaneJournalEvenemen = new JScrollPane(txtJournalEvenementTextArea);
+		journalEvenement.add(scrollPaneJournalEvenemen);
 		
 		//ajouter les intersections dans les controleurs
 		ReseauRoutier reseau = MoteurTraitement.getReseauRoutier();

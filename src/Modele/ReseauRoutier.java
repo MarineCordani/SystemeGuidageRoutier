@@ -1,5 +1,6 @@
 package Modele;
 
+import java.util.Iterator;
 import java.util.Vector;
 
 import Controleur.GenerateurTrajet;
@@ -88,9 +89,7 @@ public class ReseauRoutier {
 		b = getIntersection("B4");
 		t1 = GenerateurTrajet.genererTrajet(a,b);
 		v1 = new Vehicule(t1, a);
-		MoteurTraitement.getReseauRoutier().ajouterVehicule(v1);
-		
-		
+		MoteurTraitement.getReseauRoutier().ajouterVehicule(v1);	
 	}
 	
 	public Intersection getIntersection(String n){
@@ -136,10 +135,26 @@ public class ReseauRoutier {
 	}
 	
 	public void avancerVehicule(){
-		//TODO: 
-		Arthere temporaire;
+		Arthere temporaire;		
 		
 		for (Intersection i: intersections){
+			Vector<Vehicule> vehicules = i.getVehicules();
+			synchronized(vehicules){
+			    Iterator vehiculeIterator = vehicules.iterator();
+			    while (vehiculeIterator.hasNext()) {
+			    	Vehicule v = (Vehicule)vehiculeIterator.next();
+			    	if (v.avancer()){
+						//TODO: Signifie que le vehicule est a la fin de son arthere
+						//i.retirerVehicule(v);
+			    		vehiculeIterator.remove();
+						temporaire = v.getTrajet().retirerProchainArthere();
+						temporaire.ajouterVehicule(v);
+						v.setArthereEnCours(temporaire);
+						v.changerSegment(temporaire);
+					}
+			    }
+			}
+			/*
 			for (Vehicule v: i.getVehicules()){
 				if (v.avancer()){
 					//TODO: Signifie que le vehicule est a la fin de son arthere
@@ -148,10 +163,27 @@ public class ReseauRoutier {
 					temporaire.ajouterVehicule(v);
 					v.setArthereEnCours(temporaire);
 				}
-			}
+			}*/
 		}
 		
 		for (Arthere a: artheres){
+			Vector<Vehicule> vehicules = a.getVehicules();
+			synchronized(vehicules)	{
+			    Iterator vehiculeIterator = vehicules.iterator();
+			    while (vehiculeIterator.hasNext()) {
+			    	Vehicule v = (Vehicule)vehiculeIterator.next();
+			    	if (v.avancer()){
+						//TODO: Signifie que le vehicule est a la fin de son arthere
+						//a.retirerVehicule(v);
+			    		vehiculeIterator.remove();
+			    		temporaire = v.getTrajet().retirerProchainArthere();
+						temporaire.ajouterVehicule(v);
+						v.changerSegment(temporaire);
+						v.setArthereEnCours(temporaire);
+					}
+			    }
+			}
+			/*
 			for (Vehicule v: a.getVehicules()){
 				if (v.avancer()){
 					//TODO: Signifie que le vehicule est a la fin de son arthere
@@ -161,7 +193,7 @@ public class ReseauRoutier {
 					v.changerSegment(temporaire);
 					v.setArthereEnCours(temporaire);
 				}
-			}
+			}*/
 		}
 	}
 	

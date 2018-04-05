@@ -64,9 +64,9 @@ public class Vehicule {
 			return false;
 		}
 		//TODO: Doit trouver une facon de donner information a derniere et prochaine intersection
-		pourcentageCompletion+=0.01;
-		int deltaX = derniereIntersection.getPositionX() - prochaineIntersection.getPositionX();
-		int deltaY = derniereIntersection.getPositionY() - prochaineIntersection.getPositionY();
+		pourcentageCompletion += 0.01;
+		int deltaX = prochaineIntersection.getPositionX() - derniereIntersection.getPositionX();
+		int deltaY = prochaineIntersection.getPositionY() - derniereIntersection.getPositionY();
 		
 		this.positionX = (int)(derniereIntersection.getPositionX() + (deltaX * pourcentageCompletion));
 		this.positionY = (int)(derniereIntersection.getPositionY() + (deltaY * pourcentageCompletion));

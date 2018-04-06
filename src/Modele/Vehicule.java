@@ -21,7 +21,7 @@ public class Vehicule {
 		this.definirPositionInitial(i);
 		pourcentageCompletion = 0;
 		this.intersectionInitial = i;
-		surIntersection = true;
+		surIntersection = false;
 	}	
 	
 	public void changerSegment(Arthere arthere){
@@ -56,7 +56,8 @@ public class Vehicule {
 	//Si arrivé au bout de l'arthere, retourne true
 	public boolean avancer(){
 		
-		//System.out.println(derniereIntersection.toString() + " - " + prochaineIntersection.toString());
+		System.out.println(derniereIntersection.toString() + " - " + prochaineIntersection.toString());
+		this.getTrajet().imprimerTrajet();
 		if (surIntersection){
 			surIntersection = false;
 			return true;
@@ -111,6 +112,22 @@ public class Vehicule {
 	
 	public void setArthereEnCours(Arthere a){
 		arthereEnCours = a;
+	}
+
+	public boolean isSurIntersection() {
+		return surIntersection;
+	}
+
+	public void setSurIntersection(boolean surIntersection) {
+		this.surIntersection = surIntersection;
+	}
+
+	public void setPositionX(int positionX) {
+		this.positionX = positionX;
+	}
+
+	public void setPositionY(int positionY) {
+		this.positionY = positionY;
 	}
 	
 }

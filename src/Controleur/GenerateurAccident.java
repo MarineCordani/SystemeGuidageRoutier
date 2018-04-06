@@ -19,6 +19,11 @@ public class GenerateurAccident {
 	public boolean genererAccident(){
 		//Retourne true si un accident a bien eu lieu
 		//TODO
+		
+		if (Math.random() > probabilite) {
+			return false;
+		}
+		
 		Vector<Arthere> arthere = MoteurTraitement.getReseauRoutier().getArtheres();
 		Arthere arthereAleatoire; 
 		int indexAleatoire = (int)(Math.random() * arthere.size());

@@ -14,6 +14,8 @@ public class MoteurTraitement {
 	static private ReseauRoutier reseau;
 	static private EcranGPS ecran;
 
+	static private final int DUREE_CYCLE = 50;
+	
 	public static void main(String[] args) {
 		reseau = new ReseauRoutier();
 		reseau.creerVehiculeinitiaux();
@@ -38,11 +40,11 @@ public class MoteurTraitement {
 		
 		do{
 			//Generer voiture
-			vehiculeTemporaire = gv.genererVehicule();
+			/*vehiculeTemporaire = gv.genererVehicule();
 			if (vehiculeTemporaire != null){
 				reseau.ajouterVehicule(vehiculeTemporaire);
 			}
-			
+			*/
 			//Generer accident
 			ga.genererAccident();
 			
@@ -52,7 +54,7 @@ public class MoteurTraitement {
 			
 			//Attente de quelques milisecondes pour que l'animation soit visible
 			try {
-				Thread.sleep(500);
+				Thread.sleep(DUREE_CYCLE);
 			} catch (InterruptedException e) {
 				
 			}

@@ -8,6 +8,9 @@ public class Trajet {
 	
 	
 	public Arthere retirerProchainArthere(){ //Retire le prochain arthere du trajet et l'envoi a la méthode appelante
+		if (artheres.isEmpty()){
+			return null;
+		}
 		Arthere temporaire = artheres.get(0);
 		artheres.remove(0);
 		return temporaire;

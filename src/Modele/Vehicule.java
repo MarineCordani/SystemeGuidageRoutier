@@ -55,6 +55,8 @@ public class Vehicule {
 	
 	//Si arrivé au bout de l'arthere, retourne true
 	public boolean avancer(){
+		
+		//System.out.println(derniereIntersection.toString() + " - " + prochaineIntersection.toString());
 		if (surIntersection){
 			surIntersection = false;
 			return true;
@@ -64,15 +66,18 @@ public class Vehicule {
 			return false;
 		}
 		//TODO: Doit trouver une facon de donner information a derniere et prochaine intersection
-		pourcentageCompletion += 0.01;
+		//System.out.println("test");
+		pourcentageCompletion = pourcentageCompletion + 0.01;
+		//System.out.println(pourcentageCompletion);
 		int deltaX = prochaineIntersection.getPositionX() - derniereIntersection.getPositionX();
 		int deltaY = prochaineIntersection.getPositionY() - derniereIntersection.getPositionY();
 		
 		this.positionX = (int)(derniereIntersection.getPositionX() + (deltaX * pourcentageCompletion));
 		this.positionY = (int)(derniereIntersection.getPositionY() + (deltaY * pourcentageCompletion));
 		
-		if (pourcentageCompletion == 1.0){
+		if (pourcentageCompletion > 0.95){
 			pourcentageCompletion = 0;
+			System.out.println("arrive au bout"); //TODO: Erreur ici. N'est jamais executer
 			return true;
 		}
 		return false;

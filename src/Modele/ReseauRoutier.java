@@ -43,7 +43,7 @@ public class ReseauRoutier {
 		//Ajout arthere horizontal
 		artheres.add(new Arthere(VITESSE_MAX, getIntersection("A1"),getIntersection("A2"))); //Ajouter une arthere qui lie A1 et A2
 		artheres.add(new Arthere(VITESSE_MAX, getIntersection("A2"),getIntersection("A3")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("A3"),getIntersection("A4")));
+		artheres.add(new Arthere(VITESSE_MAX/2, getIntersection("A3"),getIntersection("A4")));
 		artheres.add(new Arthere(VITESSE_MAX, getIntersection("B1"),getIntersection("B2")));
 		artheres.add(new Arthere(VITESSE_MAX, getIntersection("B2"),getIntersection("B3")));
 		artheres.add(new Arthere(VITESSE_MAX, getIntersection("B3"),getIntersection("B4")));
@@ -78,7 +78,7 @@ public class ReseauRoutier {
 		Trajet t1 = GenerateurTrajet.genererTrajet(a,b);
 		Vehicule v1 = new Vehicule(t1, a);
 		MoteurTraitement.getReseauRoutier().ajouterVehicule(v1);
-		
+		/*
 		a = getIntersection("B1");
 		b = getIntersection("C4");
 		t1 = GenerateurTrajet.genererTrajet(a,b);
@@ -89,7 +89,8 @@ public class ReseauRoutier {
 		b = getIntersection("B4");
 		t1 = GenerateurTrajet.genererTrajet(a,b);
 		v1 = new Vehicule(t1, a);
-		MoteurTraitement.getReseauRoutier().ajouterVehicule(v1);	
+		MoteurTraitement.getReseauRoutier().ajouterVehicule(v1);
+		*/	
 	}
 	
 	public Intersection getIntersection(String n){
@@ -143,15 +144,16 @@ public class ReseauRoutier {
 			    Iterator vehiculeIterator = vehicules.iterator();
 			    while (vehiculeIterator.hasNext()) {
 			    	Vehicule v = (Vehicule)vehiculeIterator.next();
-			    	if (v.avancer()){
+			    	//if (v.avancer()){
 						//TODO: Signifie que le vehicule est a la fin de son arthere
 						//i.retirerVehicule(v);
 			    		vehiculeIterator.remove();
 						temporaire = v.getTrajet().retirerProchainArthere();
+						v.getTrajet().imprimerTrajet();
 						temporaire.ajouterVehicule(v);
 						v.setArthereEnCours(temporaire);
 						v.changerSegment(temporaire);
-					}
+					//}
 			    }
 			}
 			/*
@@ -177,9 +179,16 @@ public class ReseauRoutier {
 						//a.retirerVehicule(v);
 			    		vehiculeIterator.remove();
 			    		temporaire = v.getTrajet().retirerProchainArthere();
-						temporaire.ajouterVehicule(v);
-						v.changerSegment(temporaire);
-						v.setArthereEnCours(temporaire);
+						if (temporaire == null){ //Indique que le vehicule est a la fin du trajet
+							a.retirerVehicule(v);
+						}
+						else
+						{
+							temporaire.ajouterVehicule(v);
+							v.changerSegment(temporaire);
+							v.setArthereEnCours(temporaire);
+						}
+			    		
 					}
 			    }
 			}

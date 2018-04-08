@@ -163,6 +163,16 @@ public class EcranGPS extends JFrame {
 		}
 	}
 	
+	
+	public String getOrigine(){
+		return cboOrigineComboBox.getSelectedItem().toString();
+	}
+	
+	public String getDestination(){
+		return cboDestinationComboBox.getSelectedItem().toString();
+	}
+	
+	
 	/**
 	 * Méthode pour rafraîchir l'interface
 	 */

@@ -56,7 +56,11 @@ public class Arthere {
 	 * @return la durée pour parcourir l'arthère
 	 */
 	public int dureeTraverse(){
-		return longueur/vitesseActuel;
+		int temp = longueur/vitesseActuel;
+		if (presenceAccident){
+			temp*=5;
+		}
+		return temp;
 	}
 	
 	public boolean creerAccident(){

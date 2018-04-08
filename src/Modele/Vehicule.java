@@ -1,5 +1,7 @@
 package Modele;
 
+import Controleur.MoteurTraitement;
+
 public class Vehicule {
 
 	private Trajet trajet;
@@ -14,6 +16,7 @@ public class Vehicule {
 	private double pourcentageCompletion;
 	private boolean surIntersection;
 
+	private boolean voitureUtilisateur;
 	
 	public Vehicule(Trajet t, Intersection i){
 		this.trajet = t;
@@ -22,10 +25,26 @@ public class Vehicule {
 		pourcentageCompletion = 0;
 		this.intersectionInitial = i;
 		surIntersection = false;
+		voitureUtilisateur = false;
 	}	
+	
+	public Vehicule(Trajet t, Intersection i, boolean vi){
+		this.trajet = t;
+		this.accidente = false;
+		this.definirPositionInitial(i);
+		pourcentageCompletion = 0;
+		this.intersectionInitial = i;
+		surIntersection = false;
+		voitureUtilisateur = vi;
+	}	
+	
 	
 	public void changerSegment(Arthere arthere){
 		pourcentageCompletion = 0;
+		
+		if (arthere != null && MoteurTraitement.getEcran() != null && this.voitureUtilisateur == true){
+			MoteurTraitement.getEcran().ajouterTexteAuJournal("La voiture prend l'artère " + arthere.toString());
+		}
 		
 		//Intersection de l'arthere en cours
 		Intersection a = arthereEnCours.getA();
@@ -78,7 +97,7 @@ public class Vehicule {
 		
 		if (pourcentageCompletion > 0.95){
 			pourcentageCompletion = 0;
-			System.out.println("arrive au bout"); //TODO: Erreur ici. N'est jamais executer
+			//System.out.println("arrive au bout"); //TODO: Erreur ici. N'est jamais executer
 			return true;
 		}
 		return false;
@@ -91,6 +110,9 @@ public class Vehicule {
 	}
 
 	public void SetAccidente(boolean etat) {
+		if (this.voitureUtilisateur){
+			return; //Ne jamais accidenter voiture de l'utilisateur
+		}
 		this.accidente = etat;		
 	}
 	
@@ -128,6 +150,18 @@ public class Vehicule {
 
 	public void setPositionY(int positionY) {
 		this.positionY = positionY;
+	}
+
+	public boolean isVoitureUtilisateur() {
+		return voitureUtilisateur;
+	}
+	
+	public Intersection getProchaineIntersection(){
+		return prochaineIntersection;
+	}
+	
+	public void setTrajet(Trajet t){
+		this.trajet = t;
 	}
 	
 }

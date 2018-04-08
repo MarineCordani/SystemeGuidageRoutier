@@ -6,6 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import Vue.Graphique.AfficheurDirection;
+import Controleur.MoteurTraitement;
+
 /**
  * Classe de la vue qui est un panneau où mettre les contrôles d'entrée
  * 
@@ -24,9 +27,18 @@ public class EntreeUtilisateur extends JPanel implements ActionListener{
 		JButton button = (JButton)e.getSource();
 		if(button.getText() == "Démarrer") {
 			button.setText("Arrêter");
+			String o = MoteurTraitement.getEcran().getOrigine();
+			String d = MoteurTraitement.getEcran().getDestination();
+			if (o.equals(d)){
+				MoteurTraitement.getEcran().ajouterTexteAuJournal("L'origine et la destination doivent être différentes!");
+				return;
+			}
+			MoteurTraitement.definirTrajet(o, d);
+			MoteurTraitement.setLancer(true);
 		}
 		else {
 			button.setText("Démarrer");
+			MoteurTraitement.setLancer(false);
 		}
 	}
 }

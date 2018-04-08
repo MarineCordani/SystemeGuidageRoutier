@@ -9,7 +9,7 @@ public class GenerateurVehicule {
 	private double probabilite;
 
 	public GenerateurVehicule() {
-		this.probabilite = 0.025;
+		this.probabilite = 0.025 * 3;
 	}
 
 	public GenerateurVehicule(double p) {

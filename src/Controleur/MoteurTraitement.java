@@ -5,6 +5,7 @@ import javax.swing.SwingUtilities;
 
 import Modele.Intersection;
 import Modele.ReseauRoutier;
+import Modele.Trajet;
 import Modele.Vehicule;
 import Vue.EcranGPS;
 import Vue.EcranGPS;
@@ -13,8 +14,12 @@ public class MoteurTraitement {
 
 	static private ReseauRoutier reseau;
 	static private EcranGPS ecran;
-
+	static private Vehicule utilisateur;
+	static private boolean lancer;
+	
 	static private final int DUREE_CYCLE = 50;
+	static private String depart = "A1";
+	static private String arrive = "B2";
 	
 	public static void main(String[] args) {
 		reseau = new ReseauRoutier();
@@ -38,15 +43,34 @@ public class MoteurTraitement {
 		
 		GenerateurAccident ga = new GenerateurAccident();
 		
+		do { //Boucle principale d'exécution
+			reseau = new ReseauRoutier();
+		do { //Boucle infini d'attente de démarrage de la simulation
+			System.out.print("");
+		} while(!lancer);
+		
+		//Ajouter voiture utilisateur
+		Intersection a = reseau.getIntersection(depart);
+		Intersection b = reseau.getIntersection(arrive);
+		Trajet t1 = GenerateurTrajet.genererTrajet(a,b);
+		utilisateur = new Vehicule(t1, a, true);
+		reseau.ajouterVehicule(utilisateur);
+		Trajet nouveauTrajet = null;
+		
 		do{
 			//Generer voiture
-			/*vehiculeTemporaire = gv.genererVehicule();
+			vehiculeTemporaire = gv.genererVehicule();
 			if (vehiculeTemporaire != null){
 				reseau.ajouterVehicule(vehiculeTemporaire);
 			}
-			*/
+			
 			//Generer accident
-			ga.genererAccident();
+			if (ga.genererAccident()){
+				//Si accident est generer, verifier si le trjaet doit etre recalculé
+				ecran.ajouterTexteAuJournal("Accident survenue. Recalcul de l'itinéraire");
+				nouveauTrajet = GenerateurTrajet.genererTrajet(utilisateur.getProchaineIntersection(), b);
+				utilisateur.setTrajet(nouveauTrajet);
+			}
 			
 			//Faire avancer vehicule
 			//TODO: Faire deplacer les vehicules
@@ -60,8 +84,8 @@ public class MoteurTraitement {
 			}
 			//Rafraichir carte
 			ecran.RafraichirInterface();
-		} while (true);
-		
+		} while (lancer);
+	} while (true);
 	}
 
 	/**
@@ -87,6 +111,16 @@ public class MoteurTraitement {
 		ecran.setLocation(0, 0);
 		ecran.setSize(1024, 600);
 		ecran.setVisible(true);
+	}
+
+	
+	public static void definirTrajet(String d, String a){
+		depart = d;
+		arrive = a;
+	}
+	
+	public static void setLancer(boolean lancer) {
+		MoteurTraitement.lancer = lancer;
 	}
 
 }

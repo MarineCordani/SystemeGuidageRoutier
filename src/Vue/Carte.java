@@ -92,7 +92,7 @@ public class Carte extends JPanel {
 			Vector<Vehicule> vehicules = arthere.getVehicules();
 
 			for (Vehicule vehicule : vehicules) {
-				afficheurVehicule.dessiner(g, x, y, vehicule.getPositionX(), vehicule.getPositionY(), a.getPositionY() == b.getPositionY(), rapportModeleCarte);
+				afficheurVehicule.dessiner(g, x, y, vehicule.getPositionX(), vehicule.getPositionY(), false, a.getPositionY() == b.getPositionY(), rapportModeleCarte);
 			}
 		}
 		/*

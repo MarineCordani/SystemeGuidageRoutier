@@ -191,7 +191,7 @@ public class ReseauRoutier {
 			    		vehiculeIterator.remove();
 			    		temporaire = v.getTrajet().retirerProchainArthere();
 						if (temporaire == null){ //Indique que le vehicule est a la fin du trajet
-							a.retirerVehicule(v);
+							//a.retirerVehicule(v);
 						}
 						else
 						{

@@ -32,6 +32,9 @@ public class Trajet {
 		System.out.println();
 	}
 	
+	public Vector<Arthere> getArtheres(){
+		return artheres;
+	}
 	
 	
 }

@@ -75,8 +75,8 @@ public class Vehicule {
 	//Si arrivé au bout de l'arthere, retourne true
 	public boolean avancer(){
 		
-		System.out.println(derniereIntersection.toString() + " - " + prochaineIntersection.toString());
-		this.getTrajet().imprimerTrajet();
+		//System.out.println(derniereIntersection.toString() + " - " + prochaineIntersection.toString());
+		//this.getTrajet().imprimerTrajet();
 		if (surIntersection){
 			surIntersection = false;
 			return true;

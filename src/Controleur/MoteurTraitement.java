@@ -123,4 +123,8 @@ public class MoteurTraitement {
 		MoteurTraitement.lancer = lancer;
 	}
 
+	public static Vehicule getVehiculeUtilisateur(){
+		return utilisateur;
+	}
+	
 }

@@ -110,7 +110,7 @@ public class AfficheurDirection {
 			g2d.setStroke(new BasicStroke(EPAISSEUR_TRAIT + 2));			
 		}
 		else {
-			g2d.setPaint(new Color(161, 196, 104));		
+			g2d.setPaint(new Color(0, 255, 0));		
 			g2d.setStroke(new BasicStroke(EPAISSEUR_TRAIT));			
 		}
 		
@@ -205,7 +205,7 @@ public class AfficheurDirection {
 		g2d.setStroke(new BasicStroke(1));
 		
 		Polygon poly = new Polygon(polyX, polyY, polyX.length);
-		g2d.setPaint(new Color(161, 196, 104));
+		g2d.setPaint(new Color(0, 255, 0));
 		g2d.fill(poly);
 				
 		g2d.setPaint(Color.BLACK);

@@ -163,5 +163,4 @@ public class Vehicule {
 	public void setTrajet(Trajet t){
 		this.trajet = t;
 	}
-	
 }

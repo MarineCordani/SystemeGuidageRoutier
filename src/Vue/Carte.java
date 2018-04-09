@@ -39,12 +39,18 @@ public class Carte extends JPanel {
 	 * La taille de la marge entre la fenêtre principale et la carte
 	 */
 	private final int TAILLE_MARGE = 0;
+	
+	private AfficheurCarte afficheurCarte;
+	private AfficheurVehicule afficheurVehicule;
 
 	/**
 	 * Le constructeur de la classe
 	 */
 	public Carte() {
 		this.setBackground(COULEUR_CARTE);
+		
+		afficheurCarte = new AfficheurCarte();
+		afficheurVehicule = new AfficheurVehicule();
 	}
 
 	@Override
@@ -79,13 +85,13 @@ public class Carte extends JPanel {
 		float x = (panelSize.width - width) / 2;
 		float y = (panelSize.height - height) / 2;
 
-		//Afficher la carte
-		AfficheurCarte afficheurCarte = new AfficheurCarte();
-		afficheurCarte.dessiner(g, x, y, intersections, artheres, rapportModeleCarte);
-
-		//Afficher les véhicules
-		AfficheurVehicule afficheurVehicule = new AfficheurVehicule();
-
+		//Afficher la carte	
+		Vehicule utilisateur = MoteurTraitement.getVehiculeUtilisateur();
+		Vector<Arthere> utilisateurArtheres = utilisateur.getTrajet().getArtheres();
+		
+		afficheurCarte.dessiner(g, x, y, intersections, artheres, utilisateur, utilisateurArtheres, rapportModeleCarte);
+		
+		//Afficher les véhicules	
 		for (Arthere arthere : artheres) {
 			Intersection a = arthere.getA();
 			Intersection b = arthere.getB();

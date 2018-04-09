@@ -112,4 +112,14 @@ public class Arthere {
 	public String getIdentifiant() {
 		return identifiant;
 	}
+	
+	public boolean hasVehiculeUtilisateur() {
+		for(Vehicule v: this.vehicules) {
+			if(v.isVoitureUtilisateur()) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 }

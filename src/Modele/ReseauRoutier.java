@@ -7,8 +7,8 @@ import Controleur.GenerateurTrajet;
 import Controleur.MoteurTraitement;
 
 public class ReseauRoutier {
-	public static final int VITESSE_MAX = 10;
-	public static final int DISTANCE_MAX_ARTHERE = 10;
+	public static final int VITESSE_MAX = 50;
+	public static final int DISTANCE_MAX_ARTHERE = 100;
 	
 	private Vector<Intersection> intersections = new Vector<Intersection>();
 	private Vector<Arthere> artheres = new Vector<Arthere>();
@@ -23,22 +23,22 @@ public class ReseauRoutier {
 		// 4   X   X   X   X
 		
 		//Ajout des intersections
-		intersections.add(new Intersection("A1", 10, 10));
-		intersections.add(new Intersection("A2", 20, 10));
-		intersections.add(new Intersection("A3", 30, 10));
-		intersections.add(new Intersection("A4", 40, 10));
-		intersections.add(new Intersection("B1", 10, 20));
-		intersections.add(new Intersection("B2", 20, 20));
-		intersections.add(new Intersection("B3", 30, 20));
-		intersections.add(new Intersection("B4", 40, 20));
-		intersections.add(new Intersection("C1", 10, 30));
-		intersections.add(new Intersection("C2", 20, 30));
-		intersections.add(new Intersection("C3", 30, 30));
-		intersections.add(new Intersection("C4", 40, 30));
-		intersections.add(new Intersection("D1", 10, 40));
-		intersections.add(new Intersection("D2", 20, 40));
-		intersections.add(new Intersection("D3", 30, 40));
-		intersections.add(new Intersection("D4", 40, 40));
+		intersections.add(new Intersection("A1", 100, 100));
+		intersections.add(new Intersection("A2", 200, 100));
+		intersections.add(new Intersection("A3", 300, 100));
+		intersections.add(new Intersection("A4", 400, 100));
+		intersections.add(new Intersection("B1", 100, 200));
+		intersections.add(new Intersection("B2", 200, 200));
+		intersections.add(new Intersection("B3", 300, 200));
+		intersections.add(new Intersection("B4", 400, 200));
+		intersections.add(new Intersection("C1", 100, 300));
+		intersections.add(new Intersection("C2", 200, 300));
+		intersections.add(new Intersection("C3", 300, 300));
+		intersections.add(new Intersection("C4", 400, 300));
+		intersections.add(new Intersection("D1", 100, 400));
+		intersections.add(new Intersection("D2", 200, 400));
+		intersections.add(new Intersection("D3", 300, 400));
+		intersections.add(new Intersection("D4", 400, 400));
 
 		//Ajout arthere horizontal
 		artheres.add(new Arthere(VITESSE_MAX, getIntersection("A1"),getIntersection("A2"))); //Ajouter une arthere qui lie A1 et A2

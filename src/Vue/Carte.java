@@ -95,7 +95,26 @@ public class Carte extends JPanel {
 			Vector<Vehicule> vehicules = arthere.getVehicules();
 
 			for (Vehicule vehicule : vehicules) {
-				afficheurVehicule.dessiner(g, x, y, vehicule.getPositionX(), vehicule.getPositionY(), vehicule.isVoitureUtilisateur(), a.getPositionY() == b.getPositionY(), rapportModeleCarte);
+				int sens = 0;
+				Intersection p = vehicule.getProchaineIntersection();
+				if(vehicule.getPositionY() == p.getPositionY()) {
+					if(vehicule.getPositionX() <= p.getPositionX()) {
+						sens = 0;//est
+					}
+					else {
+						sens = 2;//ouest
+					}
+				}
+				else {
+					if(vehicule.getPositionY() <= p.getPositionY()) {
+						sens = 3;//sud
+					}
+					else {
+						sens = 1;//nord
+					}
+				}
+				
+				afficheurVehicule.dessiner(g, x, y, vehicule.getPositionX(), vehicule.getPositionY(), vehicule.isVoitureUtilisateur(), sens, rapportModeleCarte);
 			}
 		}
 		/*

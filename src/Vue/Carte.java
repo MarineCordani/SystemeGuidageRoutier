@@ -85,11 +85,8 @@ public class Carte extends JPanel {
 		float x = (panelSize.width - width) / 2;
 		float y = (panelSize.height - height) / 2;
 
-		//Afficher la carte	
-		Vehicule utilisateur = MoteurTraitement.getVehiculeUtilisateur();
-		Vector<Arthere> utilisateurArtheres = utilisateur.getTrajet().getArtheres();
-		
-		afficheurCarte.dessiner(g, x, y, intersections, artheres, utilisateur, utilisateurArtheres, rapportModeleCarte);
+		//Afficher la carte			
+		afficheurCarte.dessiner(g, x, y, intersections, artheres, rapportModeleCarte);
 		
 		//Afficher les véhicules	
 		for (Arthere arthere : artheres) {

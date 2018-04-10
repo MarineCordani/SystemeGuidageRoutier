@@ -39,22 +39,17 @@ public class AfficheurCarte {
 	 *            vecteur des intersections
 	 * @param artheres
 	 *            vecteur des arthères
-	 * @param utilisateur
-	 *            véhicule utilisateur
-	 * @param utilisateurArtheres
-	 *            vecteur des arthères du trajet du véhicule utilisateur
 	 * @param rapportModeleCarte
 	 *            rapport entre le modèle et la carte
 	 */
-	public void dessiner(Graphics g, float x, float y, Vector<Intersection> intersections, Vector<Arthere> artheres,
-			Vehicule utilisateur, Vector<Arthere> utilisateurArtheres, float rapportModeleCarte) {
+	public void dessiner(Graphics g, float x, float y, Vector<Intersection> intersections, Vector<Arthere> artheres, float rapportModeleCarte) {
 		Graphics2D g2d = (Graphics2D) g;
 
 		// afficher les arthères un peu large premièrement en gris
-		this.dessinerArtheres(g2d, x, y, artheres, utilisateur, utilisateurArtheres, true, rapportModeleCarte);
+		this.dessinerArtheres(g2d, x, y, artheres, true, rapportModeleCarte);
 
 		// afficher les arthères plus petites en blanc
-		this.dessinerArtheres(g2d, x, y, artheres, utilisateur, utilisateurArtheres, false, rapportModeleCarte);
+		this.dessinerArtheres(g2d, x, y, artheres, false, rapportModeleCarte);
 
 		// afficher les identifiants d'intersections en noir
 		this.dessinerIntersectionsIds(g2d, x, y, intersections, rapportModeleCarte);
@@ -72,21 +67,24 @@ public class AfficheurCarte {
 	 *            début de la carte sur l'axe des y
 	 * @param artheres
 	 *            vecteur des arthères
-	 * @param utilisateur
-	 *            véhicule utilisateur
-	 * @param utilisateurArtheres
-	 *            vecteur des arthères du trajet du véhicule utilisateur
 	 * @param trait
 	 *            drapeau pour voir si on dessine le trait ou l'intérieur
 	 * @param rapportModeleCarte
 	 *            rapport entre le modèle et la carte
 	 */
-	private void dessinerArtheres(Graphics2D g2d, float x, float y, Vector<Arthere> artheres, Vehicule utilisateur,
-			Vector<Arthere> utilisateurArtheres, boolean trait, float rapportModeleCarte) {
+	private void dessinerArtheres(Graphics2D g2d, float x, float y, Vector<Arthere> artheres, boolean trait, float rapportModeleCarte) {
 		float x1 = 0.0f;
 		float y1 = 0.0f;
 		float x2 = 0.0f;
 		float y2 = 0.0f;
+		
+
+		Vehicule utilisateur = MoteurTraitement.getVehiculeUtilisateur();	
+		Vector<Arthere> utilisateurArtheres = null;
+		
+		if(utilisateur != null) {
+			utilisateurArtheres = utilisateur.getTrajet().getArtheres();
+		}
 
 		// afficher les arthères un peu large premièrement en gris
 		for (Arthere arthere : artheres) {
@@ -106,12 +104,12 @@ public class AfficheurCarte {
 				boolean hasVehiculeUtilisateur = arthere.hasVehiculeUtilisateur();
 
 				if (hasVehiculeUtilisateur) {
-					if (utilisateurArtheres.size() > 0) {
+					if (utilisateurArtheres != null && utilisateurArtheres.size() > 0) {
 						afficheurDirection.dessiner(g2d, x, y, arthere, utilisateurArtheres.get(0), rapportModeleCarte);
 					}
 				}
 
-				if (utilisateurArtheres.contains(arthere)) {// magenta
+				if (utilisateurArtheres != null && utilisateurArtheres.contains(arthere)) {// magenta
 					g2d.setPaint(new Color(255, 0, 255));
 				} else if (arthere.getPresenceAccident()) {// rouge
 					g2d.setPaint(new Color(237, 85, 100));
@@ -123,7 +121,7 @@ public class AfficheurCarte {
 				g2d.setStroke(new BasicStroke(EPAISSEUR_TRAIT));
 				g2d.drawLine((int) x1, (int) y1, (int) x2, (int) y2);
 
-				if (hasVehiculeUtilisateur) {
+				if (hasVehiculeUtilisateur && utilisateur != null) {
 					x1 = x + ((float) utilisateur.getPositionX() / rapportModeleCarte);
 					y1 = y + ((float) utilisateur.getPositionY() / rapportModeleCarte);
 					x2 = x + ((float) utilisateur.getProchaineIntersection().getPositionX() / rapportModeleCarte);

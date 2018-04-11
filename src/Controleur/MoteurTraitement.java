@@ -74,7 +74,7 @@ public class MoteurTraitement {
 			
 			//Faire avancer vehicule
 			//TODO: Faire deplacer les vehicules
-			lancer = reseau.avancerVehicule();
+			lancer = reseau.avancerVehicule(DUREE_CYCLE);
 			
 			if(!lancer) {
 				ecran.arreter();

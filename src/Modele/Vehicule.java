@@ -3,7 +3,8 @@ package Modele;
 import Controleur.MoteurTraitement;
 
 public class Vehicule {
-
+	private final float RAPPORT_VITESSES = 50.0f / 0.0002f;	private boolean presenceAccident;
+	
 	private Trajet trajet;
 	private boolean accidente; //Indique si le vehicule a ete impliqué dans un accident
 	private int positionX;
@@ -73,7 +74,7 @@ public class Vehicule {
 	}
 	
 	//Si arrivé au bout de l'arthere, retourne true
-	public boolean avancer(){
+	public boolean avancer(int dureeCycle, int vitesse){
 		
 		//System.out.println(derniereIntersection.toString() + " - " + prochaineIntersection.toString());
 		//this.getTrajet().imprimerTrajet();
@@ -87,7 +88,7 @@ public class Vehicule {
 		}
 		//TODO: Doit trouver une facon de donner information a derniere et prochaine intersection
 		//System.out.println("test");
-		pourcentageCompletion = pourcentageCompletion + 0.01;
+		pourcentageCompletion = pourcentageCompletion + ((double)dureeCycle * (double)vitesse / RAPPORT_VITESSES); //0.01;
 		//System.out.println(pourcentageCompletion);
 		int deltaX = prochaineIntersection.getPositionX() - derniereIntersection.getPositionX();
 		int deltaY = prochaineIntersection.getPositionY() - derniereIntersection.getPositionY();

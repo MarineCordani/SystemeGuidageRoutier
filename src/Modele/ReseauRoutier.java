@@ -142,7 +142,7 @@ public class ReseauRoutier {
 		return coins;
 	}
 	
-	public boolean avancerVehicule(){
+	public boolean avancerVehicule(int dureeCycle){
 		Arthere temporaire;		
 		
 		/*for (Intersection i: intersections){
@@ -184,7 +184,7 @@ public class ReseauRoutier {
 			    Iterator vehiculeIterator = vehicules.iterator();
 			    while (vehiculeIterator.hasNext()) {
 			    	Vehicule v = (Vehicule)vehiculeIterator.next();
-			    	if (v.avancer()){
+			    	if (v.avancer(dureeCycle, a.getVitesseActuelle())){
 			    		//System.out.println("----------------------------");
 						//TODO: Signifie que le vehicule est a la fin de son arthere
 						//a.retirerVehicule(v);

@@ -74,7 +74,11 @@ public class MoteurTraitement {
 			
 			//Faire avancer vehicule
 			//TODO: Faire deplacer les vehicules
-			reseau.avancerVehicule();
+			lancer = reseau.avancerVehicule();
+			
+			if(!lancer) {
+				ecran.arreter();
+			}
 			
 			//Attente de quelques milisecondes pour que l'animation soit visible
 			try {

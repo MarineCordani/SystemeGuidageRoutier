@@ -142,7 +142,7 @@ public class ReseauRoutier {
 		return coins;
 	}
 	
-	public void avancerVehicule(){
+	public boolean avancerVehicule(){
 		Arthere temporaire;		
 		
 		/*for (Intersection i: intersections){
@@ -192,6 +192,9 @@ public class ReseauRoutier {
 			    		temporaire = v.getTrajet().retirerProchainArthere();
 						if (temporaire == null){ //Indique que le vehicule est a la fin du trajet
 							//a.retirerVehicule(v);
+							if(v.isVoitureUtilisateur()) {
+								return false;
+							}							
 						}
 						else
 						{
@@ -216,6 +219,8 @@ public class ReseauRoutier {
 				}
 			}*/
 		}
+		
+		return true;
 	}
 	
 }

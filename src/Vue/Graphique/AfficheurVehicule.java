@@ -14,8 +14,12 @@ import javax.imageio.ImageIO;
  *
  */
 public class AfficheurVehicule {
-	private BufferedImage[] imageVert;
-	private BufferedImage[] imageUtilisateur;
+	private BufferedImage[] imageVehiculeVert;
+	private BufferedImage[] imageVehiculeBleu;
+	private BufferedImage[] imageVehiculeUtilisateur;
+
+	private int[] decalageX;
+	private int[] decalageY;
 
 
 	/**
@@ -23,17 +27,36 @@ public class AfficheurVehicule {
 	 */
 	public AfficheurVehicule() {
 		try {
-			imageVert = new BufferedImage[4];
-			imageVert[0] = ImageIO.read(new File("res/vehicule_vert_est.png"));
-			imageVert[1] = ImageIO.read(new File("res/vehicule_vert_nord.png"));
-			imageVert[2] = ImageIO.read(new File("res/vehicule_vert_ouest.png"));
-			imageVert[3] = ImageIO.read(new File("res/vehicule_vert_sud.png"));
+			imageVehiculeVert = new BufferedImage[4];
+			imageVehiculeVert[0] = ImageIO.read(new File("res/vehicule_vert_est.png"));
+			imageVehiculeVert[1] = ImageIO.read(new File("res/vehicule_vert_nord.png"));
+			imageVehiculeVert[2] = ImageIO.read(new File("res/vehicule_vert_ouest.png"));
+			imageVehiculeVert[3] = ImageIO.read(new File("res/vehicule_vert_sud.png"));
 			
-			imageUtilisateur = new BufferedImage[4];
-			imageUtilisateur[0] = ImageIO.read(new File("res/vehicule_utilisateur_est.png"));
-			imageUtilisateur[1] = ImageIO.read(new File("res/vehicule_utilisateur_nord.png"));
-			imageUtilisateur[2] = ImageIO.read(new File("res/vehicule_utilisateur_ouest.png"));
-			imageUtilisateur[3] = ImageIO.read(new File("res/vehicule_utilisateur_sud.png"));
+			imageVehiculeBleu = new BufferedImage[4];
+			imageVehiculeBleu[0] = ImageIO.read(new File("res/vehicule_bleu_est.png"));
+			imageVehiculeBleu[1] = ImageIO.read(new File("res/vehicule_bleu_nord.png"));
+			imageVehiculeBleu[2] = ImageIO.read(new File("res/vehicule_bleu_ouest.png"));
+			imageVehiculeBleu[3] = ImageIO.read(new File("res/vehicule_bleu_sud.png"));			
+			
+			imageVehiculeUtilisateur = new BufferedImage[4];
+			imageVehiculeUtilisateur[0] = ImageIO.read(new File("res/vehicule_utilisateur_est.png"));
+			imageVehiculeUtilisateur[1] = ImageIO.read(new File("res/vehicule_utilisateur_nord.png"));
+			imageVehiculeUtilisateur[2] = ImageIO.read(new File("res/vehicule_utilisateur_ouest.png"));
+			imageVehiculeUtilisateur[3] = ImageIO.read(new File("res/vehicule_utilisateur_sud.png"));		
+			
+			decalageX = new int[4];
+			decalageX[0] = -imageVehiculeBleu[0].getWidth();
+			decalageX[1] = -(imageVehiculeBleu[1].getWidth() / 2);
+			decalageX[2] = 0;
+			decalageX[3] = -(imageVehiculeBleu[3].getWidth() / 2);
+			
+			decalageY = new int[4];
+			decalageY[0] = -(imageVehiculeBleu[0].getHeight() / 2);
+			decalageY[1] = 0;
+			decalageY[2] = -(imageVehiculeBleu[2].getHeight() / 2);
+			decalageY[3] = -imageVehiculeBleu[3].getHeight();
+			
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
@@ -57,11 +80,14 @@ public class AfficheurVehicule {
 		float x1 = x + ((float) posVehiculeX / rapportModeleCarte);
 		float y1 = y + ((float) posVehiculeY / rapportModeleCarte);
 		if(utilisateur) {
-			g2d.drawImage(imageUtilisateur[sens], (int) x1 - (imageUtilisateur[sens].getWidth() / 2), (int) y1 - (imageUtilisateur[sens].getHeight() / 2),
+			g2d.drawImage(imageVehiculeUtilisateur[sens], (int) x1 - (imageVehiculeUtilisateur[sens].getWidth() / 2), (int) y1 - (imageVehiculeUtilisateur[sens].getHeight() / 2),
+					null);
+			
+			g2d.drawImage(imageVehiculeBleu[sens], (int) x1 + decalageX[sens], (int) y1 + decalageY[sens],
 					null);
 		}
 		else {
-			g2d.drawImage(imageVert[sens], (int) x1 - (imageVert[sens].getWidth() / 2), (int) y1 - (imageVert[sens].getHeight() / 2),
+			g2d.drawImage(imageVehiculeVert[sens], (int) x1 - (imageVehiculeVert[sens].getWidth() / 2), (int) y1 - (imageVehiculeVert[sens].getHeight() / 2),
 					null);
 		}
 	}

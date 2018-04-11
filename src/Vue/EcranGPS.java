@@ -189,4 +189,12 @@ public class EcranGPS extends JFrame {
 	public void ajouterTexteAuJournal(String message) {
 		txtJournalEvenementTextArea.append(message + "\n");
 	}
+	
+	/**
+	 * Méthode pour arreter la simulation
+	 * 
+	 */
+	public void arreter() {
+		btnDemarrerArreterButton.doClick();
+	}
 }

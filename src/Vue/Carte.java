@@ -29,17 +29,17 @@ public class Carte extends JPanel {
 	 * La clé de hachage SHA qui identifie de manière unique la Classe
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * La couleur grise de la carte
 	 */
 	private final Color COULEUR_CARTE = new Color(227, 224, 217);
-	
+
 	/**
 	 * La taille de la marge entre la fenêtre principale et la carte
 	 */
 	private final int TAILLE_MARGE = 0;
-	
+
 	private AfficheurCarte afficheurCarte;
 	private AfficheurVehicule afficheurVehicule;
 
@@ -48,7 +48,7 @@ public class Carte extends JPanel {
 	 */
 	public Carte() {
 		this.setBackground(COULEUR_CARTE);
-		
+
 		afficheurCarte = new AfficheurCarte();
 		afficheurVehicule = new AfficheurVehicule();
 	}
@@ -72,7 +72,7 @@ public class Carte extends JPanel {
 
 		g.setColor(COULEUR_CARTE);
 
-		//Calculer le rapport entre le modèle et la Carte
+		// Calculer le rapport entre le modèle et la Carte
 		float rapportModeleCarte = 0.0f;
 		if (carteSize.width > carteSize.height) {
 			rapportModeleCarte = (float) carteSize.height / (panelSize.height - (2 * TAILLE_MARGE));
@@ -85,10 +85,12 @@ public class Carte extends JPanel {
 		float x = (panelSize.width - width) / 2;
 		float y = (panelSize.height - height) / 2;
 
-		//Afficher la carte			
-		afficheurCarte.dessiner(g, x, y, intersections, artheres, rapportModeleCarte);
-		
-		//Afficher les véhicules	
+		// Afficher la carte
+		afficheurCarte.dessiner(g, x, y, (float) panelSize.width / 2,
+				y + (ReseauRoutier.DISTANCE_MAX_ARTHERE / rapportModeleCarte) / 2.0f, intersections, artheres,
+				rapportModeleCarte);
+
+		// Afficher les véhicules
 		for (Arthere arthere : artheres) {
 			Intersection a = arthere.getA();
 			Intersection b = arthere.getB();
@@ -97,44 +99,25 @@ public class Carte extends JPanel {
 			for (Vehicule vehicule : vehicules) {
 				int sens = 0;
 				Intersection p = vehicule.getProchaineIntersection();
-				if(vehicule.getPositionY() == p.getPositionY()) {
-					if(vehicule.getPositionX() <= p.getPositionX()) {
-						sens = 0;//est
+				if (p != null) {
+					if (vehicule.getPositionY() == p.getPositionY()) {
+						if (vehicule.getPositionX() <= p.getPositionX()) {
+							sens = 0;// est
+						} else {
+							sens = 2;// ouest
+						}
+					} else {
+						if (vehicule.getPositionY() <= p.getPositionY()) {
+							sens = 3;// sud
+						} else {
+							sens = 1;// nord
+						}
 					}
-					else {
-						sens = 2;//ouest
-					}
+
+					afficheurVehicule.dessiner(g, x, y, vehicule.getPositionX(), vehicule.getPositionY(),
+							vehicule.isVoitureUtilisateur(), sens, rapportModeleCarte);
 				}
-				else {
-					if(vehicule.getPositionY() <= p.getPositionY()) {
-						sens = 3;//sud
-					}
-					else {
-						sens = 1;//nord
-					}
-				}
-				
-				afficheurVehicule.dessiner(g, x, y, vehicule.getPositionX(), vehicule.getPositionY(), vehicule.isVoitureUtilisateur(), sens, rapportModeleCarte);
 			}
 		}
-		/*
-		for (Intersection intersection : intersections) {
-			Vector<Vehicule> vehicules = intersection.getVehicules();
-
-			for (Vehicule vehicule : vehicules) {
-				afficheurVehicule.dessiner(g, x, y, vehicule.getPositionX(), vehicule.getPositionY(), true, rapportModeleCarte);
-			}
-		}*/
-		/*
-		AfficheurDirection afficheurDirection = new AfficheurDirection();
-		afficheurDirection.dessiner(g, x, y, artheres.get(12), artheres.get(0), rapportModeleCarte);
-		afficheurDirection.dessiner(g, x, y, artheres.get(2), artheres.get(21), rapportModeleCarte);
-		afficheurDirection.dessiner(g, x, y, artheres.get(9), artheres.get(14), rapportModeleCarte);
-		afficheurDirection.dessiner(g, x, y, artheres.get(23), artheres.get(11), rapportModeleCarte);
-		
-		afficheurDirection.dessiner(g, x, y, artheres.get(0), artheres.get(12), rapportModeleCarte);
-		afficheurDirection.dessiner(g, x, y, artheres.get(21), artheres.get(2), rapportModeleCarte);
-		afficheurDirection.dessiner(g, x, y, artheres.get(14), artheres.get(9), rapportModeleCarte);
-		afficheurDirection.dessiner(g, x, y, artheres.get(11), artheres.get(23), rapportModeleCarte);*/
 	}
 }

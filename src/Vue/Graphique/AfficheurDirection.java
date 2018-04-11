@@ -83,18 +83,26 @@ public class AfficheurDirection {
 		
 		int virage = 0;
 		
-		if((a.getPositionX() == b.getPositionX() && a.getPositionX() == c.getPositionX()) || 
-		   (a.getPositionY() == b.getPositionY() && a.getPositionY() == c.getPositionY())) {			
-			virage = 1;
-		}
-		else {
+		float v1x = (float)a.getPositionX() - (float)b.getPositionX();
+		float v1y = (float)a.getPositionY() - (float)b.getPositionY();
+		
+		float v2x = (float)c.getPositionX() - (float)b.getPositionX();
+		float v2y = (float)c.getPositionY() - (float)b.getPositionY();
+		
+		float angleRad = (float)Math.atan2(v2y - v1y, v2x - v1x) * 2.0f;
+		int angle = (int) ((angleRad > 0 ? angleRad : (2.0f * (float)Math.PI + angleRad)) * 360.0f / (2.0f * (float)Math.PI));
+		
+		if(angle == 90) {			
 			virage = 0;
 		}
-				
-				
-		float x1 = x + ((float) 100 / rapportModeleCarte);
-		float y1 = y + ((float) 100 / rapportModeleCarte);
-		g2d.drawImage(imageDirection[virage], (int) x1 - (imageDirection[virage].getWidth() / 2), (int) y1 - (imageDirection[virage].getHeight() / 2),
+		else if(angle == -90) {
+			virage = 2;
+		}
+		else {
+			virage = 1;
+		}
+		
+		g2d.drawImage(imageDirection[virage], (int) x - (imageDirection[virage].getWidth() / 2), (int) y - (imageDirection[virage].getHeight() / 2),
 				null);
 	}
 }

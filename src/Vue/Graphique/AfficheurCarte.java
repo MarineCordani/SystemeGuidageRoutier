@@ -42,14 +42,14 @@ public class AfficheurCarte {
 	 * @param rapportModeleCarte
 	 *            rapport entre le modèle et la carte
 	 */
-	public void dessiner(Graphics g, float x, float y, Vector<Intersection> intersections, Vector<Arthere> artheres, float rapportModeleCarte) {
+	public void dessiner(Graphics g, float x, float y, float directionX, float directionY, Vector<Intersection> intersections, Vector<Arthere> artheres, float rapportModeleCarte) {
 		Graphics2D g2d = (Graphics2D) g;
 
 		// afficher les arthères un peu large premièrement en gris
-		this.dessinerArtheres(g2d, x, y, artheres, true, rapportModeleCarte);
+		this.dessinerArtheres(g2d, x, y, directionX, directionY, artheres, true, rapportModeleCarte);
 
 		// afficher les arthères plus petites en blanc
-		this.dessinerArtheres(g2d, x, y, artheres, false, rapportModeleCarte);
+		this.dessinerArtheres(g2d, x, y, directionX, directionY, artheres, false, rapportModeleCarte);
 
 		// afficher les identifiants d'intersections en noir
 		this.dessinerIntersectionsIds(g2d, x, y, intersections, rapportModeleCarte);
@@ -72,7 +72,7 @@ public class AfficheurCarte {
 	 * @param rapportModeleCarte
 	 *            rapport entre le modèle et la carte
 	 */
-	private void dessinerArtheres(Graphics2D g2d, float x, float y, Vector<Arthere> artheres, boolean trait, float rapportModeleCarte) {
+	private void dessinerArtheres(Graphics2D g2d, float x, float y, float directionX, float directionY, Vector<Arthere> artheres, boolean trait, float rapportModeleCarte) {
 		float x1 = 0.0f;
 		float y1 = 0.0f;
 		float x2 = 0.0f;
@@ -105,7 +105,7 @@ public class AfficheurCarte {
 
 				if (hasVehiculeUtilisateur) {
 					if (utilisateurArtheres != null && utilisateurArtheres.size() > 0) {
-						afficheurDirection.dessiner(g2d, x, y, arthere, utilisateurArtheres.get(0), rapportModeleCarte);
+						afficheurDirection.dessiner(g2d, directionX, directionY, arthere, utilisateurArtheres.get(0), rapportModeleCarte);
 					}
 				}
 

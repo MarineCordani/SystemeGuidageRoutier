@@ -14,10 +14,7 @@ import javax.imageio.ImageIO;
  *
  */
 public class AfficheurVehicule {
-	private BufferedImage imageHorizontalVert;
-	private BufferedImage imageVerticalVert;
-	private BufferedImage imageHorizontalRouge;
-	private BufferedImage imageVerticalRouge;
+	private BufferedImage[] imageVert;
 	private BufferedImage[] imageUtilisateur;
 
 
@@ -26,16 +23,17 @@ public class AfficheurVehicule {
 	 */
 	public AfficheurVehicule() {
 		try {
-			imageHorizontalVert = ImageIO.read(new File("res/vehicule_horizontal_vert.png"));
-			imageVerticalVert = ImageIO.read(new File("res/vehicule_vertical_vert.png"));
-			imageHorizontalRouge = ImageIO.read(new File("res/vehicule_horizontal_rouge.png"));
-			imageVerticalRouge = ImageIO.read(new File("res/vehicule_vertical_rouge.png"));
+			imageVert = new BufferedImage[4];
+			imageVert[0] = ImageIO.read(new File("res/vehicule_vert_est.png"));
+			imageVert[1] = ImageIO.read(new File("res/vehicule_vert_nord.png"));
+			imageVert[2] = ImageIO.read(new File("res/vehicule_vert_ouest.png"));
+			imageVert[3] = ImageIO.read(new File("res/vehicule_vert_sud.png"));
 			
 			imageUtilisateur = new BufferedImage[4];
-			imageUtilisateur[0] = ImageIO.read(new File("res/utilisateur_est.png"));
-			imageUtilisateur[1] = ImageIO.read(new File("res/utilisateur_nord.png"));
-			imageUtilisateur[2] = ImageIO.read(new File("res/utilisateur_ouest.png"));
-			imageUtilisateur[3] = ImageIO.read(new File("res/utilisateur_sud.png"));
+			imageUtilisateur[0] = ImageIO.read(new File("res/vehicule_utilisateur_est.png"));
+			imageUtilisateur[1] = ImageIO.read(new File("res/vehicule_utilisateur_nord.png"));
+			imageUtilisateur[2] = ImageIO.read(new File("res/vehicule_utilisateur_ouest.png"));
+			imageUtilisateur[3] = ImageIO.read(new File("res/vehicule_utilisateur_sud.png"));
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
@@ -63,13 +61,8 @@ public class AfficheurVehicule {
 					null);
 		}
 		else {
-			if (sens == 0 || sens == 2) {
-				g2d.drawImage(imageHorizontalVert, (int) x1 - (imageHorizontalVert.getWidth() / 2), (int) y1 - (imageHorizontalVert.getHeight() / 2),
-						null);
-			} else if (sens ==  1 || sens == 3) {
-				g2d.drawImage(imageVerticalVert, (int) x1 - (imageVerticalVert.getWidth() / 2), (int) y1 - (imageVerticalVert.getHeight() / 2),
-						null);
-			}
+			g2d.drawImage(imageVert[sens], (int) x1 - (imageVert[sens].getWidth() / 2), (int) y1 - (imageVert[sens].getHeight() / 2),
+					null);
 		}
 	}
 }

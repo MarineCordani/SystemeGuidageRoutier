@@ -4,6 +4,9 @@ import java.util.Vector;
 
 public class Arthere {
 
+	private final int NBR_VEHICULES_POUR_CONGESTION = 4;
+	private final int DISTANCE_MINIMAL_POUR_ACCIDENT = 10;
+	
 	private boolean presenceAccident;
 	private boolean presenceCongestion;
 	private int vitesseLimite; //Toujours etre divisible par 4
@@ -75,6 +78,17 @@ public class Arthere {
 		return true;
 	}
 	
+	public void verifierCongestion(){
+		//Si pas au moins deux vehicule, annuler l'accident
+		if (vehicules.size() > NBR_VEHICULES_POUR_CONGESTION){
+			presenceCongestion = true;
+		}
+		else {
+			presenceCongestion = false;
+		}
+	}
+	
+	
 	public void ajouterVehicule(Vehicule v){
 		vehicules.add(v);
 	}
@@ -115,8 +129,11 @@ public class Arthere {
 	
 	public int getVitesseActuelle() {
 		
-		if(presenceAccident) {
+		if(presenceCongestion) {
 			return this.vitesseActuel / 4;
+		}
+		else if(presenceAccident) {
+			return this.vitesseActuel / 2;
 		}
 		else {
 			return this.vitesseActuel;

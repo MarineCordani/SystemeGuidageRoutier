@@ -41,6 +41,8 @@ public class MoteurTraitement {
 		Vehicule vehiculeTemporaire = null;
 		Intersection intersectionTemporaire = null;
 		
+		VerificateurCongestion vc = new VerificateurCongestion();
+		
 		GenerateurAccident ga = new GenerateurAccident();
 		
 		do { //Boucle principale d'exécution
@@ -63,6 +65,9 @@ public class MoteurTraitement {
 			if (vehiculeTemporaire != null){
 				reseau.ajouterVehicule(vehiculeTemporaire);
 			}
+			
+			//Vérifier congestions
+			vc.verifierCongestion();
 			
 			//Generer accident
 			if (ga.genererAccident()){

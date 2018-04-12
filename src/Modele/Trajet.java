@@ -4,36 +4,36 @@ import java.util.Vector;
 
 public class Trajet {
 
-	private Vector<Arthere> artheres = new Vector<Arthere>();
+	private Vector<Artere> arteres = new Vector<Artere>();
 	
 	
-	public Arthere retirerProchainArthere(){ //Retire le prochain arthere du trajet et l'envoi a la méthode appelante
-		if (artheres.isEmpty()){
+	public Artere retirerProchainArthere(){ //Retire le prochain artere du trajet et l'envoi a la méthode appelante
+		if (arteres.isEmpty()){
 			return null;
 		}
-		Arthere temporaire = artheres.get(0);
-		artheres.remove(0);
+		Artere temporaire = arteres.get(0);
+		arteres.remove(0);
 		return temporaire;
 	}
 	
-	public void ajouterProchainArthere(Arthere a){
-		artheres.add(a);
+	public void ajouterProchainArthere(Artere a){
+		arteres.add(a);
 	}
 	
 	public boolean estTermine(){ //Indique (True/false) s'il reste des éléments
-		return artheres.isEmpty();
+		return arteres.isEmpty();
 	}
 
 	//Pour déboggage seulement
 	public void imprimerTrajet(){
-		for (Arthere a: artheres){
+		for (Artere a: arteres){
 			System.out.print(a.toString() + ",");
 		}
 		System.out.println();
 	}
 	
-	public Vector<Arthere> getArtheres(){
-		return artheres;
+	public Vector<Artere> getArteres(){
+		return arteres;
 	}
 	
 	

@@ -6,9 +6,9 @@ public class Intersection {
 
 	private int positionX; //Position X de l'intersection
 	private int positionY; //Position Y de l'intersection
-	private Vector<Arthere> connection = new Vector<Arthere>();
+	private Vector<Artere> connection = new Vector<Artere>();
 	private String identifiant; //Identifiant
-	private Vector<Vehicule> vehicules = new Vector<Vehicule>(); //Vehicule sur l'arthere
+	private Vector<Vehicule> vehicules = new Vector<Vehicule>(); //Vehicule sur l'artere
 	
 
 	public Intersection(String i, int x, int y){
@@ -34,7 +34,7 @@ public class Intersection {
 		return this.identifiant;
 	}
 	
-	public void connecterArthere(Arthere a){
+	public void connecterArthere(Artere a){
 		connection.add(a);
 	}
 	

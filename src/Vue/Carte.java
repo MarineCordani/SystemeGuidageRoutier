@@ -9,7 +9,7 @@ import java.util.Vector;
 import javax.swing.JPanel;
 
 import Controleur.MoteurTraitement;
-import Modele.Arthere;
+import Modele.Artere;
 import Modele.Intersection;
 import Modele.ReseauRoutier;
 import Modele.Vehicule;
@@ -68,7 +68,7 @@ public class Carte extends JPanel {
 				coins[1].getPositionY() + ReseauRoutier.DISTANCE_MAX_ARTHERE);
 
 		Vector<Intersection> intersections = reseau.getIntersections();
-		Vector<Arthere> artheres = reseau.getArtheres();
+		Vector<Artere> arteres = reseau.getArteres();
 
 		g.setColor(COULEUR_CARTE);
 
@@ -87,14 +87,14 @@ public class Carte extends JPanel {
 
 		// Afficher la carte
 		afficheurCarte.dessiner(g, x, y, (float) panelSize.width / 2,
-				y + (ReseauRoutier.DISTANCE_MAX_ARTHERE / rapportModeleCarte) / 2.0f, intersections, artheres,
+				y + (ReseauRoutier.DISTANCE_MAX_ARTHERE / rapportModeleCarte) / 2.0f, intersections, arteres,
 				rapportModeleCarte);
 
 		// Afficher les véhicules
-		for (Arthere arthere : artheres) {
-			Intersection a = arthere.getA();
-			Intersection b = arthere.getB();
-			Vector<Vehicule> vehicules = arthere.getVehicules();
+		for (Artere artere : arteres) {
+			Intersection a = artere.getA();
+			Intersection b = artere.getB();
+			Vector<Vehicule> vehicules = artere.getVehicules();
 
 			for (Vehicule vehicule : vehicules) {
 				int sens = 0;

@@ -11,11 +11,11 @@ public class ReseauRoutier {
 	public static final int DISTANCE_MAX_ARTHERE = 100;
 	
 	private Vector<Intersection> intersections = new Vector<Intersection>();
-	private Vector<Arthere> artheres = new Vector<Arthere>();
+	private Vector<Artere> arteres = new Vector<Artere>();
 
 	
 	public ReseauRoutier(){
-		//Creer les arthere et intersection
+		//Creer les artere et intersection
 		//     A   B   C   D
 		// 1   X   X   X   X
 		// 2   X   X   X   X
@@ -40,34 +40,34 @@ public class ReseauRoutier {
 		intersections.add(new Intersection("D3", 300, 400));
 		intersections.add(new Intersection("D4", 400, 400));
 
-		//Ajout arthere horizontal
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("A1"),getIntersection("A2"))); //Ajouter une arthere qui lie A1 et A2
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("A2"),getIntersection("A3")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("A3"),getIntersection("A4")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("B1"),getIntersection("B2")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("B2"),getIntersection("B3")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("B3"),getIntersection("B4")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("C1"),getIntersection("C2")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("C2"),getIntersection("C3")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("C3"),getIntersection("C4")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("D1"),getIntersection("D2")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("D2"),getIntersection("D3")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("D3"),getIntersection("D4")));
+		//Ajout artere horizontal
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("A1"),getIntersection("A2"))); //Ajouter une artere qui lie A1 et A2
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("A2"),getIntersection("A3")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("A3"),getIntersection("A4")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("B1"),getIntersection("B2")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("B2"),getIntersection("B3")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("B3"),getIntersection("B4")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("C1"),getIntersection("C2")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("C2"),getIntersection("C3")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("C3"),getIntersection("C4")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("D1"),getIntersection("D2")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("D2"),getIntersection("D3")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("D3"),getIntersection("D4")));
 		
 
-		//Ajout arthere vertical
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("A1"),getIntersection("B1")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("B1"),getIntersection("C1")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("C1"),getIntersection("D1")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("A2"),getIntersection("B2")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("B2"),getIntersection("C2")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("C2"),getIntersection("D2")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("A3"),getIntersection("B3")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("B3"),getIntersection("C3")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("C3"),getIntersection("D3")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("A4"),getIntersection("B4")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("B4"),getIntersection("C4")));
-		artheres.add(new Arthere(VITESSE_MAX, getIntersection("C4"),getIntersection("D4")));
+		//Ajout artere vertical
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("A1"),getIntersection("B1")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("B1"),getIntersection("C1")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("C1"),getIntersection("D1")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("A2"),getIntersection("B2")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("B2"),getIntersection("C2")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("C2"),getIntersection("D2")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("A3"),getIntersection("B3")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("B3"),getIntersection("C3")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("C3"),getIntersection("D3")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("A4"),getIntersection("B4")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("B4"),getIntersection("C4")));
+		arteres.add(new Artere(VITESSE_MAX, getIntersection("C4"),getIntersection("D4")));
 	}
 
 	
@@ -102,12 +102,12 @@ public class ReseauRoutier {
 		return null; //Signifie qu'un mauvais nom a été demandé
 	}
 	
-	public Vector<Arthere> getArtheres() {
-		return this.artheres;
+	public Vector<Artere> getArteres() {
+		return this.arteres;
 	}
 	
 	public void ajouterVehicule(Vehicule v){
-		Arthere temporaire = v.getTrajet().retirerProchainArthere();
+		Artere temporaire = v.getTrajet().retirerProchainArthere();
 		temporaire.ajouterVehicule(v);
 		Intersection i = v.getIntersectionInitial();
 		v.setPositionX(i.getPositionX());
@@ -141,9 +141,9 @@ public class ReseauRoutier {
 	}
 	
 	public boolean avancerVehicule(int dureeCycle){
-		Arthere temporaire;		
+		Artere temporaire;		
 		
-		for (Arthere a: artheres){
+		for (Artere a: arteres){
 			Vector<Vehicule> vehicules = a.getVehicules();
 			synchronized(vehicules)	{
 			    Iterator vehiculeIterator = vehicules.iterator();
@@ -151,7 +151,7 @@ public class ReseauRoutier {
 			    	Vehicule v = (Vehicule)vehiculeIterator.next();
 			    	if (v.avancer(dureeCycle, a.getVitesseActuelle())){
 			    		//System.out.println("----------------------------");
-						//Signifie que le vehicule est a la fin de son arthere
+						//Signifie que le vehicule est a la fin de son artere
 						//a.retirerVehicule(v);
 			    		vehiculeIterator.remove();
 			    		temporaire = v.getTrajet().retirerProchainArthere();

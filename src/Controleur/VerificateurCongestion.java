@@ -2,18 +2,18 @@ package Controleur;
 
 import java.util.Vector;
 
-import Modele.Arthere;
+import Modele.Artere;
 
 public class VerificateurCongestion {	
 	private boolean siChangementEtat = false;
 	public void verifierCongestion(){
 			
-		Vector<Arthere> artheres = MoteurTraitement.getReseauRoutier().getArtheres();
-		for(Arthere a: artheres) {
+		Vector<Artere> arteres = MoteurTraitement.getReseauRoutier().getArteres();
+		for(Artere a: arteres) {
 			boolean presenceCongestion = a.getPresenceCongestion();
 			boolean congestionDetecte = a.verifierCongestion();
 			if(presenceCongestion == false && congestionDetecte) {
-				MoteurTraitement.getEcran().ajouterTexteAuJournal("L'arthère " + a.getIdentifiant() + " est congestionnée");
+				MoteurTraitement.getEcran().ajouterTexteAuJournal("L'artère " + a.getIdentifiant() + " est congestionnée");
 			}
 		}
 	}

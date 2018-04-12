@@ -10,7 +10,7 @@ public class Vehicule {
 	private int positionX;
 	private int positionY;
 	private Intersection intersectionInitial;
-	private Arthere arthereEnCours;
+	private Artere artereEnCours;
 	
 	private Intersection derniereIntersection;
 	private Intersection prochaineIntersection;
@@ -40,16 +40,16 @@ public class Vehicule {
 	}	
 	
 	
-	public void changerSegment(Arthere arthere){
+	public void changerSegment(Artere artere){
 		pourcentageCompletion = 0;
 		
-		if (arthere != null && MoteurTraitement.getEcran() != null && this.voitureUtilisateur == true){
-			MoteurTraitement.getEcran().ajouterTexteAuJournal("La voiture prend l'artère " + arthere.toString());
+		if (artere != null && MoteurTraitement.getEcran() != null && this.voitureUtilisateur == true){
+			MoteurTraitement.getEcran().ajouterTexteAuJournal("La voiture prend l'artère " + artere.toString());
 		}
 		
-		//Intersection de l'arthere en cours
-		Intersection a = arthereEnCours.getA();
-		Intersection b = arthereEnCours.getB();
+		//Intersection de l'artere en cours
+		Intersection a = artereEnCours.getA();
+		Intersection b = artereEnCours.getB();
 		
 		//Doit trouver si a ou b est l'intersection la plus proche
 		if (getDistance(a.getPositionX(),a.getPositionY(),this.positionX,this.positionY) < getDistance(b.getPositionX(),b.getPositionY(),this.positionX,this.positionY)){
@@ -73,7 +73,7 @@ public class Vehicule {
 		return (int)(Math.pow((Math.pow(x, 2) + Math.pow(y, 2)), 0.5));
 	}
 	
-	//Si arrivé au bout de l'arthere, retourne true
+	//Si arrivé au bout de l'artere, retourne true
 	public boolean avancer(int dureeCycle, int vitesse){
 		
 		//System.out.println(derniereIntersection.toString() + " - " + prochaineIntersection.toString());
@@ -133,8 +133,8 @@ public class Vehicule {
 		return intersectionInitial;
 	}
 	
-	public void setArthereEnCours(Arthere a){
-		arthereEnCours = a;
+	public void setArthereEnCours(Artere a){
+		artereEnCours = a;
 	}
 
 	public boolean isSurIntersection() {

@@ -2,7 +2,7 @@ package Modele;
 
 import java.util.Vector;
 
-public class Arthere {
+public class Artere {
 
 	private final int NBR_VEHICULES_POUR_CONGESTION = 3;
 	private final int DISTANCE_MINIMAL_POUR_ACCIDENT = 22;
@@ -18,7 +18,7 @@ public class Arthere {
 	private Intersection intersectionB;
 	private Vector<Vehicule> vehicules = new Vector<Vehicule>(); //Changer pour une structure elastique (Vector)
 	
-	public Arthere(int v, Intersection a, Intersection b){
+	public Artere(int v, Intersection a, Intersection b){
 		this.presenceAccident = false;
 		this.presenceCongestion = false;
 		this.vitesseLimite = v;

@@ -13,7 +13,7 @@ import java.util.Vector;
 import javax.imageio.ImageIO;
 
 import Controleur.Algorithm.VecteurMath;
-import Modele.Arthere;
+import Modele.Artere;
 import Modele.Intersection;
 
 /**
@@ -59,7 +59,7 @@ public class AfficheurDirection {
 	 * @param rapportModeleCarte
 	 *            rapport entre le modèle et la carte
 	 */
-	public void dessiner(Graphics g, float x, float y, Arthere origine, Arthere destination, float rapportModeleCarte) {
+	public void dessiner(Graphics g, float x, float y, Artere origine, Artere destination, float rapportModeleCarte) {
 		Graphics2D g2d = (Graphics2D) g;
 
 		// aligner les intersections

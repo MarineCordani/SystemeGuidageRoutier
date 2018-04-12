@@ -2,7 +2,7 @@ package Controleur;
 
 import java.util.Vector;
 
-import Modele.Arthere;
+import Modele.Artere;
 
 public class GenerateurAccident {
 
@@ -25,21 +25,21 @@ public class GenerateurAccident {
 			return false;
 		}
 		
-		Vector<Arthere> arthere = MoteurTraitement.getReseauRoutier().getArtheres();
-		Arthere arthereAleatoire; 
-		int indexAleatoire = (int)(Math.random() * arthere.size());
-		arthereAleatoire = arthere.get(indexAleatoire);
+		Vector<Artere> artere = MoteurTraitement.getReseauRoutier().getArteres();
+		Artere artereAleatoire; 
+		int indexAleatoire = (int)(Math.random() * artere.size());
+		artereAleatoire = artere.get(indexAleatoire);
 
 		do{
-			if (arthereAleatoire.creerAccident()){
-				MoteurTraitement.getEcran().ajouterTexteAuJournal("L'arthère " + arthereAleatoire.getIdentifiant() + " est accidentée");
+			if (artereAleatoire.creerAccident()){
+				MoteurTraitement.getEcran().ajouterTexteAuJournal("L'arthère " + artereAleatoire.getIdentifiant() + " est accidentée");
 				return true;
 			}
 			else
 			{
-				indexAleatoire++; //Essayer de creer accident sur prochain arthere
+				indexAleatoire++; //Essayer de creer accident sur prochain artere
 			}
-		} while (indexAleatoire != arthere.size());
+		} while (indexAleatoire != artere.size());
 
 		return false;
 		

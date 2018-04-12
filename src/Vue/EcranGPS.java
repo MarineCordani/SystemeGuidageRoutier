@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.BadLocationException;
+
 import java.util.Vector;
 
 import Controleur.MoteurTraitement;
@@ -182,7 +184,7 @@ public class EcranGPS extends JFrame {
 	}
 	
 	/**
-	 * Méthode pour afficher un texte dasn le journal
+	 * Méthode pour afficher un texte dans le journal
 	 * 
 	 * @param message texte à afficher dans le journal
 	 */
@@ -191,10 +193,18 @@ public class EcranGPS extends JFrame {
 	}
 	
 	/**
+	 * Méthode pour supprimer tout le texte dans le journal
+	 */
+	public void supprimerTexteAuJournal() {		
+		txtJournalEvenementTextArea.setText(null);
+	}
+	
+	/**
 	 * Méthode pour arreter la simulation
 	 * 
 	 */
 	public void arreter() {
 		btnDemarrerArreterButton.doClick();
+		this.supprimerTexteAuJournal();
 	}
 }

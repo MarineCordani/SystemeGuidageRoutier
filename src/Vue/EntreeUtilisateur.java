@@ -39,6 +39,7 @@ public class EntreeUtilisateur extends JPanel implements ActionListener{
 		else {
 			button.setText("Démarrer");
 			MoteurTraitement.setLancer(false);
+			MoteurTraitement.getEcran().supprimerTexteAuJournal();
 		}
 	}
 }

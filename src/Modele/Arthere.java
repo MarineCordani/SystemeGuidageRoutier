@@ -4,8 +4,8 @@ import java.util.Vector;
 
 public class Arthere {
 
-	private final int NBR_VEHICULES_POUR_CONGESTION = 4;
-	private final int DISTANCE_MINIMAL_POUR_ACCIDENT = 10;
+	private final int NBR_VEHICULES_POUR_CONGESTION = 3;
+	private final int DISTANCE_MINIMAL_POUR_ACCIDENT = 22;
 	
 	private boolean presenceAccident;
 	private boolean presenceCongestion;
@@ -66,28 +66,56 @@ public class Arthere {
 	
 	public boolean creerAccident(){
 		//Si pas au moins deux vehicule, annuler l'accident
-		if (vehicules.size() < 2){
+		//Si pas congestion aussi
+		if (vehicules.size() < 2 || presenceCongestion){
 			return false;
 		}
 		
-		presenceAccident = true;
 		//Accidenter deux voitures au hasard
-		int aleatoire = (int)((Math.random() * (vehicules.size()-1))+1); //Choisis un vehicule autre que le premier
-		vehicules.get(aleatoire).SetAccidente(true);
-		vehicules.get(aleatoire -1).SetAccidente(true);
-		return true;
+		//int aleatoire = (int)((Math.random() * (vehicules.size()-1))+1); //Choisis un vehicule autre que le premier
+		//vehicules.get(aleatoire).SetAccidente(true);
+		//vehicules.get(aleatoire -1).SetAccidente(true);
+		
+		Vehicule a = null;
+		Vehicule b = null;
+		
+		for(int i = 0;i < vehicules.size();i++) {
+			for(int j = i+1;j < vehicules.size();j++) {
+				a = vehicules.get(i);
+				b = vehicules.get(j);
+				
+				if(a.getPositionX() == b.getPositionX() 
+				   && Math.abs(a.getPositionY() - b.getPositionY()) <= DISTANCE_MINIMAL_POUR_ACCIDENT) {
+					a.SetAccidente(true);
+					b.SetAccidente(true);
+					presenceAccident = true;
+					return true;
+				}
+				else if(a.getPositionY() == b.getPositionY() 
+				   && Math.abs(a.getPositionX() - b.getPositionX()) <= DISTANCE_MINIMAL_POUR_ACCIDENT) {
+					a.SetAccidente(true);
+					b.SetAccidente(true);
+					presenceAccident = true;
+					return true;
+				}
+			}
+		}
+		
+		return false;
 	}
 	
-	public void verifierCongestion(){
-		//Si pas au moins deux vehicule, annuler l'accident
+	public boolean verifierCongestion(){
+		//Si le nombre de véhicule pour avoir congestion est atteint
+		//peut importe la direction des véhicules
 		if (vehicules.size() > NBR_VEHICULES_POUR_CONGESTION){
 			presenceCongestion = true;
 		}
 		else {
 			presenceCongestion = false;
 		}
-	}
-	
+		
+		return presenceCongestion;
+	}	
 	
 	public void ajouterVehicule(Vehicule v){
 		vehicules.add(v);

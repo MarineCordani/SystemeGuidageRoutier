@@ -114,8 +114,6 @@ public class ReseauRoutier {
 		v.setPositionY(i.getPositionY());
 		v.setArthereEnCours(temporaire);
 		v.changerSegment(temporaire);
-		
-		//i.ajouterVehicule(v);
 	}
 
 	public Vector<Intersection> getIntersections() {
@@ -145,39 +143,6 @@ public class ReseauRoutier {
 	public boolean avancerVehicule(int dureeCycle){
 		Arthere temporaire;		
 		
-		/*for (Intersection i: intersections){
-			Vector<Vehicule> vehicules = i.getVehicules();
-			synchronized(vehicules){
-			    Iterator vehiculeIterator = vehicules.iterator();
-			    while (vehiculeIterator.hasNext()) {
-			    	Vehicule v = (Vehicule)vehiculeIterator.next();
-			    	//if (v.avancer()){
-						//TODO: Signifie que le vehicule est a la fin de son arthere
-						//i.retirerVehicule(v);
-			    		if (v.isSurIntersection()){
-				    		v.getTrajet().imprimerTrajet();
-				    		vehiculeIterator.remove();
-							temporaire = v.getTrajet().retirerProchainArthere();
-							v.setSurIntersection(false);
-							temporaire.ajouterVehicule(v);
-							v.setArthereEnCours(temporaire);
-							v.changerSegment(temporaire);
-			    		}
-					//}
-			    }
-			}
-			/*
-			for (Vehicule v: i.getVehicules()){
-				if (v.avancer()){
-					//TODO: Signifie que le vehicule est a la fin de son arthere
-					i.retirerVehicule(v);
-					temporaire = v.getTrajet().retirerProchainArthere();
-					temporaire.ajouterVehicule(v);
-					v.setArthereEnCours(temporaire);
-				}
-			}*/
-		//} 
-		
 		for (Arthere a: artheres){
 			Vector<Vehicule> vehicules = a.getVehicules();
 			synchronized(vehicules)	{
@@ -186,18 +151,16 @@ public class ReseauRoutier {
 			    	Vehicule v = (Vehicule)vehiculeIterator.next();
 			    	if (v.avancer(dureeCycle, a.getVitesseActuelle())){
 			    		//System.out.println("----------------------------");
-						//TODO: Signifie que le vehicule est a la fin de son arthere
+						//Signifie que le vehicule est a la fin de son arthere
 						//a.retirerVehicule(v);
 			    		vehiculeIterator.remove();
 			    		temporaire = v.getTrajet().retirerProchainArthere();
 						if (temporaire == null){ //Indique que le vehicule est a la fin du trajet
-							//a.retirerVehicule(v);
 							if(v.isVoitureUtilisateur()) {
 								return false;
 							}							
 						}
-						else
-						{
+						else {
 							temporaire.ajouterVehicule(v);
 							v.setArthereEnCours(temporaire);
 							v.changerSegment(temporaire);
@@ -207,17 +170,6 @@ public class ReseauRoutier {
 					}
 			    }
 			}
-			/*
-			for (Vehicule v: a.getVehicules()){
-				if (v.avancer()){
-					//TODO: Signifie que le vehicule est a la fin de son arthere
-					a.retirerVehicule(v);
-					temporaire = v.getTrajet().retirerProchainArthere();
-					temporaire.ajouterVehicule(v);
-					v.changerSegment(temporaire);
-					v.setArthereEnCours(temporaire);
-				}
-			}*/
 		}
 		
 		return true;

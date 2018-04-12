@@ -9,7 +9,8 @@ public class GenerateurAccident {
 	private double probabilite;
 	
 	public GenerateurAccident(){
-		probabilite = 0.05;
+		//probabilite = 0.05;
+		probabilite = 0.50;
 	}
 	
 	public GenerateurAccident(double p){

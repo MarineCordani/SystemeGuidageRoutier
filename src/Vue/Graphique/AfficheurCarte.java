@@ -97,7 +97,13 @@ public class AfficheurCarte {
 			y2 = y + ((float) b.getPositionY() / rapportModeleCarte);
 
 			if (trait) {
-				g2d.setPaint(new Color(191, 188, 183));// gris
+				if (utilisateurArtheres != null && utilisateurArtheres.contains(arthere)) {// magenta
+					g2d.setPaint(new Color(255, 0, 255));
+				} 
+				else {
+					g2d.setPaint(new Color(191, 188, 183));// gris
+				}
+				
 				g2d.setStroke(new BasicStroke(EPAISSEUR_TRAIT + 2));
 				g2d.drawLine((int) x1, (int) y1, (int) x2, (int) y2);
 			} else {
@@ -109,13 +115,16 @@ public class AfficheurCarte {
 					}
 				}
 
-				if (utilisateurArtheres != null && utilisateurArtheres.contains(arthere)) {// magenta
-					g2d.setPaint(new Color(255, 0, 255));
-				} else if (arthere.getPresenceAccident()) {// rouge
-					g2d.setPaint(new Color(237, 85, 100));
-				} else if (arthere.getPresenceCongestion()) {// bleu
+				if (arthere.getPresenceCongestion()) {// bleu
 					g2d.setPaint(new Color(153, 213, 221));
-				} else {// sinon blanc
+				}
+				else if (arthere.getPresenceAccident()) {// rouge
+					g2d.setPaint(new Color(237, 85, 100));
+				} 
+				else if (utilisateurArtheres != null && utilisateurArtheres.contains(arthere)) {// magenta
+					g2d.setPaint(new Color(255, 0, 255));
+				} 
+				else {// sinon blanc
 					g2d.setPaint(Color.WHITE);
 				}
 				g2d.setStroke(new BasicStroke(EPAISSEUR_TRAIT));

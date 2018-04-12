@@ -9,7 +9,9 @@ public class VerificateurCongestion {
 			
 		Vector<Arthere> artheres = MoteurTraitement.getReseauRoutier().getArtheres();
 		for(Arthere a: artheres) {
-			a.verifierCongestion();
+			if(a.verifierCongestion()) {
+				MoteurTraitement.getEcran().ajouterTexteAuJournal("L'arthère " + a.getIdentifiant() + " est congestionnée");
+			}
 		}
 	}
 	

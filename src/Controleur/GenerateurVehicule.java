@@ -4,6 +4,12 @@ import Modele.Intersection;
 import Modele.Trajet;
 import Modele.Vehicule;
 
+/**
+ * Classe du contrôleur pour décider quand un véhicule est ajouté sur la carte
+ * 
+ * @author Marine Cordani, Mouna Slimen, Vestine Mukeshimana
+ *
+ */
 public class GenerateurVehicule {
 
 	private double probabilite;

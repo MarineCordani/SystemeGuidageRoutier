@@ -10,6 +10,12 @@ import Modele.Vehicule;
 import Vue.EcranGPS;
 import Vue.EcranGPS;
 
+/**
+ * Classe du contrôleur qui constitue le point centrale d'exécution du programme
+ * 
+ * @author Marine Cordani, Mouna Slimen, Vestine Mukeshimana
+ *
+ */
 public class MoteurTraitement {
 
 	static private ReseauRoutier reseau;

@@ -4,6 +4,12 @@ import java.util.Vector;
 
 import Modele.Artere;
 
+/**
+ * Classe du contrôleur pour décider quand un accident survient sur un artère
+ * 
+ * @author Marine Cordani, Mouna Slimen, Vestine Mukeshimana
+ *
+ */
 public class GenerateurAccident {
 
 	private double probabilite;
@@ -19,8 +25,7 @@ public class GenerateurAccident {
 	
 	public boolean genererAccident(){
 		//Retourne true si un accident a bien eu lieu
-		//TODO
-		
+	
 		if (Math.random() > probabilite) {
 			return false;
 		}

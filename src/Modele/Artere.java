@@ -2,6 +2,12 @@ package Modele;
 
 import java.util.Vector;
 
+/**
+ * Classe du modèle qui représentation un tronçon sur lequel circulent les véhicules
+ * 
+ * @author Marine Cordani, Mouna Slimen, Vestine Mukeshimana
+ *
+ */
 public class Artere {
 
 	private final int NBR_VEHICULES_POUR_CONGESTION = 3;

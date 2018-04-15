@@ -2,6 +2,12 @@ package Modele;
 
 import java.util.Vector;
 
+/**
+ * Classe du modèle qui représente un point de jointure entre plusieurs artères
+ * 
+ * @author Marine Cordani, Mouna Slimen, Vestine Mukeshimana
+ *
+ */
 public class Intersection {
 
 	private int positionX; //Position X de l'intersection

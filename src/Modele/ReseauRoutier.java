@@ -6,6 +6,12 @@ import java.util.Vector;
 import Controleur.GenerateurTrajet;
 import Controleur.MoteurTraitement;
 
+/**
+ * Classe du modèle qui possède l’ensemble intersections et artères.
+ * 
+ * @author Marine Cordani, Mouna Slimen, Vestine Mukeshimana
+ *
+ */
 public class ReseauRoutier {
 	public static final int VITESSE_MAX = 50;
 	public static final int DISTANCE_MAX_ARTHERE = 100;

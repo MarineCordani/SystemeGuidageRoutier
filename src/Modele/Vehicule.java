@@ -2,6 +2,12 @@ package Modele;
 
 import Controleur.MoteurTraitement;
 
+/**
+ * Classe du modèle qui constitue l'entité circulant sur le réseau routier
+ * 
+ * @author Marine Cordani, Mouna Slimen, Vestine Mukeshimana
+ *
+ */
 public class Vehicule {
 	private final float RAPPORT_VITESSES = 50.0f / 0.0002f;	private boolean presenceAccident;
 	

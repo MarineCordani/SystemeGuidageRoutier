@@ -2,6 +2,12 @@ package Modele;
 
 import java.util.Vector;
 
+/**
+ * Classe du modèle qui constitue l'ensemble d'artères suivies par un véhicule
+ * 
+ * @author Marine Cordani, Mouna Slimen, Vestine Mukeshimana
+ *
+ */
 public class Trajet {
 
 	private Vector<Artere> arteres = new Vector<Artere>();

@@ -10,7 +10,7 @@ import java.util.Vector;
  */
 public class Artere {
 
-	private final int NBR_VEHICULES_POUR_CONGESTION = 3;
+	private final int NBR_VEHICULES_POUR_CONGESTION = 4;
 	private final int DISTANCE_MINIMAL_POUR_ACCIDENT = 22;
 	
 	private boolean presenceAccident;

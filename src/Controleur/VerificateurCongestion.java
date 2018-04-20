@@ -10,18 +10,21 @@ import Modele.Artere;
  * @author Marine Cordani, Mouna Slimen, Vestine Mukeshimana
  *
  */
-public class VerificateurCongestion {	
-	private boolean siChangementEtat = false;
-	public void verifierCongestion(){
-			
+public class VerificateurCongestion {
+	/**
+	 * Méthode pour vérifier congestion
+	 * 
+	 */
+	public void verifierCongestion() {
 		Vector<Artere> arteres = MoteurTraitement.getReseauRoutier().getArteres();
-		for(Artere a: arteres) {
+		for (Artere a : arteres) {
 			boolean presenceCongestion = a.getPresenceCongestion();
 			boolean congestionDetecte = a.verifierCongestion();
-			if(presenceCongestion == false && congestionDetecte) {
-				MoteurTraitement.getEcran().ajouterTexteAuJournal("L'artère " + a.getIdentifiant() + " est congestionnée");
+			if (presenceCongestion == false && congestionDetecte) {
+				MoteurTraitement.getEcran()
+						.ajouterTexteAuJournal("L'artère " + a.getIdentifiant() + " est congestionnée");
 			}
 		}
 	}
-	
+
 }

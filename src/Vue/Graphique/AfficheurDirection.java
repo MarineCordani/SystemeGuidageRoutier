@@ -1,14 +1,10 @@
 package Vue.Graphique;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Polygon;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Vector;
 
 import javax.imageio.ImageIO;
 
@@ -26,7 +22,6 @@ public class AfficheurDirection {
 
 	private BufferedImage[] imageDirection;
 
-	private static final int EPAISSEUR_TRAIT = 8;
 	public static final int FLECHE_UNITE = 10;
 
 	/**

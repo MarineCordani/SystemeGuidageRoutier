@@ -14,7 +14,6 @@ import Modele.Intersection;
 import Modele.ReseauRoutier;
 import Modele.Vehicule;
 import Vue.Graphique.AfficheurCarte;
-import Vue.Graphique.AfficheurDirection;
 import Vue.Graphique.AfficheurVehicule;
 
 /**
@@ -92,8 +91,6 @@ public class Carte extends JPanel {
 
 		// Afficher les véhicules
 		for (Artere artere : arteres) {
-			Intersection a = artere.getA();
-			Intersection b = artere.getB();
 			Vector<Vehicule> vehicules = artere.getVehicules();
 
 			for (Vehicule vehicule : vehicules) {

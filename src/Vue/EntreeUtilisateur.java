@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import Vue.Graphique.AfficheurDirection;
 import Controleur.MoteurTraitement;
 
 /**

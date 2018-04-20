@@ -11,36 +11,55 @@ import java.util.Vector;
 public class Trajet {
 
 	private Vector<Artere> arteres = new Vector<Artere>();
-	
-	
-	public Artere retirerProchainArthere(){ //Retire le prochain artere du trajet et l'envoi a la méthode appelante
-		if (arteres.isEmpty()){
+
+	/**
+	 * Méthode pour retirer la prochaine artère
+	 * 
+	 * @return
+	 */
+	public Artere retirerProchainArtere() { // Retire le prochain artere du trajet et l'envoi a la méthode appelante
+		if (arteres.isEmpty()) {
 			return null;
 		}
 		Artere temporaire = arteres.get(0);
 		arteres.remove(0);
 		return temporaire;
 	}
-	
-	public void ajouterProchainArthere(Artere a){
+
+	/**
+	 * Méthode pour ajouter la prochaine artère
+	 * 
+	 * @param a
+	 */
+	public void ajouterProchainArtere(Artere a) {
 		arteres.add(a);
 	}
-	
-	public boolean estTermine(){ //Indique (True/false) s'il reste des éléments
+
+	/**
+	 * Méthode pour vérifier s'il reste des éléments
+	 * 
+	 * @return
+	 */
+	public boolean estTermine() { // Indique (True/false) s'il reste des éléments
 		return arteres.isEmpty();
 	}
 
-	//Pour déboggage seulement
-	public void imprimerTrajet(){
-		for (Artere a: arteres){
+	/**
+	 * Méthode pour imprimer le trajet Pour déboggage seulement
+	 */
+	public void imprimerTrajet() {
+		for (Artere a : arteres) {
 			System.out.print(a.toString() + ",");
 		}
 		System.out.println();
 	}
-	
-	public Vector<Artere> getArteres(){
+
+	/**
+	 * Méthode pour obtenir les artères
+	 * 
+	 * @return
+	 */
+	public Vector<Artere> getArteres() {
 		return arteres;
 	}
-	
-	
 }

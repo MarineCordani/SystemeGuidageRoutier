@@ -14,14 +14,27 @@ public class GenerateurVehicule {
 
 	private double probabilite;
 
+	/**
+	 * Constructeur
+	 */
 	public GenerateurVehicule() {
 		this.probabilite = 0.025 * 3;
 	}
 
+	/**
+	 * Constructeur
+	 * 
+	 * @param p
+	 */
 	public GenerateurVehicule(double p) {
 		this.probabilite = p;
 	}
 
+	/**
+	 * Méthode pour générer les véhicules
+	 * 
+	 * @return
+	 */
 	public Vehicule genererVehicule() {
 		if (Math.random() < probabilite) {
 			int aleatoireIntersectionA = (int) (Math.random() * 12);

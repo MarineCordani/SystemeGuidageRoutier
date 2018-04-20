@@ -4,7 +4,7 @@ package Controleur.Algorithm;
  * Classe du contrôleur pour calculer l’angle entre deux points de position
  * 
  * @author ja72@stackoverflow.com
- * https://stackoverflow.com/questions/21483999/using-atan2-to-find-angle-between-two-vectors
+ *         https://stackoverflow.com/questions/21483999/using-atan2-to-find-angle-between-two-vectors
  *
  */
 public class VecteurMath {
@@ -13,6 +13,7 @@ public class VecteurMath {
 
 	/**
 	 * Constructeur
+	 * 
 	 * @param x
 	 * @param y
 	 */
@@ -20,9 +21,10 @@ public class VecteurMath {
 		this.x = x;
 		this.y = y;
 	}
-	
+
 	/**
 	 * Returns the angle between two vectors
+	 * 
 	 * @param a
 	 * @param b
 	 * @return
@@ -33,10 +35,11 @@ public class VecteurMath {
 
 	/**
 	 * Calculer la distance entre deux points
+	 * 
 	 * @return
 	 */
 	public float magnitude() {
-		return (float)Math.sqrt(dot(this, this));
+		return (float) Math.sqrt(dot(this, this));
 	}
 
 	/**

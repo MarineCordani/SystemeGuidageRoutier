@@ -3,7 +3,8 @@ package Modele;
 import java.util.Vector;
 
 /**
- * Classe du modèle qui représentation un tronçon sur lequel circulent les véhicules
+ * Classe du modèle qui représentation un tronçon sur lequel circulent les
+ * véhicules
  * 
  * @author Marine Cordani, Mouna Slimen, Vestine Mukeshimana
  *
@@ -12,32 +13,40 @@ public class Artere {
 
 	private final int NBR_VEHICULES_POUR_CONGESTION = 4;
 	private final int DISTANCE_MINIMAL_POUR_ACCIDENT = 22;
-	
+
 	private boolean presenceAccident;
 	private boolean presenceCongestion;
-	private int vitesseLimite; //Toujours etre divisible par 4
-	private int vitesseActuel; //Vitesse est egal a vitesse limite, diviser par 2 si accident, diviser par 2 si congestion
-	private int longueur; //Pareille pour tous
+	private int vitesseLimite; // Toujours etre divisible par 4
+	private int vitesseActuel; // Vitesse est egal a vitesse limite, diviser par 2 si accident, diviser par 2
+								// si congestion
+	private int longueur; // Pareille pour tous
 	private String identifiant;
-		
+
 	private Intersection intersectionA;
 	private Intersection intersectionB;
-	private Vector<Vehicule> vehicules = new Vector<Vehicule>(); //Changer pour une structure elastique (Vector)
-	
-	public Artere(int v, Intersection a, Intersection b){
+	private Vector<Vehicule> vehicules = new Vector<Vehicule>(); // Changer pour une structure elastique (Vector)
+
+	/**
+	 * Constructeur
+	 * 
+	 * @param v
+	 * @param a
+	 * @param b
+	 */
+	public Artere(int v, Intersection a, Intersection b) {
 		this.presenceAccident = false;
 		this.presenceCongestion = false;
 		this.vitesseLimite = v;
 		this.vitesseActuel = this.vitesseLimite;
 		this.longueur = 100;
 		this.identifiant = a.toString() + "-" + b.toString();
-		
+
 		this.intersectionA = a;
-		a.connecterArthere(this);
+		a.connecterArtere(this);
 		this.intersectionB = b;
-		b.connecterArthere(this);
+		b.connecterArtere(this);
 	}
-	
+
 	/**
 	 * Cette méthode permet de connaître l'intersection a de l'arthère
 	 * 
@@ -46,7 +55,7 @@ public class Artere {
 	public Intersection getA() {
 		return this.intersectionA;
 	}
-	
+
 	/**
 	 * Cette méthode permet de connaître l'intersection b de l'arthère
 	 * 
@@ -55,50 +64,49 @@ public class Artere {
 	public Intersection getB() {
 		return this.intersectionB;
 	}
-	
-	
+
 	/**
 	 * Cette méthode permet de connaître la durée pour parcourir l'arthère
 	 * 
 	 * @return la durée pour parcourir l'arthère
 	 */
-	public int dureeTraverse(){
-		int temp = longueur/this.getVitesseActuelle();
-		/*if (presenceAccident){
-			temp*=5;
-		}*/
+	public int dureeTraverse() {
+		int temp = longueur / this.getVitesseActuelle();
+		/*
+		 * if (presenceAccident){ temp*=5; }
+		 */
 		return temp;
 	}
-	
-	public boolean creerAccident(){
-		//Si pas au moins deux vehicule, annuler l'accident
-		//Si pas congestion aussi
-		if (vehicules.size() < 2 || presenceCongestion){
+
+	/**
+	 * Méthode pour créer les accidents
+	 * 
+	 * @return
+	 */
+	public boolean creerAccident() {
+		// Si pas au moins deux vehicule, annuler l'accident
+		// Si pas congestion aussi
+		if (vehicules.size() < 2 || presenceCongestion) {
 			return false;
 		}
-		
-		//Accidenter deux voitures au hasard
-		//int aleatoire = (int)((Math.random() * (vehicules.size()-1))+1); //Choisis un vehicule autre que le premier
-		//vehicules.get(aleatoire).SetAccidente(true);
-		//vehicules.get(aleatoire -1).SetAccidente(true);
-		
+
+		// Accidenter deux voitures
 		Vehicule a = null;
 		Vehicule b = null;
-		
-		for(int i = 0;i < vehicules.size();i++) {
-			for(int j = i+1;j < vehicules.size();j++) {
+
+		for (int i = 0; i < vehicules.size(); i++) {
+			for (int j = i + 1; j < vehicules.size(); j++) {
 				a = vehicules.get(i);
 				b = vehicules.get(j);
-				
-				if(a.getPositionX() == b.getPositionX() 
-				   && Math.abs(a.getPositionY() - b.getPositionY()) <= DISTANCE_MINIMAL_POUR_ACCIDENT) {
+
+				if (a.getPositionX() == b.getPositionX()
+						&& Math.abs(a.getPositionY() - b.getPositionY()) <= DISTANCE_MINIMAL_POUR_ACCIDENT) {
 					a.SetAccidente(true);
 					b.SetAccidente(true);
 					presenceAccident = true;
 					return true;
-				}
-				else if(a.getPositionY() == b.getPositionY() 
-				   && Math.abs(a.getPositionX() - b.getPositionX()) <= DISTANCE_MINIMAL_POUR_ACCIDENT) {
+				} else if (a.getPositionY() == b.getPositionY()
+						&& Math.abs(a.getPositionX() - b.getPositionX()) <= DISTANCE_MINIMAL_POUR_ACCIDENT) {
 					a.SetAccidente(true);
 					b.SetAccidente(true);
 					presenceAccident = true;
@@ -106,70 +114,107 @@ public class Artere {
 				}
 			}
 		}
-		
+
 		return false;
 	}
-	
-	public boolean verifierCongestion(){
-		//Si le nombre de véhicule pour avoir congestion est atteint
-		//peut importe la direction des véhicules
-		if (vehicules.size() > NBR_VEHICULES_POUR_CONGESTION){
+
+	/**
+	 * Vérifier Congestion
+	 * 
+	 * @return
+	 */
+	public boolean verifierCongestion() {
+		// Si le nombre de véhicule pour avoir congestion est atteint
+		// peut importe la direction des véhicules
+		if (vehicules.size() > NBR_VEHICULES_POUR_CONGESTION) {
 			presenceCongestion = true;
-		}
-		else {
+		} else {
 			presenceCongestion = false;
 		}
-		
+
 		return presenceCongestion;
-	}	
-	
-	public void ajouterVehicule(Vehicule v){
+	}
+
+	/**
+	 * Méthode pour ajouter le véhicule
+	 * 
+	 * @param v
+	 *            véhicule
+	 */
+	public void ajouterVehicule(Vehicule v) {
 		vehicules.add(v);
 	}
-	
-	public void retirerVehicule(Vehicule v){
-		vehicules.remove(v);
-	}
-	
+
+	/**
+	 * Méthode pour obtenir les véhicules
+	 * 
+	 * @return
+	 */
 	public Vector<Vehicule> getVehicules() {
 		return this.vehicules;
 	}
-	
+
+	/**
+	 * Méthode pou obtenir la présence d'accidents
+	 * 
+	 * @return
+	 */
 	public boolean getPresenceAccident() {
 		return this.presenceAccident;
 	}
-	
+
+	/**
+	 * Méthode pour obtenir la présence de congestion
+	 * 
+	 * @return
+	 */
 	public boolean getPresenceCongestion() {
 		return this.presenceCongestion;
 	}
 
+	/**
+	 * Méthode pour afficher l'artère
+	 */
 	public String toString() {
 		return this.identifiant;
 	}
 
+	/**
+	 * Méthode pour obtenir l'identifiant
+	 * 
+	 * @return
+	 */
 	public String getIdentifiant() {
 		return identifiant;
 	}
-	
+
+	/**
+	 * Méthode pour vérifier si l'artère a le véhicule utilisateur
+	 * 
+	 * @return
+	 */
 	public boolean hasVehiculeUtilisateur() {
-		for(Vehicule v: this.vehicules) {
-			if(v.isVoitureUtilisateur()) {
+		for (Vehicule v : this.vehicules) {
+			if (v.isVoitureUtilisateur()) {
 				return true;
 			}
 		}
 
 		return false;
 	}
-	
+
+	/**
+	 * Méthode pour obtenir la vitesse actuelle
+	 * 
+	 * @return
+	 */
 	public int getVitesseActuelle() {
-		
-		if(presenceCongestion) {
+
+		if (presenceCongestion) {
 			return this.vitesseActuel / 4;
-		}
-		else if(presenceAccident) {
+		} else if (presenceAccident) {
 			return this.vitesseActuel / 2;
-		}
-		else {
+		} else {
 			return this.vitesseActuel;
 		}
 	}

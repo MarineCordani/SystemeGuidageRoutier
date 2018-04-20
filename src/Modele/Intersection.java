@@ -10,23 +10,22 @@ import java.util.Vector;
  */
 public class Intersection {
 
-	private int positionX; //Position X de l'intersection
-	private int positionY; //Position Y de l'intersection
+	private int positionX; // Position X de l'intersection
+	private int positionY; // Position Y de l'intersection
 	private Vector<Artere> connection = new Vector<Artere>();
-	private String identifiant; //Identifiant
-	private Vector<Vehicule> vehicules = new Vector<Vehicule>(); //Vehicule sur l'artere
-	
+	private String identifiant; // Identifiant
+	private Vector<Vehicule> vehicules = new Vector<Vehicule>(); // Vehicule sur l'artere
 
-	public Intersection(String i, int x, int y){
+	public Intersection(String i, int x, int y) {
 		this.identifiant = i;
 		this.positionX = x;
 		this.positionY = y;
 	}
-	
+
 	public int getPositionX() {
 		return positionX;
 	}
-	
+
 	public int getPositionY() {
 		return positionY;
 	}
@@ -39,26 +38,40 @@ public class Intersection {
 	public String toString() {
 		return this.identifiant;
 	}
-	
-	public void connecterArthere(Artere a){
+
+	/**
+	 * Méthode pour connecter artères
+	 * 
+	 * @param a
+	 */
+	public void connecterArtere(Artere a) {
 		connection.add(a);
 	}
-	
+
+	/**
+	 * Méthode pour obtenir les véhicules
+	 * 
+	 * @return
+	 */
 	public Vector<Vehicule> getVehicules() {
 		return this.vehicules;
 	}
-	
+
+	/**
+	 * Opérateur d'égalité
+	 */
 	public boolean equals(Object object) {
-		Intersection a = (Intersection)object;
-	    return object instanceof Intersection && (this.positionX == a.positionX) && (this.positionY == a.positionY);
+		Intersection a = (Intersection) object;
+		return object instanceof Intersection && (this.positionX == a.positionX) && (this.positionY == a.positionY);
 	}
-	
-	public void ajouterVehicule(Vehicule v){
+
+	/**
+	 * Méthode pour ajouter les véhicules
+	 * 
+	 * @param v
+	 */
+	public void ajouterVehicule(Vehicule v) {
 		vehicules.add(v);
 	}
-	
-	public void retirerVehicule(Vehicule v){
-		vehicules.remove(v);
-	}
-	
+
 }

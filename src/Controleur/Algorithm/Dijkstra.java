@@ -17,11 +17,13 @@ public class Dijkstra {
 	public int[] shortestDistances;
 	public int[] parents;
 
-	// Function that implements Dijkstra's
-	// single source shortest path
-	// algorithm for a graph represented
-	// using adjacency matrix
-	// representation
+	/**
+	 * Function that implements Dijkstra's single source shortest path algorithm for
+	 * a graph represented using adjacency matrix representation
+	 * 
+	 * @param adjacencyMatrix
+	 * @param startVertex
+	 */
 	public void calculateShortestPath(int[][] adjacencyMatrix, int startVertex) {
 		int nVertices = adjacencyMatrix[0].length;
 
@@ -88,13 +90,18 @@ public class Dijkstra {
 			}
 		}
 
-		//printSolution(startVertex, shortestDistances, parents);
+		// printSolution(startVertex, shortestDistances, parents);
 	}
 
-	// A utility function to print
-	// the constructed distances
-	// array and shortest paths
-	private static void printSolution(int startVertex, int[] distances, int[] parents) {
+	/**
+	 * A utility function to print the constructed distances array and shortest
+	 * paths
+	 * 
+	 * @param startVertex
+	 * @param distances
+	 * @param parents
+	 */
+	/*private static void printSolution(int startVertex, int[] distances, int[] parents) {
 		int nVertices = distances.length;
 		System.out.print("Vertex\t Distance\tPath");
 
@@ -106,12 +113,16 @@ public class Dijkstra {
 				printPath(vertexIndex, parents);
 			}
 		}
-	}
+	}*/
 
-	// Function to print shortest path
-	// from source to currentVertex
-	// using parents array
-	private static void printPath(int currentVertex, int[] parents) {
+	/**
+	 * Function to print shortest path from source to currentVertex using parents
+	 * array
+	 * 
+	 * @param currentVertex
+	 * @param parents
+	 */
+	/*private static void printPath(int currentVertex, int[] parents) {
 		// Base case : Source node has
 		// been processed
 		if (currentVertex == NO_PARENT) {
@@ -119,6 +130,5 @@ public class Dijkstra {
 		}
 		printPath(parents[currentVertex], parents);
 		System.out.print(currentVertex + " ");
-	}
-
+	}*/
 }
